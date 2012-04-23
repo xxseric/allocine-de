@@ -331,13 +331,67 @@ body
 
 
 /*
- *			CONTENU ABOUT
+ *			CONTENU ABOUT & CONTENU CONTACT
  */
- 
+  
+#contenu_about, #contenu_contact
+{
+	position: relative;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	color: #111;
+	padding: 10px;
+	width: 500px;
+	border: 1px solid goldenrod;
+	border-radius: 0 10px 0 10px;
+	background: #ffd65e; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+	
+}
 
-/*
- *			CONTENU CONTACT
- */
+#contenu_about h1, #contenu_contact h1
+{
+	font-family: ComfortaaBold;
+	text-align: center;
+	margin-top: -5px;
+	
+}
+
+#contenu_contact article
+{	
+	font-family: Trebuchet MS;
+	font-size: 14px;
+}
+
+#contenu_contact article ul
+{	
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+#contenu_contact article ul .bold
+{	
+	font-weight: bolder;
+}
+
+#contenu_contact article ul li
+{	
+	margin-bottom: 8px;
+}
+
+#contenu_contact article .bold
+{	
+	font-weight: bolder;
+}
 
 /*
  *			CONTENU LORS DE L'INSCRIPTION
