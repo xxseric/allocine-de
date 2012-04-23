@@ -386,6 +386,20 @@ HEREDOC;
 		<h1>Bienvenu</h1>
 	</div>
 	<article>
+		<section id="galerie_texte">
+			<ul>
+				<li><img src="../images/1.jpg"></img></li>
+				<li><img src="../images/2.jpg"></img></li>
+				<li><img src="../images/3.jpg"></img></li>
+				<li><img src="../images/4.jpg"></img></li>
+				<li><img src="../images/5.jpg"></img></li>
+				<li><img src="../images/6.jpg"></img></li>
+				<li><img src="../images/7.jpg"></img></li>
+				<li><img src="../images/8.jpg"></img></li>
+				<li><img src="../images/9.jpg"></img></li>
+				<li><img src="../images/10.jpg"></img></li>
+			</ul>
+		</section>
 		<p>Allocine, un site regroupant une immense base donnees de films</p>
 		<p>Sur ce site vous pouvez :</p>
 		<ul>
