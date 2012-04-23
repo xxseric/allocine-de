@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <link rel="stylesheet" href="./css/style.css" />
+		<style type="text/css">
+			@import "./js/dojo/dijit/themes/soria/soria.css";
+			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
+			@import "./js/dojo/dojo/resources/dojo.css";
+		</style>
+		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+	    <script type="text/javascript">
+	    	dojo.require("dijit.form.ValidationTextBox");
+	    	dojo.require("dijit.form.NumberTextBox");
+	    	dojo.require("dijit.form.TextBox");
+	    	dojo.require("dojo.parser");
+	    	dojo.require("dijit.form.Form");
+	    	dojo.require("dijit.form.Button");
+   			dojo.require("dojox.validate.regexp");
+   			dojo.require("dojox.form.PasswordValidator");
+	    </script>	
+		<title>Allocine</title>
+	</head>
+
+	<body>
+	
+		<div id="page">
+		
+			<div id="header">
+				<h1>ALLOCINE</h1>
+				<h2>A chacun son film...</h2>
+				<div id="connexion" class="soria">
+				</div>
+				<div id="separator">
+				</div>
+				<div class="menu">
+					<ul id="nav">
+						<li><a href="">Home</a></li>
+						<li><a href="">About</a></li>
+						<li><a href="">Contact</a></li>
+						<li><a href="">Login</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div id="contenu_deconnected">
+				<div id="banniere">
+					<h1>Bienvenu</h1>
+				</div>
+				<article>
+					<section id="galerie_texte">
+						<ul>
+							<li><img src="./images/1.jpg"></img></li>
+							<li><img src="./images/2.jpg"></img></li>
+							<li><img src="./images/3.jpg"></img></li>
+							<li><img src="./images/4.jpg"></img></li>
+							<li><img src="./images/5.jpg"></img></li>
+							<li><img src="./images/6.jpg"></img></li>
+							<li><img src="./images/7.jpg"></img></li>
+							<li><img src="./images/8.jpg"></img></li>
+							<li><img src="./images/9.jpg"></img></li>
+							<li><img src="./images/10.jpg"></img></li>
+						</ul>
+					</section>
+					<p>Allocine, un site regroupant une immense base donnees de films</p>
+					<p>Sur ce site vous pouvez :</p>
+					<ul>
+						<li>Consulter le contexte d'un film</li>
+						<li>Donner votre avis sur un film</li>
+						<li>Modifier les informations d'un film</li>
+					</ul>
+				</article>				
+			</div>
+			
+			
+			<!-- PROTOTYPE CONTENU CONNEXION -->
+			<!-- <form method="post" action="./controller/user_controller.php?action=connexion" enctype="multipart/form-data" class="soria" id="formulaire_connexion" dojoType="dijit.form.Form">	
+				<h1>Connexion</h1>
+				<table border=0>
+					<tr>
+						<td>
+							<label>Email</label>
+						</td>
+						<td>
+							<input id="email" type="text" name="email" class="long" value=""
+    											dojoType="dijit.form.ValidationTextBox"
+    											regExpGen="dojox.validate.regexp.emailAddress"
+    											trim="true"
+    											required="true"
+    											invalidMessage="Email non valide." />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Mot de passe</label>
+						</td>
+						<td>
+							<input type="password"
+    											id="password"
+	    										name="password"
+    											dojoType="dijit.form.ValidationTextBox"
+    											required="true"
+    											trim="true"
+    											invalidMessage="Le mot de passe est nÃ©cessaire" />
+    					</td>
+					</tr>
+				</table>
+				<center><button type="submit" dojoType="dijit.form.Button" onClick="dijit.byId('formulaire_connexion').validate();">Se connecter</button></center>
+			</form> -->
+			
+			<div id="footer">
+				<p>Copyright © 2012 <a href="#">Desmauts-Evers</a></p>
+				<p><a href="#">Valid XHTML 1.0 Strict</a> | <a href="#">Valid CSS</a></p>
+			</div>
+			
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,468 @@
+@CHARSET "ISO-8859-1";
+
+@font-face{
+    font-family:"ComfortaaBold";
+    src:
+    	url("../polices/ComfortaaBold.eot"), /* pour IE */
+        url("../polices/ComfortaaBold.woff"), /* pour Firefox, Chrome*/
+        url("../polices/ComfortaaBold.ttf"), /* pour Safari et Opéra*/
+        url("../polices/ComfortaaBold.svg"); /* pour iPhone, iPad */
+    font-weight:bold;
+}
+
+@font-face{
+	font-family:"FrederickaTheGreatRegular";
+	src:
+		url("../polices/FrederickaTheGreatRegular.ttf");
+}
+
+/*
+ *******************************************
+ *                                         *
+ *	  	   CONFIGURATION DE LA PAGE        *
+ *                                         *
+ *******************************************
+ */
+ 
+body
+{
+	background-color: black;
+}
+
+#page
+{
+	position: relative;
+	width: 1024px;
+	height: auto;
+	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+
+/*
+ *******************************************
+ *                                         *
+ *			CONFIGURATION DU HEADER        *
+ *                                         *
+ *******************************************
+ */
+
+
+#header
+{
+	position: relative;
+	width: 100%;
+	height: 230px;
+	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	background: #ffd65e; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+
+}
+
+#header h1, #header h2
+{
+	color: #000;
+    text-shadow: 1px 3px 4px #555;
+    padding: 0px;
+    margin: 0px;
+}
+
+#header h1
+{
+	font-size: 60px;
+	font-family: FrederickaTheGreatRegular;
+	font-weight: bolder;
+    margin-left: 20px;
+}
+
+#header h2
+{
+	font-size: 15px;
+	font-family: FrederickaTheGreatRegular;
+	font-weight: bold;
+	font-style: italic;
+    margin-left: 60px;
+}
+
+#header #connexion
+{
+	float: right;
+	position: relative;
+	margin-top: -75px;
+	margin-right: 10px;
+}
+
+#header #connexion label
+{
+	font-size: 10px;
+	font-family: Trebuchet MS;
+	font-style: italic;
+	color: #D3A500;
+}
+
+#header #connexion input
+{
+	height: 18px;
+}
+
+#header #separator
+{
+	position: relative;
+	margin-top: 30px;
+	width: 100%;
+	height: 60px;
+	background-image: url("../images/pellicule.png");
+	background-repeat: repeat-x;
+}
+
+#header .menu
+{
+	margin-top: -8px;
+}
+
+#header .menu #nav
+{
+	height:30px;
+	padding:0 0 0 40px;
+	background:#222;
+	background:-moz-linear-gradient(top,#222,#111);
+	background:-webkit-gradient(linear,left top,left bottom,from(#222),to(#111));
+	-moz-box-shadow:0px 2px 2px #111;
+	-webkit-box-shadow:0px 2px 2px #111;
+	box-shadow:0px 2px 2px #111;
+}
+
+#header .menu #nav li
+{
+	display:inline-block;
+	height:28px;
+	margin-left:-3px;
+	text-align:center;
+	border-right:1px solid rgba(255,255,255,0.1);
+	background:#222;
+	background:-moz-linear-gradient(top,#222,#111);
+	background:-webkit-gradient(linear,left top,left bottom,from(#222),to(#111));
+}
+
+#header .menu #nav li a
+{
+	font-family:"ComfortaaBold";
+	display:table-cell;
+	height:30px;
+	padding:0px 25px;
+	vertical-align:middle;
+	color:goldenrod;
+	text-decoration:none;
+	font-size:1.2em;
+	text-shadow:1px 1px 1px rgba(0,0,0,0.3);
+}
+
+#header .menu #nav li:hover
+{
+	background:#444444;
+	background:-moz-linear-gradient(right,#222,#333 5%,#333 95%,#222 100%);
+	background:-webkit-gradient(linear,right top,left top,from(#222),to(#222),color-stop(0.05, #333),color-stop(0.95, #333));
+}
+
+#header .menu #nav li:hover a
+{
+	color:#eee;
+	text-shadow:1px 1px 1px black;
+}
+
+
+/*
+ *******************************************
+ *                                         *
+ *		   CONFIGURATION DU CONTENU        *
+ *                                         *
+ *******************************************
+ */
+
+
+/*
+ *			CONTENU HORS CONNEXION
+ */
+ 
+#contenu_deconnected
+{
+	position: relative;
+	width: 100%;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#contenu_deconnected #banniere
+{
+	position: absolute;
+	width: 100%;
+	margin: 0px;
+	margin-left: -1px;
+	margin-top: -1px;
+	padding: 0px;
+	background: #ffd65e; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+}
+
+#contenu_deconnected #banniere h1
+{
+	float: left;
+	margin: 0px;
+	background: #222; /* Old browsers */
+	background: -moz-linear-gradient(top,  #222 0%, #111 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#222), color-stop(100%,#111)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #222 0%,#111 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #222 0%,#111 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #222 0%,#111 100%); /* IE10+ */
+	background: linear-gradient(top,  #222 0%,#111 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#111',GradientType=0 ); /* IE6-9 */
+	font-family: ComfortaaBold;
+	color: goldenrod;
+	font-size: 20px;
+	padding: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 0 0 5px 0;
+}
+
+#contenu_deconnected article
+{
+	border: 1px solid goldenrod;
+	height: 600px;
+	padding-top: 80px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: Trebuchet MS;
+	color: white;
+}
+
+#contenu_deconnected article p
+{
+	margin: 5px 0 0 10px;
+	font-size: 20px;
+}
+
+#contenu_deconnected article ul
+{
+	margin: 0 0 0 10px;
+	font-size: 15px;
+	font-style: italic;
+}
+
+#contenu_deconnected article li
+{
+	
+}
+
+/*
+ *				TEST DEFILEMENT JAQUETTES FILMS
+ */
+
+#contenu_deconnected article #galerie_texte
+{
+	width: 600px;
+	overflow:hidden;	
+	color: red;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#contenu_deconnected article #galerie_texte img
+{
+	width:auto !important;
+	height:auto !important;
+	padding-left:25px;
+}
+
+
+#contenu_deconnected article #galerie_texte ul
+{
+	width:1500px;
+	-webkit-animation:art17slide 20s ease 0s infinite;
+}
+
+#contenu_deconnected article #galerie_texte ul li
+{
+	float:left;
+	width:150px;
+	list-style:none;
+}
+
+
+
+@-webkit-keyframes art17slide
+{
+	from
+	{
+		margin-left:0;
+	}
+	10%{margin-left:-150px;}
+	20%{margin-left:-300px;}
+	30%{margin-left:-450px;}
+	40%{margin-left:-600px;}
+	50%{margin-left:-750px;}
+	60%{margin-left:-900px;}
+	70%{margin-left:-1050px;}
+	80%{margin-left:-1200px;}
+	90%{margin-left:-1350px;}
+	100%{margin-left:-1500px;}
+	to
+	{
+		margin-left:0;
+	}
+}
+
+/*
+ *			CONTENU LORS DE L'INSCRIPTION
+ */
+ 
+#formulaire_user_inscription
+{
+	position: relative;
+	margin-top: 175px;
+	margin-bottom: 175px;
+	margin-left: auto;
+	margin-right: auto;
+	color: #111;
+	padding: 10px;
+	width: 500px;
+	border: 1px solid goldenrod;
+	border-radius: 0 10px 0 10px;
+	background: #ffd65e; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+	
+}
+
+#formulaire_user_inscription h1
+{
+	font-family: ComfortaaBold;
+	text-align: center;
+	margin-top: -5px;
+	
+}
+
+#formulaire_user_inscription table
+{
+	height: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	padding:  10px 0 10px 0;
+}
+
+#formulaire_user_inscription label
+{
+	font-style: italic;
+	text-decoration: underline;
+}
+
+#formulaire_user_inscription #asterisque
+{
+	font-size: 10px;
+	color: red;
+	margin-left: 2px;
+}
+
+/*
+ *			CONTENU LORS DE LA CONNEXION
+ */
+ 
+#formulaire_connexion
+{
+	position: relative;
+	margin-top: 175px;
+	margin-bottom: 175px;
+	margin-left: auto;
+	margin-right: auto;
+	color: #111;
+	padding: 10px;
+	width: 400px;
+	border: 1px solid goldenrod;
+	border-radius: 0 10px 0 10px;
+	background: #ffd65e; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+	
+}
+
+#formulaire_connexion h1
+{
+	font-family: ComfortaaBold;
+	text-align: center;
+	margin-top: -5px;
+	
+}
+
+#formulaire_connexion table
+{
+	height: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	padding:  10px 0 20px 0;
+}
+
+#formulaire_connexion label
+{
+	font-style: italic;
+	text-decoration: underline;
+}
+/*
+ *******************************************
+ *                                         *
+ *			CONFIGURATION DU FOOTER        *
+ *                                         *
+ *******************************************
+ */
+
+
+#footer
+{
+	position: relative;
+	width: 100%;
+	height: 80px;
+	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	border-top: 1px dashed goldenrod;
+}
+
+#footer p
+{
+	text-align: center;
+	font-family: Arial;
+	font-size: 11px;
+	color: goldenrod;
+}	
+
+#footer a
+{
+	color: goldenrod;
+	padding: 0px;
+}	
