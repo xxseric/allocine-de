@@ -44,7 +44,6 @@
 	{
 		unset($_SESSION['user_id']);
 		unset($_SESSION['user_level']);
-		session_unset();
 		return "index.php";
 	}
 
