@@ -2,6 +2,7 @@
 
 	require_once './controller.php';
 	require_once '../connect.php';
+	require_once './user_controller_functions.php';
 
 	class UserController extends Controller
 	{
@@ -153,7 +154,7 @@
 						$this->execute_connected();
 					}else{									/* Echec connexion */
 						$dest = "error.php";
-						$this->execute_erreur();            /*retourne un erreur à l'utilisateur */
+						$this->execute_login();            /*retourne un erreur à l'utilisateur */
 					}
 				}else{										/* Si déjà connecté on renvoi à l'index */
 					$dest = "index.php";
