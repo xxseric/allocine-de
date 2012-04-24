@@ -19,8 +19,8 @@
 		{
 			$this->action = $_GET['action'];
 			$this->execute();
-			$url = 'http://'.$_SERVER['HTTP_HOST'].'/Allocine/'.$this->destination;
-			//header('Location:'.$url) ;
+			$url = "http://localhost/Allocine/".$this->destination;
+			header('Location: '.$url) ;
 		}
 
 		protected function execute()
