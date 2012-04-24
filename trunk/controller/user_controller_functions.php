@@ -1,9 +1,16 @@
 <?php
 
+	require_once '../connect.php';
+
 	function processIndex()
 	{
 		return "index.php";
 	}	
+	
+	function processInscription()
+	{
+		return "user_inscription.php";
+	}
 	
 	function processLogin()
 	{
@@ -12,35 +19,33 @@
 	
 	function processConnexion()
 	{
-		
+		$array = array();
+		$array = user_connect();
+		if($array == TRUE){								/* Connexion reussie */
+			$_SESSION['user_id'] = $array['user_id'];
+			$_SESSION['user_level'] = $array['user_level'];
+		}else{											/* Echec connexion */
+			return "login.php";		          			/* Retourne une erreur a  l'utilisateur */
+		}
+		return "index.php";
 	}
 	
 	function processAbout()
 	{
 		return "about.php";
-		$doc = new Document();
-		if(!isset($_SESSION['level'])){
-			$doc->begin(0);
-			$doc->contenu_about();
-		}else if($_SESSION['level'] == '1' || $_SESSION['level'] == '2'){
-			$doc->begin($_SESSION['level']);
-			$doc->contenu_about();
-		}
-		$doc->end();
 	}
 	
 	function processContact()
 	{
 		return "contact.php";
-		$doc = new Document();
-		if(!isset($_SESSION['level'])){
-			$doc->begin(0);
-			$doc->contenu_contact();
-		}else if($_SESSION['level'] == '1' || $_SESSION['level'] == '2'){
-			$doc->begin($_SESSION['level']);
-			$doc->contenu_contact();
-		}
-		$doc->end();
+	}
+	
+	function processLogout()
+	{
+		unset($_SESSION['user_id']);
+		unset($_SESSION['user_level']);
+		session_unset();
+		return "index.php";
 	}
 
 ?>

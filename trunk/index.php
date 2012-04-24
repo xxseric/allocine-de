@@ -5,7 +5,6 @@
 	require_once 'view/document.php';
 	require_once 'config.php';
 	
-	
 	function contenu_deconnected()
 	{
 		$siteUrl = SITE_URL;

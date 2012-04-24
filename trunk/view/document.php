@@ -1,21 +1,20 @@
 <?php
 	
-	@require_once '../config.php';
 	
 	class Document
 	{
 		
 		protected $css;
-		protected $siteUrl = SITE_URL;	
+		protected $siteUrl = "http://localhost/Allocine";	
 		protected $user_level = 0;
 		protected $user_id;
 		protected $access_level = 0;
 		
 		public function __construct()
 		{
-			if(isset($_SESSION['level'])){
-				$this->user_level = $_SESSION['level'];
-				$this->user_id = $_SESSION['id'];
+			if(isset($_SESSION['user_level'])){
+				$this->user_level = $_SESSION['user_level'];
+				$this->user_id = $_SESSION['user_id'];
 			}
 		}
 		
@@ -223,70 +222,9 @@ HEREDOC;
 			echo $html."<br/>";
 		}		
 		
-		public function contenu_about()
-		{
-			$html=
-<<<HEREDOC
-<div id="contenu_about">
-	<div id="banniere">
-		<h1>A propos...</h1>
-	</div>
-	<article>
-		<p class="bold_title">Bonjour, et bienvenue sur AlloCiné !</p>
-		<p>Grâce à Allocine, vous pourrez trouver toutes les informations disponible sur un film donné ainsi que voter vos films préférés grâce à une immense base de données
-			regroupant tous les styles de films possible et inimaginable. Un support quotidien et rapide vous garantira entière satisfaction de notre site.
-		</p>
-		<p>
-			Ce site à été créer durant deux mois de l'année 2012 par deux étudiants en licence informatique issus de la faculté des Sciences d'Angers dans le cadre d'un stage encadré par un maître
-			de conférence du même établissement. Les auteurs vous en remercie de votre visite.
-		</p>
-		<p>
-			Si vous avez des doutes, des questions ou si vous remarquez des bugs sur le site, n'hésitez pas à nous contacter. Dans ce cas rendez-vous dans la rubrique contact.
-		</p>
-	</article>				
-</div>
-HEREDOC;
-			echo $html."<br/>";
-		}
+
 		
-		public function contenu_contact()
-		{
-			$html=
-<<<HEREDOC
-<div id="contenu_contact">
-	<div id="banniere">
-		<h1>Nous contactez...</h1>
-	</div>
-	<article>
-		<div class="rubric">Bienvenue sur l&#146;adress-book d&#146;AlloCin&eacute;. Vous trouverez ci-dessous les contacts et adresses email des diff&eacute;rents 
-		d&eacute;partements d&#146;AlloCin&eacute;. N&#146;h&eacute;sitez pas &agrave; nous contacter pour toute question, suggestion, ou demande d&#146;informations 
-		aupr&egrave;s des diff&eacute;rents d&eacute;partements indiqu&eacute;s ci-dessous. <br /><br />
-		<ul>
-			<li>
-				<span class="bold">Supports, informations générales, programmes des salles</span></br>Pour toutes informations g&eacute;n&eacute;rales relatives &agrave; 
-				AlloCin&eacute;, un bug ou une suggestion, n&#146;h&eacute;sitez pas &agrave; nous &eacute;crire &agrave; 
-				<a href="mailto:info@allocine.fr">info@allocine.fr</a>
-			</li>
-			<li>
-				<span class="bold">Liens, Permissions</span></br>Si vous souhaitez mettre un lien AlloCiné sur votre site, 
-				contactez-nous par email à <a href="mailto:regie@allocine.fr?subject=Liens, Permissions">regie@allocine.fr</a>
-			</li>
-		</ul>
-		<p class="bold">Nos coordonn&eacute;es</p>
-		<p class="">
-			Faculté des Sciences<br />2 Boulevard Lavoisier <br />49045 ANGERS cedex 01 <br />Tel : 02 41 73 53 53 <br />Fax : 02 41 73 53 52 <br />Nous contacter : 
-			<a href="mailto:info@allocine.fr?subject=Contact">Cliquez ici</a>
-		</p>
-		<p>
-			Maxime Desmauts : Stagiaire<br />
-			Pierre Evers : Stagiaire<br />
-			Adrien Goëffon : Maître de stage<br />
-		</p>
-	</article>				
-</div>
-HEREDOC;
-			echo $html."<br/>";
-		}
+
 		
 		/*
 		 ***************************************
