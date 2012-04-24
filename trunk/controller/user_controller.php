@@ -1,8 +1,10 @@
 <?php
 
-	require_once './controller.php';
+	session_start();
+	
+	require_once 'controller.php';
 	require_once '../connect.php';
-	require_once './user_controller_functions.php';
+	@require_once 'user_controller_functions.php';
 
 	class UserController extends Controller
 	{
@@ -10,14 +12,6 @@
 		public function __construct()
 		{
 			parent::__construct();
-		}
-			
-		private function execute_login()
-		{
-			$doc = new Document();
-			$doc->begin(0);
-			$doc->contenu_login();
-			$doc->end();
 		}
 		
 		private function execute_about()
@@ -78,19 +72,6 @@
 	
 		}
 			
-		private function execute_index()
-		{
-			$doc = new Document();
-			if(!isset($_SESSION['level'])){
-				$doc->begin(0);
-				$doc->contenu_deconnected();
-			}else{
-				$doc->begin($_SESSION['level']);
-				$doc->contenu_deconnected();
-			}
-			$doc->end();
-		}
-			
 		private function execute_connected()
 		{
 			$doc = new Document();
@@ -119,9 +100,9 @@
 		{
 			$action = $this->action;
 			$dest = "";
+			
 			if($action == "index"){							/* Affichage index */
-				$dest = "index.php";
-				$this->execute_index();
+				$dest = processIndex();
 			}else if($action == "about"){
 				$dest = "about.php";
 				$this->execute_about();
@@ -133,11 +114,9 @@
 				$this->execute_user_inscription();
 			}else if($action == "login"){					/* Connexion adhérent */
 				if(!isset($_SESSION['prenom']) || !isset($_SESSION['level'])){			/* Si pas déjà connecté */
-					$dest = "login.php";
-					$this->execute_login();
+					$dest = processLogin();
 				}else{																	/* Si déjà connecté */
-					$dest = "index.php";
-					$this->execute_index();
+					$dest = processIndex();
 				}
 					
 			}else if($action == "connexion"){				/* Etablissement de la connexion */
@@ -157,8 +136,7 @@
 						$this->execute_login();            /*retourne un erreur à l'utilisateur */
 					}
 				}else{										/* Si déjà connecté on renvoi à l'index */
-					$dest = "index.php";
-					$this->execute_index();
+					$dest = processIndex();
 				}
 			}else if($action == "logout"){					/* Déconnexion */
 				session_unset();
