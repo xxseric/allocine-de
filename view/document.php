@@ -125,7 +125,7 @@ HEREDOC;
 						<li><a href="">Menu_Level_1</a></li>
 						<li><a href="./user_controller.php?action=about">About</a></li>
 						<li><a href="./user_controller.php?action=contact">Contact</a></li>
-						<li><a href="">Logout</a></li>
+						<li><a href="./user_controller.php?action=logout">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -143,7 +143,7 @@ HEREDOC;
 						<li><a href="">Menu_Level_2</a></li>
 						<li><a href="./user_controller.php?action=about">About</a></li>
 						<li><a href="./user_controller.php?action=contact">Contact</a></li>
-						<li><a href="">Logout</a></li>
+						<li><a href="./user_controller.php?action=logout">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -302,7 +302,7 @@ HEREDOC;
 				<label>Adresse Mail</label><span id="asterisque">*</span>
 			</td>
 			<td>
-				<input type="text" name="user_email" id="user_email" data-dojo-type="dijit.form.ValidationTextBox" required="true" />
+				<input type="text" name="user_email" id="user_email" data-dojo-type="dijit.form.ValidationTextBox" regExpGen="dojox.validate.regexp.emailAddress" trim="true" invalidMessage="Email non valide." required="true" />
 			</td>
 		</tr>
 		<tr>
@@ -310,7 +310,7 @@ HEREDOC;
 				<label>Confirmer Adresse Mail</label><span id="asterisque">*</span>
 			</td>
 			<td>
-				<input type="text" name="user_confirm_email" id="user_confirm_email" data-dojo-type="dijit.form.ValidationTextBox" required="true" />
+				<input type="text" name="user_confirm_email" id="user_confirm_email" data-dojo-type="dijit.form.ValidationTextBox" regExpGen="dojox.validate.regexp.emailAddress" trim="true" invalidMessage="Email non valide." required="true" />
 			</td>
 		</tr>								
 		<tr>
@@ -340,7 +340,7 @@ HEREDOC;
 		{
 			$html=
 <<<HEREDOC
-<form name="formulaire_connexion" method="post" action="./controller/user_controller.php?action=connexion" enctype="multipart/form-data" class="soria" id="formulaire_connexion" dojoType="dijit.form.Form">	
+<form name="formulaire_connexion" method="post" action="./user_controller.php?action=connexion" enctype="multipart/form-data" class="soria" id="formulaire_connexion" dojoType="dijit.form.Form">	
 	<h1>Connexion</h1>
 	<table border=0>
 		<tr>
@@ -348,7 +348,7 @@ HEREDOC;
 				<label>Email</label>
 			</td>
 			<td>
-				<input name="email" id="email" type="text" class="long" value=""
+				<input name="user_email" id="user_email" type="text" class="long" value=""
    									dojoType="dijit.form.ValidationTextBox"
    									regExpGen="dojox.validate.regexp.emailAddress"
    									trim="true"
@@ -362,8 +362,8 @@ HEREDOC;
 			</td>
 			<td>
 				<input type="password"
-   									id="password"
-    								name="password"
+   									id="user_password"
+    								name="user_password"
    									dojoType="dijit.form.ValidationTextBox"
   									required="true"
    									trim="true"
