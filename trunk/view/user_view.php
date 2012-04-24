@@ -7,7 +7,8 @@
 		{
 			$html=
 <<<HEREDOC
-<form method="post" action="" name="formulaire_user_inscription" id="formulaire_user_inscription" enctype="multipart/form-data" class="soria" dojoType="dijit.form.Form">
+<div id="response" ></div>
+<form method="post" action="" onSubmit="inscriptionUser();return false;" name="formulaire_user_inscription" id="formulaire_user_inscription" enctype="multipart/form-data" class="soria" dojoType="dijit.form.Form">
 	<h1>Inscription</h1>
 	<TABLE BORDER="0">
 		<tr>
@@ -51,8 +52,7 @@
 				<label>Code Postal</label>
 			</td>
 			<td>
-				<input type="text" name="user_cp" id="user_cp" data-dojo-type="dijit.form.NumberTextBox" 
-								constraints="{min:0,max:99999,places:0}" invalidMessage="code postal incorrect"/>
+				<input type="text" name="user_cp" id="user_cp" data-dojo-type="dijit.form.NumberTextBox" />
 			</td>
 		</tr>
 		<tr>

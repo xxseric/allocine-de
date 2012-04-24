@@ -20,7 +20,7 @@
 		{
 			$this->action = $_GET['action'];
 			$this->execute();
-			$url = SITE_URL."/".$this->destination;
+			$url = "../".$this->destination;
 			header('Location: '.$url) ;
 		}
 

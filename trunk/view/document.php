@@ -70,13 +70,15 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <link rel="stylesheet" href="$this->siteUrl/css/style.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <script type="text/javascript" src="./js/fonctionJs.js" ></script>
+        
 		<style type="text/css">
-			@import "$this->siteUrl/js/dojo/dijit/themes/soria/soria.css";
-			@import "$this->siteUrl/js/dojo/dijit/themes/tundra/tundra.css" />
-			@import "$this->siteUrl/js/dojo/dojo/resources/dojo.css";
+			@import "./js/dojo/dijit/themes/soria/soria.css";
+			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
+			@import "./js/dojo/dojo/resources/dojo.css";
 		</style>
-		<script type="text/javascript" src="$this->siteUrl/js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
 	    <script type="text/javascript">
 	    	dojo.require("dijit.form.ValidationTextBox");
 	    	dojo.require("dijit.form.NumberTextBox");
@@ -116,11 +118,11 @@ HEREDOC;
 <<<HEREDOC
 				<div class="menu">
 					<ul id="nav">
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=index">Home</a></li>
+						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="">Menu_Level_1</a></li>
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=about">About</a></li>
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=contact">Contact</a></li>
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=logout">Logout</a></li>
+						<li><a href="./controller/user_controller.php?action=about">About</a></li>
+						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
+						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -134,11 +136,11 @@ HEREDOC;
 <<<HEREDOC
 				<div class="menu">
 					<ul id="nav">
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=index">Home</a></li>
+						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="">Menu_Level_2</a></li>
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=about">About</a></li>
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=contact">Contact</a></li>
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=logout">Logout</a></li>
+						<li><a href="./controller/user_controller.php?action=about">About</a></li>
+						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
+						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -159,13 +161,16 @@ HEREDOC;
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <link rel="stylesheet" href="$this->siteUrl/css/style.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <script type="text/javascript" src="./js/fonctionJs.js" ></script>
 		<style type="text/css">
-			@import "$this->siteUrl/js/dojo/dijit/themes/soria/soria.css";
-			@import "$this->siteUrl/js/dojo/dijit/themes/tundra/tundra.css" />
-			@import "$this->siteUrl/js/dojo/dojo/resources/dojo.css";
+			@import "./js/dojo/dijit/themes/soria/soria.css";
+			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
+			@import "./js/dojo/dojo/resources/dojo.css";
 		</style>
-		<script type="text/javascript" src="$this->siteUrl/js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+		
 	    <script type="text/javascript">
 	    	dojo.require("dijit.form.ValidationTextBox");
 	    	dojo.require("dijit.form.NumberTextBox");
@@ -192,11 +197,11 @@ HEREDOC;
 				</div>
 				<div class="menu">
 					<ul id="nav">
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=index">Home</a></li>
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=user_inscription">Inscription</a></li>
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=login">Login</a></li>
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=about">About</a></li>
-						<li><a href="$this->siteUrl/controller/user_controller.php?action=contact">Contact</a></li>
+						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
+						<li><a href="./controller/user_controller.php?action=user_inscription">Inscription</a></li>
+						<li><a href="./controller/user_controller.php?action=login">Login</a></li>
+						<li><a href="./controller/user_controller.php?action=about">About</a></li>
+						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
 					</ul>
 				</div>
 			</div>
