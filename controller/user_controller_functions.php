@@ -1,8 +1,14 @@
 <?php
 
-	require_once './user_controller.php';
+	function processIndex()
+	{
+		return "index.php";
+	}	
 	
-	
+	function processLogin()
+	{
+		return "login.php";
+	}
 
 
 ?>

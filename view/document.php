@@ -2,6 +2,7 @@
 	
 	class Document
 	{
+		
 		protected $css;
 		protected $siteUrl ='http://localhost/Allocine';	
 		protected $user_level = 0;
@@ -157,13 +158,13 @@ HEREDOC;
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <link rel="stylesheet" href="../css/style.css" />
+        <link rel="stylesheet" href="$this->siteUrl/css/style.css" />
 		<style type="text/css">
-			@import "../js/dojo/dijit/themes/soria/soria.css";
-			@import "../js/dojo/dijit/themes/tundra/tundra.css" />
-			@import "../js/dojo/dojo/resources/dojo.css";
+			@import "$this->siteUrl/js/dojo/dijit/themes/soria/soria.css";
+			@import "$this->siteUrl/js/dojo/dijit/themes/tundra/tundra.css" />
+			@import "$this->siteUrl/js/dojo/dojo/resources/dojo.css";
 		</style>
-		<script type="text/javascript" src="../js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+		<script type="text/javascript" src="$this->siteUrl/js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
 	    <script type="text/javascript">
 	    	dojo.require("dijit.form.ValidationTextBox");
 	    	dojo.require("dijit.form.NumberTextBox");
@@ -190,11 +191,11 @@ HEREDOC;
 				</div>
 				<div class="menu">
 					<ul id="nav">
-						<li><a href="./user_controller.php?action=index">Home</a></li>
-						<li><a href="./user_controller.php?action=user_inscription">Inscription</a></li>
-						<li><a href="./user_controller.php?action=login">Login</a></li>
-						<li><a href="./user_controller.php?action=about">About</a></li>
-						<li><a href="./user_controller.php?action=contact">Contact</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=index">Home</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=user_inscription">Inscription</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=login">Login</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=about">About</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=contact">Contact</a></li>
 					</ul>
 				</div>
 			</div>
@@ -329,82 +330,7 @@ HEREDOC;
 			echo $html."<br/>";
 		}
 		
-		public function contenu_login()
-		{
-			$html=
-<<<HEREDOC
-<form name="formulaire_connexion" method="post" action="./user_controller.php?action=connexion" enctype="multipart/form-data" class="soria" id="formulaire_connexion" dojoType="dijit.form.Form">	
-	<h1>Connexion</h1>
-	<table border=0>
-		<tr>
-			<td>
-				<label>Email</label>
-			</td>
-			<td>
-				<input name="user_email" id="user_email" type="text" class="long" value=""
-   									dojoType="dijit.form.ValidationTextBox"
-   									regExpGen="dojox.validate.regexp.emailAddress"
-   									trim="true"
-   									required="true"
-   									invalidMessage="Email non valide." />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label>Mot de passe</label>
-			</td>
-			<td>
-				<input type="password"
-   									id="user_password"
-    								name="user_password"
-   									dojoType="dijit.form.ValidationTextBox"
-  									required="true"
-   									trim="true"
-   									invalidMessage="Le mot de passe est nécessaire" />
-   			</td>
-		</tr>
-	</table>
-	<center><button type="submit" dojoType="dijit.form.Button" onClick="dijit.byId('formulaire_connexion').validate();">Se connecter</button></center>
-</form>
-HEREDOC;
-			echo $html."<br/>";
-		}
 		
-		public function contenu_deconnected()
-		{
-			$html=
-<<<HEREDOC
-<div id="contenu_deconnected">
-	<div id="banniere">
-		<h1>Bienvenu</h1>
-	</div>
-	<article>
-		<section id="galerie_texte">
-			<ul>
-				<li><img src="../images/1.jpg"></img></li>
-				<li><img src="../images/2.jpg"></img></li>
-				<li><img src="../images/3.jpg"></img></li>
-				<li><img src="../images/4.jpg"></img></li>
-				<li><img src="../images/5.jpg"></img></li>
-				<li><img src="../images/6.jpg"></img></li>
-				<li><img src="../images/7.jpg"></img></li>
-				<li><img src="../images/8.jpg"></img></li>
-				<li><img src="../images/9.jpg"></img></li>
-				<li><img src="../images/10.jpg"></img></li>
-			</ul>
-		</section>
-		<p>Allocine, un site regroupant une immense base donnees de films</p>
-		<p>Sur ce site vous pouvez :</p>
-		<ul>
-			<li>Consulter le contexte d'un film</li>
-			<li>Donner votre avis sur un film</li>
-			<li>Modifier les informations d'un film</li>
-		</ul>
-	</article>				
-</div>
-HEREDOC;
-			echo $html."<br/>";
-		}
 		
 		public function contenu_about()
 		{
