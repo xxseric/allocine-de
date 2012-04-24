@@ -1,6 +1,7 @@
 <?php
 
 	require_once '../view/document.php';
+	require_once '../config.php';
 
 	abstract class Controller
 	{
@@ -19,7 +20,7 @@
 		{
 			$this->action = $_GET['action'];
 			$this->execute();
-			$url = "http://localhost/Allocine/".$this->destination;
+			$url = SITE_URL.$this->destination;
 			header('Location: '.$url) ;
 		}
 
