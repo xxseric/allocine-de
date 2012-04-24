@@ -3,7 +3,6 @@
 	session_start();
 	
 	require_once 'controller.php';
-	require_once '../connect.php';
 	@require_once 'user_controller_functions.php';
 
 	class UserController extends Controller
@@ -47,30 +46,6 @@
 	
 		}
 			
-		private function processConnected()
-		{
-			$doc = new Document();
-			$doc->begin($_SESSION['level']);
-			$doc->contenu_connected();
-			$doc->end();
-		}
-			
-		private function execute_user_inscription(){
-			$doc = new Document();
-			$doc->begin(0);
-			$doc->contenu_user_inscription();
-			$doc->end();
-		}
-		
-		private function execute_logout()
-		{
-			session_destroy();
-			$doc = new Document();
-			$doc->begin(0);
-			$doc->contenu_deconnected();
-			$doc->end();
-		}
-			
 		protected function execute()
 		{
 			$action = $this->action;
@@ -79,53 +54,29 @@
 			if($action == "index"){							/* Affichage index */
 				$dest = processIndex();
 			}else if($action == "about"){
-				$dest = "about.php";
-				$this->execute_about();
+				$dest = processAbout();
 			}else if($action == "contact"){
-				$dest = "contact.php";
-				$this->execute_contact();
+				$dest = processContact();
 			}else if($action == "user_inscription"){
-				$dest = "user_inscription.php";
-				$this->execute_user_inscription();
+				$dest = processInscription();
 			}else if($action == "login"){					/* Connexion adhérent */
 				if(!isset($_SESSION['prenom']) || !isset($_SESSION['level'])){			/* Si pas déjà connecté */
 					$dest = processLogin();
 				}else{																	/* Si déjà connecté */
 					$dest = processIndex();
-				}
-					
+				}					
 			}else if($action == "connexion"){				/* Etablissement de la connexion */
 				if(!isset($_SESSION['level'])){				/* Si pas connecté */
-					$array = array();
-					$array = user_connect();
-					if($array == TRUE){						/* Connexion réussie */
-						$dest = "connected.php";
-						$_SESSION['id'] = $array['user_id'];
-						$_SESSION['prenom'] = $array['user_prenom'];
-						$_SESSION['nom'] = $array['user_nom'];
-						$_SESSION['email'] = $array['user_email'];
-						$_SESSION['level'] = $array['user_level'];
-						$this->execute_connected();
-					}else{									/* Echec connexion */
-						$dest = "error.php";
-						$this->execute_login();            /*retourne un erreur à l'utilisateur */
-					}
+					$dest = processConnexion();
 				}else{										/* Si déjà connecté on renvoi à l'index */
 					$dest = processIndex();
 				}
 			}else if($action == "logout"){					/* Déconnexion */
-				session_unset();
-				$dest = "index.php";
-				$this->execute_logout();
-			}else if($action == "inscription"){
-				$dest = "inscription.php";
-				$this->execute_inscription();
+				$dest = processLogout();
 			}else if($action == "informations"){
-				$dest = "infos.php";
-				$this->execute_informations();
+				$dest = processUserInformations();
 			}else if($action == "modification_informations"){
-				$dest = "modif_infos.php";
-				$this->execute_modification_informations();
+				$dest = processUserUpdateInformations();
 			}
 			if(!empty($dest))
 				$this->destination = $dest;
