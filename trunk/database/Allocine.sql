@@ -50,4 +50,7 @@ CREATE TABLE IF NOT EXISTS `User` (
 --
 -- Contenu de la table `User`
 --
+INSERT INTO `User` (`user_id`, `user_nom`, `user_prenom`, `user_email`, `user_mdp`, `user_level`) VALUES
+(1, 'admin', 'istrator', 'admin@allocine.fr', '21232f297a57a5a743894a0e4a801fc3', 2),
+(2, 'simple', 'user', 'user@allocine.fr', 'ee11cbb19052e40b07aac0ca060c23ee', 1);
 
