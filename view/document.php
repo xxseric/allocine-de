@@ -1,10 +1,12 @@
 <?php
 	
+	@require_once '../config.php';
+	
 	class Document
 	{
 		
 		protected $css;
-		protected $siteUrl ='http://localhost/Allocine';	
+		protected $siteUrl = SITE_URL;	
 		protected $user_level = 0;
 		protected $user_id;
 		protected $access_level = 0;
@@ -69,13 +71,13 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <link rel="stylesheet" href="../css/style.css" />
+        <link rel="stylesheet" href="$this->siteUrl/css/style.css" />
 		<style type="text/css">
-			@import "../js/dojo/dijit/themes/soria/soria.css";
-			@import "../js/dojo/dijit/themes/tundra/tundra.css" />
-			@import "../js/dojo/dojo/resources/dojo.css";
+			@import "$this->siteUrl/js/dojo/dijit/themes/soria/soria.css";
+			@import "$this->siteUrl/js/dojo/dijit/themes/tundra/tundra.css" />
+			@import "$this->siteUrl/js/dojo/dojo/resources/dojo.css";
 		</style>
-		<script type="text/javascript" src="../js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+		<script type="text/javascript" src="$this->siteUrl/js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
 	    <script type="text/javascript">
 	    	dojo.require("dijit.form.ValidationTextBox");
 	    	dojo.require("dijit.form.NumberTextBox");
@@ -115,11 +117,11 @@ HEREDOC;
 <<<HEREDOC
 				<div class="menu">
 					<ul id="nav">
-						<li><a href="./user_controller.php?action=index">Home</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="">Menu_Level_1</a></li>
-						<li><a href="./user_controller.php?action=about">About</a></li>
-						<li><a href="./user_controller.php?action=contact">Contact</a></li>
-						<li><a href="./user_controller.php?action=logout">Logout</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=about">About</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=contact">Contact</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -133,11 +135,11 @@ HEREDOC;
 <<<HEREDOC
 				<div class="menu">
 					<ul id="nav">
-						<li><a href="./user_controller.php?action=index">Home</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="">Menu_Level_2</a></li>
-						<li><a href="./user_controller.php?action=about">About</a></li>
-						<li><a href="./user_controller.php?action=contact">Contact</a></li>
-						<li><a href="./user_controller.php?action=logout">Logout</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=about">About</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=contact">Contact</a></li>
+						<li><a href="$this->siteUrl/controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -219,118 +221,7 @@ HEREDOC;
 </div>
 HEREDOC;
 			echo $html."<br/>";
-		}
-		
-		public function contenu_user_inscription()
-		{
-			$html=
-<<<HEREDOC
-<form method="post" action="" name="formulaire_user_inscription" id="formulaire_user_inscription" enctype="multipart/form-data" class="soria" dojoType="dijit.form.Form">
-	<h1>Inscription</h1>
-	<TABLE BORDER="0">
-		<tr>
-			<td>				
-				<label>Nom</label><span id="asterisque">*</span>
-			</td>
-			<td>
-				<input type="text" name="user_nom" id="user_nom" data-dojo-type="dijit.form.TextBox" required="true" 
-								data-dojo-props="trim:true, propercase:true" />
-			</td>
-		</tr>
-		<tr>
-			<td>				
-				<label>Pr&eacute;nom</label><span id="asterisque">*</span>
-			</td>
-			<td>
-			<input type="text" name="user_prenom" id="user_prenom" data-dojo-type="dijit.form.TextBox" required="true" 
-								data-dojo-props="trim:true, propercase:true" />
-			</td>
-		</tr>				
-		<tr>
-			<td>
-				<label>Num&eacute;ro de rue</label>
-			</td>
-			<td>
-				<input type="text" name="user_num_rue" id="user_num_rue" data-dojo-type="dijit.form.NumberTextBox"
-								constraints="{min:0,max:1000,places:0}" invalidMessage="numéro de rue incorrect"/>
-			</td>
-		</tr>
-		<tr>
-			<td>				
-				<label>Rue</label>
-			</td>
-			<td>
-				<input type="text"" name="user_lib_rue" id="user_lib_rue" data-dojo-type="dijit.form.TextBox"
-								data-dojo-props="trim:true, propercase:true" />
-			</td>
-		</tr>	
-		<tr>
-			<td>
-				<label>Code Postal</label>
-			</td>
-			<td>
-				<input type="text" name="user_cp" id="user_cp" data-dojo-type="dijit.form.NumberTextBox" 
-								constraints="{min:0,max:99999,places:0}" invalidMessage="code postal incorrect"/>
-			</td>
-		</tr>
-		<tr>
-			<td>				
-				<label>Ville</label>
-			</td>
-			<td>
-				<input type="text" name="user_ville" id="user_ville" data-dojo-type="dijit.form.TextBox" 
-								data-dojo-props="trim:true, propercase:true" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label>Telephone</label>
-			</td>
-			<td>
-				<input type="text" name="user_tel" id="user_tel" data-dojo-type="dijit.form.NumberTextBox"
-								constraints="{pattern:'0000000000',max:9999999999,places:0}"/>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label>Adresse Mail</label><span id="asterisque">*</span>
-			</td>
-			<td>
-				<input type="text" name="user_email" id="user_email" data-dojo-type="dijit.form.ValidationTextBox" regExpGen="dojox.validate.regexp.emailAddress" trim="true" invalidMessage="Email non valide." required="true" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label>Confirmer Adresse Mail</label><span id="asterisque">*</span>
-			</td>
-			<td>
-				<input type="text" name="user_confirm_email" id="user_confirm_email" data-dojo-type="dijit.form.ValidationTextBox" regExpGen="dojox.validate.regexp.emailAddress" trim="true" invalidMessage="Email non valide." required="true" />
-			</td>
-		</tr>								
-		<tr>
-			<td>							
-				<label>Mot de passe</label><span id="asterisque">*</span>					 
-			</td>								
-			<td>
-				 <input name="user_mdp" id="user_mdp" type="password" dojoType="dijit.form.TextBox" />
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<br/>
-				<br/>
-				<center>
-			</td>
-		</tr>
-		<input type="hidden"  name="user_level" id="user_level" value="1"/>
-	</TABLE>
-	<center><button type="submit" data-dojo-type="dijit.form.Button" id="submitButton" >S'inscrire</button></center>
-</form>	
-HEREDOC;
-			echo $html."<br/>";
-		}
-		
-		
+		}		
 		
 		public function contenu_about()
 		{

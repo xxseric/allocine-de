@@ -14,40 +14,15 @@
 			parent::__construct();
 		}
 		
-		private function execute_about()
-		{
-			$doc = new Document();
-			if(!isset($_SESSION['level'])){
-				$doc->begin(0);
-				$doc->contenu_about();
-			}else if($_SESSION['level'] == '1' || $_SESSION['level'] == '2'){
-				$doc->begin($_SESSION['level']);
-				$doc->contenu_about();
-			}		
-			$doc->end();
-		}
-		
-		private function execute_contact()
-		{
-			$doc = new Document();
-			if(!isset($_SESSION['level'])){
-				$doc->begin(0);
-				$doc->contenu_contact();
-			}else if($_SESSION['level'] == '1' || $_SESSION['level'] == '2'){
-				$doc->begin($_SESSION['level']);
-				$doc->contenu_contact();
-			}	
-				$doc->end();
-		}
 			
-		private function execute_erreur(){
+		private function processError(){
 			$doc = new Document();
 			$doc->begin(0);
 			//$doc->erreur_login();
 			$doc->end();
 		}
 					
-		private function execute_informations()
+		private function processInformations()
 		{
 			$doc = new Document();
 			if(!isset($_SESSION['level'])){
@@ -59,7 +34,7 @@
 			}				
 		}
 			
-		private function execute_modification_informations()
+		private function processModificationInformations()
 		{
 			$doc = new Document();
 			if(!isset($_SESSION['level'])){
@@ -72,7 +47,7 @@
 	
 		}
 			
-		private function execute_connected()
+		private function processConnected()
 		{
 			$doc = new Document();
 			$doc->begin($_SESSION['level']);
