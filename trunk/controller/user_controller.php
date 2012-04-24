@@ -1,6 +1,7 @@
 <?php
 
 	require_once './controller.php';
+	require_once '../connect.php';
 
 	class UserController extends Controller
 	{
@@ -141,14 +142,14 @@
 			}else if($action == "connexion"){				/* Etablissement de la connexion */
 				if(!isset($_SESSION['level'])){				/* Si pas connecté */
 					$array = array();
-					$array = verifAdherent();
+					$array = user_connect();
 					if($array == TRUE){						/* Connexion réussie */
 						$dest = "connected.php";
-						$_SESSION['id'] = $array['ad_id'];
-						$_SESSION['prenom'] = $array['ad_prenom'];
-						$_SESSION['nom'] = $array['ad_nom'];
-						$_SESSION['email'] = $array['ad_mail'];
-						$_SESSION['level'] = $array['ad_level'];
+						$_SESSION['id'] = $array['user_id'];
+						$_SESSION['prenom'] = $array['user_prenom'];
+						$_SESSION['nom'] = $array['user_nom'];
+						$_SESSION['email'] = $array['user_email'];
+						$_SESSION['level'] = $array['user_level'];
 						$this->execute_connected();
 					}else{									/* Echec connexion */
 						$dest = "error.php";

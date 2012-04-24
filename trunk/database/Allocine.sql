@@ -15,9 +15,16 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
+CREATE user "admin"@"localhost";
+SET password FOR "admin"@"localhost" = password('admin');
+GRANT ALL ON Allocine.* TO "admin"@"localhost";
+
 --
 -- Base de données: `Allocine`
 --
+
+CREATE DATABASE `Allocine`;
+USE `Allocine`;
 
 -- --------------------------------------------------------
 
