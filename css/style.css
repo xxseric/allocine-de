@@ -296,6 +296,8 @@ body
 {
 	width:1500px;
 	-webkit-animation:art17slide 20s ease 0s infinite;
+	-moz-animation:art17slide 20s ease 0s infinite;
+	
 }
 
 #contenu_deconnected article #galerie_texte ul li
@@ -329,6 +331,28 @@ body
 	}
 }
 
+
+@-moz-keyframes art17slide
+{
+	from
+	{
+		margin-left:0;
+	}
+	10%{margin-left:-150px;}
+	20%{margin-left:-300px;}
+	30%{margin-left:-450px;}
+	40%{margin-left:-600px;}
+	50%{margin-left:-750px;}
+	60%{margin-left:-900px;}
+	70%{margin-left:-1050px;}
+	80%{margin-left:-1200px;}
+	90%{margin-left:-1350px;}
+	100%{margin-left:-1500px;}
+	to
+	{
+		margin-left:0;
+	}
+}
 
 /*
  *			CONTENU ABOUT & CONTENU CONTACT
