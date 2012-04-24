@@ -1,14 +1,10 @@
 <?php
-
-	session_start();
 	
 	class Document
 	{
 		protected $css;
 		protected $siteUrl ='http://localhost/Allocine';	
 		protected $user_level = 0;
-		protected $user_first_name = '';
-		protected $user_last_name = '';
 		protected $user_id;
 		protected $access_level = 0;
 		
@@ -16,8 +12,6 @@
 		{
 			if(isset($_SESSION['level'])){
 				$this->user_level = $_SESSION['level'];
-				$this->user_first_name = $_SESSION['prenom'];
-				$this->user_last_name = $_SESSION['nom'];
 				$this->user_id = $_SESSION['id'];
 			}
 		}
@@ -43,9 +37,8 @@
 		
 		public function menu_view()
 		{
-			if(isset($_SESSION['level']) && isset($_SESSION['first_name'])){
+			if(isset($_SESSION['level'])){
 				$this->user_level = $_SESSION['level'];
-				$this->user_first_name = $_SESSION['first_name'];
 			}
 			return ($this->user_level >= $this->access_level);
 		}
