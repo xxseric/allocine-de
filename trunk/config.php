@@ -5,5 +5,6 @@
 	// site URL
 	define('SITE_URL','http://localhost/Allocine');
 
+	define('MAX_RATING', 5);
 
 ?>
