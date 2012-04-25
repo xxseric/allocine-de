@@ -25,7 +25,7 @@
 			$_SESSION['user_id'] = $array['user_id'];
 			$_SESSION['user_level'] = $array['user_level'];
 		}else{											/* Echec connexion */
-			return "login.php";		          			/* Retourne une erreur a  l'utilisateur */
+			return "login.php";		          			/* Retourne une erreur aï¿½ l'utilisateur */
 		}
 		return "index.php";
 	}
@@ -47,4 +47,7 @@
 		return "index.php";
 	}
 
+	function processFilm(){
+		return "rechercherFilm.php";
+	}
 ?>

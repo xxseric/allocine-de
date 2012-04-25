@@ -358,7 +358,7 @@ body
  *			CONTENU ABOUT & CONTENU CONTACT
  */
   
-#contenu_about, #contenu_contact
+#contenu_about, #contenu_contact ,#film
 {
 	position: relative;
 	margin-top: 100px;

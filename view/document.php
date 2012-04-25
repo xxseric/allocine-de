@@ -201,10 +201,12 @@ HEREDOC;
 				<div class="menu">
 					<ul id="nav">
 						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
+						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
 						<li><a href="./controller/user_controller.php?action=user_inscription">Inscription</a></li>
 						<li><a href="./controller/user_controller.php?action=login">Login</a></li>
 						<li><a href="./controller/user_controller.php?action=about">About</a></li>
 						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
+						
 					</ul>
 				</div>
 			</div>
