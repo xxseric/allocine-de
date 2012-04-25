@@ -1,6 +1,5 @@
 <?php
 
-	include_once ('../orm/bootstrap.php');
 	
 	function addListeCategorieFilm($film_id, $categorie_film_id)
 	{

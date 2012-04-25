@@ -69,8 +69,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <link rel="stylesheet" href="./css/style.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	        <link rel="stylesheet" href="./css/style.css" />
         <script type="text/javascript" src="./js/fonctionJs.js" ></script>
         
 		<style type="text/css">
@@ -160,8 +160,8 @@ HEREDOC;
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <link rel="stylesheet" href="./css/style.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	        <link rel="stylesheet" href="./css/style.css" />
         <script type="text/javascript" src="./js/fonctionJs.js" ></script>
 		<style type="text/css">
 			@import "./js/dojo/dijit/themes/soria/soria.css";
