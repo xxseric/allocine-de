@@ -56,6 +56,16 @@
 		return $recompense['recompense_lib'];
 	}
 	
+	function getAllRecompenses()
+	{
+		Doctrine_Core :: loadModels('../models');
+		$listeRecompenses = Doctrine_Core :: getTable ( 'Recompense' )->findAll(null);	
+		$listeRecompenses = $listeRecompenses->getData();
+		if(count($listeRecompenses) == 0)
+			return -1;
+		return $listeRecompenses;
+	}
+	
 	function setRecompenseLibById($id, $lib)
 	{
 		Doctrine_Core :: loadModels('../models');

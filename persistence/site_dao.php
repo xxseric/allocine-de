@@ -56,6 +56,16 @@
 		return $site['site_lib'];
 	}
 	
+	function getAllSite()
+	{
+		Doctrine_Core :: loadModels('../models');
+		$listeSites = Doctrine_Core :: getTable ( 'Site' )->findAll(null);	
+		$listeSites = $listeSites->getData();
+		if(count($listeSites) == 0)
+			return -1;
+		return $listeSites;
+	}
+	
 	function setSiteLibById($id, $lib)
 	{
 		Doctrine_Core :: loadModels('../models');
