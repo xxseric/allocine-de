@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?php 
+
+	@require_once 'rating_functions.php';
+
+?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -13,6 +17,51 @@
 			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
 			@import "./js/dojo/dojo/resources/dojo.css";
 		</style>
+		<script type="text/javascript" src="js/jquery.min.js?v=1.4.2"></script>
+		<script type="text/javascript" src="js/jquery-ui.custom.min.js?v=1.8"></script>
+		<!-- Star Rating widget stuff here... -->
+		<script type="text/javascript" src="js/jquery.ui.stars.js?v=3.0.0b38"></script>
+		<link rel="stylesheet" type="text/css" href="css/crystal-stars.css?b38"/>
+		<style type="text/css">
+			#loader {display:none;padding-left:20px; background:url(images/crystal-arrows.gif) no-repeat center left;}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				$("#rat").children().not(":radio").hide();
+				// Create stars
+				$("#rat").stars({
+					// starWidth: 28, // only needed in "split" mode
+					cancelShow: false,
+					callback: function(ui, type, value)
+					{
+						// Hide Stars while AJAX connection is active
+						$("#rat").hide();
+						$("#loader").show();
+						// Send request to the server using POST method
+						/* NOTE: 
+							The same PHP script is used for the FORM submission when Javascript is not available.
+							The only difference in script execution is the returned value. 
+							For AJAX call we expect an JSON object to be returned. 
+							The JSON object contains additional data we can use to update other elements on the page.
+							To distinguish the AJAX request in PHP script, check if the $_SERVER['HTTP_X_REQUESTED_WITH'] header variable is set.
+							(see: rating_functions.php)
+						*/ 
+						$.post("rating_functions.php", {rate: value}, function(db)
+						{
+							// Select stars to match "Average" value
+							ui.select(Math.round(db.avg));
+							// Update other text controls...
+							$("#avg").text(db.avg);
+							$("#votes").text(db.votes);
+							// Show Stars
+							$("#loader").hide();
+							$("#rat").show();
+						}, "json");
+					}
+				});
+			});
+		</script>
+		
 		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
 	    <script type="text/javascript">
 	    	dojo.require("dijit.form.ValidationTextBox");
@@ -48,40 +97,56 @@
 				</div>
 			</div>
 			
+			<!-- CONTENU FILM -->
 			<div id="contenu_film">
-				<h1>Informations du film</h1>
-				<article id="jaq_infos">
-					<section id="jaquette">
+				<h1>Men In Black</h1>
+				<div id="jaq_infos">
+					<div class="jaquette">
 						<img src="./images/mibI.jpg"></img>
-					</section>
-					<section id="informations">
-						<h2>Men In Black</h2>
+					</div>
+					<div class="informations">
 						<ul>
 							<li>
-								<span class="bold">Annnée : </span><p>1997</p>
+								<span class="bold">Annnée : </span>1997
 							</li>
 							<li>
-								<span class="bold">Réalisé par : </span><p>Barry Sonnenfeld</p>
+								<span class="bold">Réalisé par : </span>Barry Sonnenfeld
 							</li>
 							<li>
-								<span class="bold">Acteurs : </span><p>Will Smith, Tommy Lee Jones, Vincent D'Onofrio </p>
+								<span class="bold">Acteurs : </span>Will Smith, Tommy Lee Jones, Vincent D'Onofrio
 							</li>
 							<li>
-								<span class="bold">Genre(s) : </span><p>Science fiction, Comédie</p>
+								<span class="bold">Genre(s) : </span>Science fiction, Comédie
 							</li>
 							<li>
-								<span class="bold">Nationalité(s) : </span><p>Américain</p>
+								<span class="bold">Nationalité(s) : </span>Américain
 							</li>
-							<li>
-								<form method="post" action="" enctype="multipart/form-data" class="soria" id="notation" name="notation" dojoType="dijit.form.Form">
-									<!-- <center><button type="submit" dojoType="dijit.form.Button" onClick="dijit.byId('notation').validate();"></button></center> -->
+							<li class="rating">
+								<form id="rat" action="" method="post">
+									<?php
+										$inputs = "";
+										foreach($options as $id => $rb){
+											$inputs = $inputs.
+												"<input type='radio' name='rate' value='".$id."' title='".$rb['title']."' ".$rb['checked']." ".$rb['disabled']." /></br>";
+										}
+										if(!$rb['disabled']){
+											$inputs = $inputs."<input type='submit' value='Rate it' />";
+										}
+										echo $inputs; 
+									?>
 								</form>
+								<div id="loader"><div style="padding-top: 5px;">please wait...</div></div>
+								<!-- <?php// $db = get_votes() ?>
+								<div>
+									Item Popularity: <span id="avg"><?php //echo $db['avg'] ?></span>/<strong><?php //echo count($options) ?></strong>
+									(<span id="votes"><?php// echo $db['votes'] ?></span> votes cast)
+								</div> -->
 							</li>
-						</ul>
-					</section>
-				</article>
-				<article id="resume">
-					<h2></h2>
+						</ul>								
+					</div>
+				</div>
+				<div id="resume">
+					<h2>Synopsis</h2>
 					<p>
 						Chargés de protéger la Terre de toute infraction extraterrestre et de réguler l'immigration intergalactique sur notre planète, 
 						les Men in black ou MIB opèrent dans le plus grand secret. Vêtus de costumes sombres et équipés des toutes dernières technologies, 
@@ -90,7 +155,7 @@
 						K, le plus expérimenté des agents du MIB décide de former J, un jeune policier. Ensemble, ils vont afronter une nouvelle menace : 
 						Edgar le cafard...
 					</p>
-				</article>
+				</div>
 			</div>
 			
 			<!-- CONTENU DECONNECTE -- AVEC DEFILEMENT JAQUETTES FILMS -->
