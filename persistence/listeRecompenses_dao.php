@@ -1,6 +1,5 @@
 <?php
 
-	include_once ('../orm/bootstrap.php');
 	
 	function addListeRecompenses($film_id, $recompense_id)
 	{

@@ -1,6 +1,5 @@
 <?php
 
-	include_once ('../orm/bootstrap.php');
 	
 	function addListeActeur($film_id, $acteur_id)
 	{

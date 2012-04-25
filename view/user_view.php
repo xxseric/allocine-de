@@ -118,49 +118,8 @@ HEREDOC;
 		}
 		
 		public static function getMenuRechercherFilm(){
-						$html=
-<<<HEREDOC
-<div id="film">
-<h1>Liste des Films</h1>
-<h2>Trier par :</h2> 
-<p>
-<div onclick="document.getElementById('categorie').style.display = 'block';" style="width:auto; cursor: pointer;float:left;">-categories</div>
-<div onclick="document.getElementById('categorie').style.display = 'block';" style="width:auto; cursor: pointer;margin-left:150px;">-Recherche Avancer</div><br>
-<div onclick="document.getElementById('categorie').style.display = 'block';" style="width:auto; cursor: pointer;">-Note</div>
 
-
-</p>
-
-<div id="categorie" style="display:none;">
-<a>-Action </a><br>
-<a>-Dramatique </a><br>
-<a>-Comédie </a><br>
-<a>-Aventure </a><br>
-<a>-Science-Fiction </a><br>
-</div>
-
-<div id="listeFilm">
-	<div id="picture">
-		<img  src="./images/1.jpg"></img>
-	</div>
-	<div id="content_info">
-		<h3>Titre du film</h3>
-		<p >Date : </br>
-			réalisateur : </br>
-	
-			Acteurs principaux:</br> 
-			Notes : </br>
-	</p>
-	</div>
-	<div style="clear:both;"></div>
-</div>
-
-
-</div>
-HEREDOC;
-			echo $html."<br/>";
 		}
-		
 	}
 
 ?>

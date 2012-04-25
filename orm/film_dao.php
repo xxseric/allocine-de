@@ -1,9 +1,9 @@
 <?php
 
-	include_once ('../orm/bootstrap.php');
-	require_once 'listeActeur_dao.php';
-	require_once 'listeCategoriesFilm_dao.php';
-	require_once 'listeRecompenses_dao.php';
+	include_once ('./orm/bootstrap.php');
+	//require_once 'listeActeur_dao.php';
+//	require_once 'listeCategoriesFilm_dao.php';
+//	require_once 'listeRecompenses_dao.php';
 	
 	function addFilm($titre, $date, $resume=null, $image_id, $realisateur_id, $site_id, $site_note, $listeActeurs, $listeCategorie, $listeRecompenses)
 	{
@@ -70,8 +70,8 @@
 	}
 
 
-	
-	function getListeCategorieFilmByCategorieFilmId($categorie_film_id)
+			 
+	function film_getListeCategorieFilmByCategorieFilmId($categorie_film_id)
 	{
 		Doctrine_Core :: loadModels('../models');
 		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_categorie_film', $categorie_film_id ,null);	
@@ -81,7 +81,7 @@
 		return $listeCategoriesFilm;
 	}
 	
-	function getListeCategorieFilmByFilmIdAndCategorieFilmId($film_id, $categorie_film_id)
+	function film_getListeCategorieFilmByFilmIdAndCategorieFilmId($film_id, $categorie_film_id)
 	{
 		$listeCategoriesFilmByFilmId = getListeCategorieFilmByFilmId($film_id);	
 		if(count($listeCategoriesFilmByFilmId) > 0){
@@ -150,10 +150,10 @@
 		else
 			return -1;
 	}
-=======
+	
 	function getAllFilms()
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeFilms = Doctrine_Core :: getTable ( 'Film' )->findAll(null);	
 		$listeFilms = $listeFilms->getData();
 		if(count($listeFilms) == 0)
@@ -173,12 +173,12 @@
 	
 	function getFilmRealisateurIdById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$realisateur = Doctrine_Core :: getTable ( 'Film' )->findBy('film_id', $id ,null);	
-		$realisateur = $realisateur->getData();
+		
 		if(count($realisateur) == 0)
 			return -1;
-		return $realisateur['film_realisateur_id'];
+		return $realisateur[0]['film_realisateur_id'];
 	}
 	
 	function getFilmActeursIdById($id)
@@ -189,6 +189,16 @@
 		if(count($listeActeurs) == 0)
 			return -1;
 		return $listeActeurs['listeActeur_id'];
+	}
+	
+	function getFilmImageIdById($id)
+	{
+		Doctrine_Core :: loadModels('./models');
+		$listeActeurs = Doctrine_Core :: getTable ( 'Film' )->findBy('film_id', $id ,null);	
+	
+		if(count($listeActeurs) == 0)
+			return -1;
+		return $listeActeurs[0]['film_image_id'];
 	}
 	
 	function setFilmTitreById($id, $titre)
@@ -279,6 +289,6 @@
 			return -1;
 		}	
 	}
->>>>>>> .r32
+
 
 ?>
