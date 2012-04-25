@@ -77,6 +77,8 @@
 				$dest = processUserInformations();
 			}else if($action == "modification_informations"){
 				$dest = processUserUpdateInformations();
+			}else if($action == "film"){
+				$dest = processFilm();
 			}
 			if(!empty($dest))
 				$this->destination = $dest;
