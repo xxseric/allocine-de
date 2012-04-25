@@ -194,9 +194,9 @@ HEREDOC;
 				<div id="connexion" class="soria">
 				</div>
 				<div id="separator">
-				<form method='post' onsubmit='alert("rechercher");return false;' >
-				<input style="height: 25px;margin-left: 350px;margin-top: 12px;" type="text" id="recherche" value="" placeholder="Rechercher un Film..."/>
-				</form>
+					<form method='post' onsubmit='alert("rechercher");return false;' >
+						<input style="height: 25px;margin-left: 350px;margin-top: 12px;" type="text" id="recherche" value="" placeholder="Rechercher un Film..."/>
+					</form>
 				</div>
 				<div class="menu">
 					<ul id="nav">
