@@ -140,13 +140,19 @@ HEREDOC;
 </div>
 
 <div id="listeFilm">
-<img src="./images/1.jpg"></img>
-<p>Date : 
-réalisateur : 
-
-Acteurs principaux: 
-Notes
-</p>
+	<div id="picture">
+		<img  src="./images/1.jpg"></img>
+	</div>
+	<div id="content_info">
+		<h3>Titre du film</h3>
+		<p >Date : </br>
+			réalisateur : </br>
+	
+			Acteurs principaux:</br> 
+			Notes : </br>
+	</p>
+	</div>
+	<div style="clear:both;"></div>
 </div>
 
 
