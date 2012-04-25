@@ -6,7 +6,7 @@
 	{
 		Doctrine_Core :: loadModels('../models');
 		$isExisting = getListeCategorieFilmByFilmIdAndCategorieId($film_id, $categorie_film_id);
-		if($user_id != null && $isExisting == -1){
+		if(null && $isExisting == -1){
 			$listeCategoriesFilm = new ListeCategoriesFilm();
 			$listeCategoriesFilm['listeCategoriesFilms_film_id'] = $film_id;
 			$listeCategoriesFilm['listeCategoriesFilms_categorie_film'] = $categorie_film_id;
