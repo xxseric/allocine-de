@@ -532,6 +532,125 @@ body
 	font-style: italic;
 	text-decoration: underline;
 }
+
+/*
+ *			CONTENU AFFICHAGE FILM
+ */
+ 
+ #contenu_film
+ { 	
+	position: relative;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	color: #111;
+	padding: 10px;
+	width: 700px;
+	border: 1px solid goldenrod;
+	border-radius: 0 10px 0 10px;
+	background: #ffd65e; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+ }
+ 
+ #contenu_film h1
+ { 	
+	font-family: ComfortaaBold;
+	text-align: center;
+	font-size: 50px;
+	margin-top: -5px;
+ }
+ 
+ #contenu_film #jaq_infos
+ {
+ 	position: relative;
+ 	margin: 20px;
+ 	margin-top: -20px;
+ 	height: 250px;
+ }
+ 
+ #contenu_film #jaq_infos .jaquette
+ {
+ 	float: left;
+ 	width: 200px;
+ 	height: 100%;
+ }
+ 
+ #contenu_film #jaq_infos .jaquette img
+ {
+ 	width: 150px;
+ 	height: 200px;
+ 	margin-left: 12.5%;
+ 	margin-right: 12.5%;
+ 	margin-top: 20px;
+ }
+ 
+ #contenu_film #jaq_infos .informations
+ {
+ 	margin-left: 200px;
+ 	height: 80%;
+ }
+ 
+ #contenu_film #jaq_infos .informations ul
+ {
+ 	list-style-type: none;
+ 	padding: 30px;
+ 	padding-top: 40px;
+ }
+ 
+ #contenu_film #jaq_infos .informations ul li
+ {
+ 	font-family: Trebuchet MS;
+ 	font-size: 13px;
+ 	font-style: italic;
+ 	margin-bottom: 5px;
+ }
+ 
+ #contenu_film #jaq_infos .informations ul li .bold
+ {
+ 	font-weight: bolder;
+ 	font-style: normal;
+ 	font-size: 14px;
+ }
+ 
+ #contenu_film #jaq_infos .informations ul .rating
+ {
+ 	margin-top: 25px;
+ }
+  
+ #contenu_film #resume
+ {
+ 	position: relative;
+ 	margin-left: 20px;
+ 	margin-right: 20px;
+ 	margin-top: -35px;
+ 	padding: 0;
+ }
+ 
+ #contenu_film #resume h2
+ {
+	font-family: ComfortaaBold;
+	text-align: justify;
+	text-decoration: underline;
+	font-size: 25px;
+ }
+ 
+ #contenu_film #resume p
+ {
+ 	margin-top: -10px;
+	font-family: Trebuchet MS;
+	text-align: justify;
+	padding: 0;
+	font-size: 13px;
+ }
+ 
+ 
 /*
  *******************************************
  *                                         *
