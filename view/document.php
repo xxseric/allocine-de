@@ -243,7 +243,7 @@ HEREDOC;
 			$html=
 <<<HEREDOC
 <div id="footer">
-				<p>Copyright ï¿½ 2012 <a href="#">Desmauts-Evers</a></p>
+				<p>Copyright © 2012 <a href="#">Desmauts-Evers</a></p>
 				<p><a href="#">Valid XHTML 1.0 Strict</a> | <a href="#">Valid CSS</a></p>
 			</div>
 			

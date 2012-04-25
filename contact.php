@@ -18,7 +18,7 @@
 		aupr&egrave;s des diff&eacute;rents d&eacute;partements indiqu&eacute;s ci-dessous. <br /><br />
 		<ul>
 			<li>
-				<span class="bold">Supports, informations générales, programmes des salles</span></br>Pour toutes informations g&eacute;n&eacute;rales relatives &agrave; 
+				<span class="bold">Supports, informations générales</span></br>Pour toutes informations g&eacute;n&eacute;rales relatives &agrave; 
 				AlloCin&eacute;, un bug ou une suggestion, n&#146;h&eacute;sitez pas &agrave; nous &eacute;crire &agrave; 
 				<a href="mailto:info@allocine.fr">info@allocine.fr</a>
 			</li>
