@@ -16,21 +16,21 @@
 	
 	$html=
 <<<HEREDOC
-<div id="film">
+<div id="contenu_recherche_film">
 	<h1>Liste des Films</h1>
 	<h2>Trier par :</h2> 
-	<p>
-		<div onclick="document.getElementById('categorie').style.display = 'block';" style="width:auto; cursor: pointer;float:left;">-categories</div>
-		<div onclick="document.getElementById('categorie').style.display = 'block';" style="width:auto; cursor: pointer;margin-left:150px;">-Recherche Avancer</div><br>
-		<div onclick="document.getElementById('categorie').style.display = 'block';" style="width:auto; cursor: pointer;">-Note</div>
-	</p>
-	<div id="categorie" style="display:none;">
+	<ul class="criteres_recherche">
+		<li><div onclick="document.getElementById('categorie_recherche').style.display = 'block';" style="width:auto; cursor: pointer;">Categories</div></li>
+		<li><div onclick="document.getElementById('categorie_recherche').style.display = 'block';" style="width:auto; cursor: pointer;">Recherche Avancee</div></li>
+		<li><div onclick="document.getElementById('categorie_recherche').style.display = 'block';" style="width:auto; cursor: pointer;">Note</div></li>
+	</ul>
+	<div id="categorie_recherche" style="display:none;">
 		<a>-Action </a><br>
 		<a>-Dramatique </a><br>
 		<a>-Comédie </a><br>
 		<a>-Aventure </a><br>
 		<a>-Science-Fiction </a><br>
-</div>
+	</div>
 HEREDOC;
 	$html."<br/>";
 
@@ -71,7 +71,7 @@ HEREDOC;
 		}
 		echo $html.'</div>' ;		
 	}else{
-		echo $html."</br>"."Il n'y a pour le moment aucun film dans notre base de donnees, veuillez nous en excuser.";
+		echo $html."</br>"."<span class='erreur'>Il n'y a pour le moment aucun film dans notre base de donnees, veuillez nous en excuser.</span>"."</br>"."</div>";
 	}
 		
 	
