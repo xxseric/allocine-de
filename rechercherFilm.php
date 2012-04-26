@@ -68,25 +68,16 @@ if($listeCategorie != -1){
 					<div id="picture">
 						<img  src="./images/'.$image.'.jpg"></img>
 					</div> 
-					<div id="content_info"> 
-						<table border="0"> ';
-							$html .=
-							"<h3>".$listeFilm[$i]['film_titre']."</h3>" ;
-							$html.= 
-							'<tr>
-								<td>Date :</td>
-								<td>'.$listeFilm[$i]['film_date'].'</td> 
-							</tr>
-							<tr>
-								<td>réalisateur :</td><td>'
-								.$res[0]['realisateur_prenom'].$res[0]['realisateur_nom'].'</td> 
-							</tr>
-							<tr>
-								<td>Acteurs principaux:</td><td></td></tr> 
-							<tr>
-								<td>Notes : </td><td> </td>
-							</tr>
-						</table>
+					<div id="content_info"> ';
+						$html .=
+						"<h3>".$listeFilm[$i]['film_titre']."</h3>" ;
+						$html.= '
+						<ul>
+							<li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
+							<li><span class="bold">Realisateur : </span>'.$res[0]['realisateur_prenom'].' '.$res[0]['realisateur_nom'].'</li>
+							<li><span class="bold">Acteurs : </span></li>
+							<li><span class="bold">Note : </span></li>
+						</ul>
 					</div>
 					<div style="clear:both;"></div>
 				</div>';
