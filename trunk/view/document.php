@@ -72,13 +72,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	        <link rel="stylesheet" href="./css/style.css" />
         <script type="text/javascript" src="./js/fonctionJs.js" ></script>
-        
 		<style type="text/css">
 			@import "./js/dojo/dijit/themes/soria/soria.css";
 			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
 			@import "./js/dojo/dojo/resources/dojo.css";
 		</style>
 		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+		
 	    <script type="text/javascript">
 	    	dojo.require("dijit.form.ValidationTextBox");
 	    	dojo.require("dijit.form.NumberTextBox");
@@ -102,7 +103,11 @@
 				<div id="connexion" class="soria">
 				</div>
 				<div id="separator">
-				</div>	
+				</div>
+				<form method='post' name='rechercher_film' id='rechercher_film' onsubmit='alert("rechercher");return false;' >
+					<input type="text" id="recherche" value="" placeholder="Rechercher un Film..."/>
+					<button type="submit" id="submitButton"><center><img src="./images/loupe.png" style="height: 12px; width: 12px;"></img></center></button>
+				</form>
 HEREDOC;
 			echo $html."<br/>";
 			switch($this->user_level){
@@ -119,6 +124,7 @@ HEREDOC;
 				<div class="menu">
 					<ul id="nav">
 						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
+						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
 						<li><a href="">Menu_Level_1</a></li>
 						<li><a href="./controller/user_controller.php?action=about">About</a></li>
 						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
@@ -137,6 +143,7 @@ HEREDOC;
 				<div class="menu">
 					<ul id="nav">
 						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
+						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
 						<li><a href="">Menu_Level_2</a></li>
 						<li><a href="./controller/user_controller.php?action=about">About</a></li>
 						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
