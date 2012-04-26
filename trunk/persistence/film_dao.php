@@ -5,7 +5,7 @@ include_once 'orm/bootstrap.php';
 //	require_once 'listeCategoriesFilm_dao.php';
 //	require_once 'listeRecompenses_dao.php';
 	
-	function addFilm($titre, $date, $resume=null, $image_id, $realisateur_id, $site_id, $site_note, $listeActeurs, $listeCategorie, $listeRecompenses)
+	function addFilm($titre, $date, $resume=null, $image_id, $realisateur_id, $site_id=null, $site_note=null, $listeActeurs, $listeCategorie, $listeRecompenses)
 	{
 		Doctrine_Core :: loadModels('./models');
 		$isExisting = getFilmByTitre($titre);

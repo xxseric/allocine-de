@@ -21,6 +21,15 @@
 		return $acteur;
 	}
 	
+	function getIdbyNom($nom){
+		Doctrine_Core :: loadModels('./models');
+		$acteur = Doctrine_Core :: getTable ( 'Acteur' )->findBy('acteur_nom', $nom ,null);	
+
+		if(count($acteur) != 1)
+			return -1;
+		return $acteur[0]['acteur_id'];
+	}
+	
 	function getActeurNomById($id)
 	{
 		Doctrine_Core :: loadModels('./models');
