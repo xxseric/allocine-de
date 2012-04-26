@@ -11,7 +11,7 @@
 		$siteUrl = SITE_URL;
 		$html=
 <<<HEREDOC
-	<form name="formulaire_connexion" method="post" action="$siteUrl/controller/user_controller.php?action=connexion" enctype="multipart/form-data" class="soria" id="formulaire_connexion" dojoType="dijit.form.Form">	
+	<form name="formulaire_connexion" method="post" action="./controller/user_controller.php?action=connexion" enctype="multipart/form-data" class="soria" id="formulaire_connexion" dojoType="dijit.form.Form">	
 		<h1>Connexion</h1>
 		<table border=0>
 			<tr>
