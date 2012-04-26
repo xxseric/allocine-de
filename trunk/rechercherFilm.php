@@ -4,9 +4,9 @@
 	
 	//require_once 'view/user_view.php';
 	require_once 'view/document.php';
-	require_once './orm/film_dao.php';	
-	require_once './orm/realisateur_dao.php';
-	require_once './orm/categorieFilm_dao.php';
+	require_once 'persistence/film_dao.php';	
+	require_once 'persistence/realisateur_dao.php';
+	require_once 'persistence/categorieFilm_dao.php';
 	$doc = new Document();
 	if(!isset($_SESSION['level'])){
 		$doc->begin(0);

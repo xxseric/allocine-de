@@ -25,6 +25,7 @@
 		if($array == TRUE){								/* Connexion reussie */
 			$_SESSION['user_id'] = $array['user_id'];
 			$_SESSION['user_level'] = $array['user_level'];
+			$_SESSION['user_groupe_id'] = $array['user_groupe_id'];
 		}else{											/* Echec connexion */
 			return "login.php";		          			/* Retourne une erreur a� l'utilisateur */
 		}
@@ -62,4 +63,7 @@
 		return "liste_users.php";
 	}
 	
+	function processUserGestion(){
+		return "user_gestionUser.php";
+	}
 ?>

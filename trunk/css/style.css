@@ -444,7 +444,7 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
  *			CONTENU ABOUT & CONTENU CONTACT
  */
   
-#contenu_about, #contenu_contact, #formulaire_user_inscription, #formulaire_connexion, #contenu_recherche_film,  #contenu_film, #contenu_liste_users
+#contenu_about, #contenu_contact, #formulaire_user_inscription, #formulaire_connexion, #contenu_recherche_film,  #contenu_film, #contenu_liste_users,#gestion_user
 {
 	position: relative;
 	margin-top: 100px;
