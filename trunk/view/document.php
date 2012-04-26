@@ -111,7 +111,7 @@
 					<button type="submit" id="submitButton"><center><img src="./images/loupe.png" style="height: 12px; width: 12px;"></img></center></button>
 				</form>
 HEREDOC;
-			echo $html."<br/>";
+			echo $html;
 			switch($this->user_level){
 				case 1: $this->header_level_1();	
 				break;
