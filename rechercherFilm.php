@@ -35,40 +35,45 @@ HEREDOC;
 	$html."<br/>";
 
 	$listeFilm = getAllFilms();
-		
-	for($i =0 ; $i < count($listeFilm) ; $i++){
-		$idres =	getFilmRealisateurIdById($listeFilm[$i]['film_id']);
-		$res = getRealisateurById($idres);		
-		$image = getFilmImageIdById($listeFilm[$i]['film_id']); 
-		$html .= 
-			'<div id="listeFilm">
-				<div id="picture">
-					<img  src="./images/'.$image.'.jpg"></img>
-				</div> 
-				<div id="content_info"> 
-					<table border="0"> ';
-						$html .=
-						"<h3>".$listeFilm[$i]['film_titre']."</h3>" ;
-						$html.= 
-						'<tr>
-							<td>Date :</td>
-							<td>'.$listeFilm[$i]['film_date'].'</td> 
-						</tr>
-						<tr>
-							<td>réalisateur :</td><td>'
-							.$res[0]['realisateur_prenom'].$res[0]['realisateur_nom'].'</td> 
-						</tr>
-						<tr>
-							<td>Acteurs principaux:</td><td></td></tr> 
-						<tr>
-							<td>Notes : </td><td> </td>
-						</tr>
-					</table>
-				</div>
-				<div style="clear:both;"></div>
-			</div>';
+	
+	if($listeFilm != -1){
+		for($i = 0 ; $i < count($listeFilm) ; $i++){
+			$idres =	getFilmRealisateurIdById($listeFilm[$i]['film_id']);
+			$res = getRealisateurById($idres);		
+			$image = getFilmImageIdById($listeFilm[$i]['film_id']); 
+			$html .= 
+				'<div id="listeFilm">
+					<div id="picture">
+						<img  src="./images/'.$image.'.jpg"></img>
+					</div> 
+					<div id="content_info"> 
+						<table border="0"> ';
+							$html .=
+							"<h3>".$listeFilm[$i]['film_titre']."</h3>" ;
+							$html.= 
+							'<tr>
+								<td>Date :</td>
+								<td>'.$listeFilm[$i]['film_date'].'</td> 
+							</tr>
+							<tr>
+								<td>réalisateur :</td><td>'
+								.$res[0]['realisateur_prenom'].$res[0]['realisateur_nom'].'</td> 
+							</tr>
+							<tr>
+								<td>Acteurs principaux:</td><td></td></tr> 
+							<tr>
+								<td>Notes : </td><td> </td>
+							</tr>
+						</table>
+					</div>
+					<div style="clear:both;"></div>
+				</div>';
+		}
+		echo $html.'</div>' ;		
+	}else{
+		echo $html."</br>"."Il n'y a pour le moment aucun film dans notre base de donnees, veuillez nous en excuser.";
 	}
-	echo $html.'</div>' ;
+		
 	
 	$doc->end();
 
