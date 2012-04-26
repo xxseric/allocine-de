@@ -127,6 +127,7 @@ HEREDOC;
 					<ul id="nav">
 						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
+						<li><a href="./controller/user_controller.php?action=user_gestion">Gestion</a></li>
 						<li><a href="./controller/user_controller.php?action=about">About</a></li>
 						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
 						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
@@ -164,7 +165,7 @@ HEREDOC;
 						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
 						<li><a href="./controller/user_controller.php?action=liste_users">Inscrits</a></li>
-						<li><a href="">Base de données</a></li>
+						<li><a href="">Base de donnÃ©es</a></li>
 						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
 				</div>

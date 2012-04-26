@@ -83,6 +83,8 @@
 				$dest = processChangeLevel();
 			}else if($action == "liste_users"){
 				$dest = processListeUsers();
+			}else if($action == "user_gestion"){
+				$dest = processUserGestion();
 			}
 			
 			if(!empty($dest))

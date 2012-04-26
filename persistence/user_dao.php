@@ -179,8 +179,8 @@
 	function getUsersByGroupeId($groupeId)
 	{
 		Doctrine_Core :: loadModels('./models');
-		$listeUsers = Doctrine_Core :: getTable ( 'User' )->findBy('user_groupe', $groupeId ,null);	
-		$listeUsers = $listeUsers->getData();
+		$listeUsers = Doctrine_Core :: getTable ( 'User' )->findBy('user_groupe_id', $groupeId ,null);	
+		
 		if(count($listeUsers) < 1)
 			return -1;
 		return $listeUsers;
