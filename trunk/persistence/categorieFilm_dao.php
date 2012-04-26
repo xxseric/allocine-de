@@ -1,6 +1,6 @@
 <?php
 
-	include_once ('./orm/bootstrap.php');
+	include_once ('orm/bootstrap.php');
 	
 	function addCategorieFilm($categorie_film_lib)
 	{
