@@ -125,6 +125,47 @@ body
 	background-repeat: repeat-x;
 }
 
+#header #rechercher_film
+{
+	padding: 0;
+	width: 190px;
+	height: 23px;
+	float: right;
+	margin-top: -170px;
+	margin-right: 10px;
+}
+
+#header #rechercher_film #recherche
+{
+	height: 18px;
+	width: 150px;
+	margin-bottom: 1px;
+}
+
+#header #rechercher_film #submitButton
+{
+	height: 22px;
+	width: 26px;
+	margin-left: -4px;
+	margin-top: -3px;
+	text-shadow:0px -1px 0px #000;
+	background: #ffd65e; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+	-webkit-border-radius:0 5px 5px 0;
+   	-moz-border-radius:0 5px 5px 0;
+    border-radius:0 5px 5px 0;
+	-webkit-box-shadow:0px 0px 1px #000;
+	-moz-box-shadow:0px 0px 1px #000;
+    box-shadow:0px 0px 1px #000;
+    border-style: none;
+}
+
 #header .menu
 {
 	margin-top: -8px;
