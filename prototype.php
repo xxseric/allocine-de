@@ -15,6 +15,9 @@
 		<style type="text/css">
 			@import "./js/dojo/dijit/themes/soria/soria.css";
 			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
+			@import "./js/dojo/dijit/themes/tundra/a11y.css" />
+			@import "./js/dojo/dijit/themes/tundra/claro.css" />
+			@import "./js/dojo/dijit/themes/tundra/nihilo.css" />
 			@import "./js/dojo/dojo/resources/dojo.css";
 			@import "./js/dojo/dojox/grid/resources/soriaGrid.css";
 			@import "./js/dojo/dojox/grid/resources/Grid.css";
@@ -49,6 +52,7 @@
 	    	dojo.require("dojo.data.ItemFileReadStore");
 	    	dojo.require("dojox.validate.regexp");
 	    	dojo.require('dijit.Editor');
+	    	dojo.require("dijit.form.Select");
 	    </script>
 	    
 		<script type="text/javascript">
@@ -95,7 +99,7 @@
 		<title>Allocine</title>
 	</head>
 
-	<body class="soria">
+	<body>
 	
 		<div id="page">
 		
@@ -171,7 +175,7 @@
              					<td>admin@allocine.fr</td>
              					<td>
              						<form id="level_change_1" name="level_change_1" method="post" action="./controller/user_controller.php?action=change_level">
-             							<select name="user_level" onchange="changeUserLevel(this.form);">
+             							<select  name="user_level" onchange="changeUserLevel(this.form);">
              								<option value="1">1</option>
              								<option selected value="2">2</option>
              								<option value="3">3</option>
@@ -186,7 +190,7 @@
              					<td>user@allocine.fr</td>
              					<td>
              						<form id="level_change_2" name="level_change_2" method="post" action="./controller/user_controller.php?action=change_level">
-             							<select name="user_level" onchange="changeUserLevel(this.form);">
+             							<select  name="user_level" onchange="changeUserLevel(this.form);">
              								<option selected value="1">1</option>
              								<option value="2">2</option>
              								<option value="3">3</option>
