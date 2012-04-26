@@ -16,6 +16,8 @@
 			@import "./js/dojo/dijit/themes/soria/soria.css";
 			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
 			@import "./js/dojo/dojo/resources/dojo.css";
+			@import "./js/dojo/dojox/grid/resources/soriaGrid.css";
+			@import "./js/dojo/dojox/grid/resources/Grid.css";
 		</style>
 		<script type="text/javascript" src="js/jquery.min.js?v=1.4.2"></script>
 		<script type="text/javascript" src="js/jquery-ui.custom.min.js?v=1.8"></script>
@@ -25,6 +27,30 @@
 		<style type="text/css">
 			#loader {display:none;padding-left:20px; background:url(images/crystal-arrows.gif) no-repeat center left;}
 		</style>
+		
+		
+		
+		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+	    <script type="text/javascript">
+	    	dojo.require("dojo.parser");
+	    	dojo.require("dijit.layout.ContentPane");
+	    	dojo.require("dijit.layout.TabContainer");
+	   		dojo.require("dijit.form.ValidationTextBox");
+	    	dojo.require("dijit.form.NumberTextBox");
+	    	dojo.require("dijit.form.DateTextBox");
+	    	dojo.require("dijit.form.TextBox")
+	    	dojo.require("dijit.form.SimpleTextarea");
+	    	dojo.require("dijit.form.FilteringSelect");
+	    	dojo.require("dijit.form.Button");
+	    	dojo.require("dijit.form.RadioButton");
+	    	dojo.require("dijit.form.CheckBox");
+	    	dojo.require("dijit.form.Form");
+	    	dojo.require("dojox.grid.DataGrid");
+	    	dojo.require("dojo.data.ItemFileReadStore");
+	    	dojo.require("dojox.validate.regexp");
+	    	dojo.require('dijit.Editor');
+	    </script>
+	    
 		<script type="text/javascript">
 			$(function(){
 				$("#rat").children().not(":radio").hide();
@@ -61,22 +87,15 @@
 				});
 			});
 		</script>
+			
+		<script>
 		
-		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
-	    <script type="text/javascript">
-	    	dojo.require("dijit.form.ValidationTextBox");
-	    	dojo.require("dijit.form.NumberTextBox");
-	    	dojo.require("dijit.form.TextBox");
-	    	dojo.require("dojo.parser");
-	    	dojo.require("dijit.form.Form");
-	    	dojo.require("dijit.form.Button");
-   			dojo.require("dojox.validate.regexp");
-   			dojo.require("dojox.form.PasswordValidator");
-	    </script>	
+		</script>
+		
 		<title>Allocine</title>
 	</head>
 
-	<body>
+	<body class="soria">
 	
 		<div id="page">
 		
@@ -94,6 +113,77 @@
 						<li><a href="">Contact</a></li>
 						<li><a href="">Login</a></li>
 					</ul>
+				</div>
+			</div>
+		<!-- <script>
+			dojo.ready(function(){
+    			var layout = [
+        			{name: 'Index', field: 'user_id'},
+        			{name: 'Nom', field: 'user_nom'}, 
+            		{name: 'Prenom', field: 'user_prenom'}, 
+              	  	{name: 'Email', field: 'user_email'e}, 
+            		{name: 'Level', field: 'user_level', width: 10, editable: true}
+    			];
+    			var store = new dojo.data.ItemFileWriteStore({
+        			data: {
+            			identifier: "user_id",
+            			items: [
+                			{user_id: 1, user_nom: 'admin', user_prenom: 'istrator', user_email: 'admin@allocine.fr', user_level: '2'},
+                			{user_id: 2, user_nom: 'simple', user_prenom: 'user', user_email: 'simple@allocine.fr', user_level: '1'}
+	            		]
+	        		}
+    			});
+    			var grid = new dojox.grid.DataGrid({
+        			id: 'grid',
+        			store: store,
+        			structure: layout
+    			});
+    			grid.placeAt('');
+    			grid.startup();
+			});
+		</script>  -->
+	
+			
+			<!-- CONTENU LISTE UTILISATEURS -->
+			<script type="text/javascript">
+				function changeUserLevel(id, level)
+				{
+					//document.level_change.submit();
+				}
+			</script>
+			<div id="contenu_liste_users">
+				<h1>Liste des utilisateurs</h1>
+				<div id="liste_users">
+					<table border=0>
+                    	<thead>
+                    		<tr>
+        	    				<th style="width:100px; text-align:center;">Nom</th>
+             					<th style="width:100px; text-align:center;">Prenom</th> 
+             					<th style="width:150px; text-align:center;">Email</th> 
+             					<th style="width:50px; text-align:center;">Level</th>
+             					<th style="width:50px; text-align:center;">Valider</th>
+             				</tr> 
+             			</thead>
+             			<tbody>
+             				<tr>
+             					<td>Admin</td>
+             					<td>Istrator</td>
+             					<td>admin@allocine.fr</td>
+             					<td>
+             						<form id="level_change" name="level_change" method="post" action="">
+             							<select name="level" onchange="changeUserLevel(1,this[this.selectedIndex].value);">
+             								<option value="1">1</option>
+             								<option value="2">2</option>
+             								<option value="3">3</option>
+             							</select>
+             						</form>
+             					</td>
+             					<td>
+             						<button type="submit" onclick=""></button>
+             					</td>
+             				</tr>
+           				</tbody>
+					</table>
 				</div>
 			</div>
 			
