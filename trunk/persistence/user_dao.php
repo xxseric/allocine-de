@@ -33,7 +33,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user;
+		return $user[0];
 	}
 	
 	function getUserIdByEmail($email)
@@ -43,7 +43,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_id'];
+		return $user[0]['user_id'];
 	}
 	
 	function getUserNomById($id)
@@ -53,7 +53,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_nom'];
+		return $user[0]['user_nom'];
 	}
 	
 	function getUserPrenomById($id)
@@ -63,7 +63,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_prenom'];
+		return $user[0]['user_prenom'];
 	}
 	
 	function getUserNumRueById($id)
@@ -73,7 +73,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_num_rue'];
+		return $user[0]['user_num_rue'];
 	}
 	
 	function getUserLibRueById($id)
@@ -83,7 +83,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_lib_rue'];
+		return $user[0]['user_lib_rue'];
 	}
 	
 	function getUserCPById($id)
@@ -93,7 +93,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_cp'];
+		return $user[0]['user_cp'];
 	}
 	
 	function getUserVilleById($id)
@@ -103,7 +103,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_ville'];
+		return $user[0]['user_ville'];
 	}
 	
 	function getUserTelephoneById($id)
@@ -113,7 +113,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_telephone'];
+		return $user[0]['user_telephone'];
 	}
 	
 	function getUserEmailById($id)
@@ -123,7 +123,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_email'];
+		return $user[0]['user_email'];
 	}
 	
 	function getUserMdpById($id)
@@ -133,7 +133,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_mdp'];
+		return $user[0]['user_mdp'];
 	}
 	
 	function getUserLevelById($id)
@@ -143,7 +143,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_level'];
+		return $user[0]['user_level'];
 	}
 	
 	function getUserGroupeIdById($id)
@@ -153,7 +153,7 @@
 		$user = $user->getData();
 		if(count($user) != 1)
 			return -1;
-		return $user['user_groupe_id'];
+		return $user[0]['user_groupe_id'];
 	}
 	
 	function getUsersByIds($ids)

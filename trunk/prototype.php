@@ -146,9 +146,10 @@
 			
 			<!-- CONTENU LISTE UTILISATEURS -->
 			<script type="text/javascript">
-				function changeUserLevel(id, level)
+				function changeUserLevel(nForm)
 				{
-					document.level_change.submit();
+					n = nForm.name;
+					document.forms[nForm.name].submit();
 				}
 			</script>
 			<div id="contenu_liste_users">
@@ -169,13 +170,28 @@
              					<td>Istrator</td>
              					<td>admin@allocine.fr</td>
              					<td>
-             						<form id="level_change" name="level_change" method="post" action="./controller/user_controller.php?action=change_level">
-             							<select name="user_level" onchange="changeUserLevel(1,this[this.selectedIndex].value);">
+             						<form id="level_change_1" name="level_change_1" method="post" action="./controller/user_controller.php?action=change_level">
+             							<select name="user_level" onchange="changeUserLevel(this.form);">
              								<option value="1">1</option>
+             								<option selected value="2">2</option>
+             								<option value="3">3</option>
+             							</select>
+             							<input type="hidden" name="user_id" value="1"></input>
+             						</form>
+             					</td>
+             				</tr>
+             				<tr>
+             					<td>Simple</td>
+             					<td>User</td>
+             					<td>user@allocine.fr</td>
+             					<td>
+             						<form id="level_change_2" name="level_change_2" method="post" action="./controller/user_controller.php?action=change_level">
+             							<select name="user_level" onchange="changeUserLevel(this.form);">
+             								<option selected value="1">1</option>
              								<option value="2">2</option>
              								<option value="3">3</option>
              							</select>
-             							<input type="hidden" name="user_id" value=""></input>
+             							<input type="hidden" name="user_id" value="2"></input>
              						</form>
              					</td>
              				</tr>

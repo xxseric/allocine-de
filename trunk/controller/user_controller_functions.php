@@ -1,6 +1,7 @@
 <?php
 
 	require_once '../connect.php';
+	require_once '../persistence/user_dao.php';
 
 	function processIndex()
 	{
