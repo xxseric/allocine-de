@@ -1,10 +1,10 @@
 <?php
 
-	include_once ('./orm/bootstrap.php');
+	include_once ('orm/bootstrap.php');
 	
 	function addRealisateur($realisateur_nom, $realisateur_prenom)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core :: loadModels('../models');
 		$realisateur = new Realisateur();
 		$realisateur['realisateur_nom'] = $realisateur_nom;
 		$realisateur['realisateur_prenom'] = $realisateur_prenom;
