@@ -3,7 +3,7 @@
 	
 	function addListeCategorieFilm($film_id, $categorie_film_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$isExisting = getListeCategorieFilmByFilmIdAndCategorieId($film_id, $categorie_film_id);
 		if(null && $isExisting == -1){
 			$listeCategoriesFilm = new ListeCategoriesFilm();
@@ -18,7 +18,7 @@
 	
 	function getListeCategorieFilmById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_id', $id ,null);	
 		$listeCategoriesFilm = $listeCategoriesFilm->getData();
 		if(count($listeCategoriesFilm) == 0)
@@ -28,7 +28,7 @@
 	
 	function getListeCategorieFilmByFilmId($film_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_film_id', $id ,null);	
 		$listeCategoriesFilm = $listeCategoriesFilm->getData();
 		if(count($listeCategoriesFilm) == 0)
@@ -38,7 +38,7 @@
 	
 	function getListeCategorieFilmByCategorieFilmId($categorie_film_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_categorie_film', $categorie_film_id ,null);	
 		$listeCategoriesFilm = $listeCategoriesFilm->getData();
 		if(count($listeCategoriesFilm) == 0)
@@ -64,7 +64,7 @@
 	
 	function deleteListeRecompensesById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeCategories = getListeCategorieFilmById($id);
 		if(count($listeCategories) == 1){
 			$listeCategories->delete();
@@ -76,7 +76,7 @@
 	
 	function deleteListeCategorieFilmByFilmId($film_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeCategories = getListeCategorieFilmByFilmId($film_id);
 		if(count($listeCategories) > 0){
 			foreach ($listeCategories as $categorieFilm){
@@ -90,7 +90,7 @@
 	
 	function deleteListeCategorieFilmByCategorieFilmId($categorie_film_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeCategories = getListeCategorieFilmByCategorieFilmId($categorie_film_id);
 		if(count($listeCategories) > 0){
 			foreach ($listeCategories as $categorieFilm){
@@ -104,7 +104,7 @@
 	
 	function deleteListeCategorieFilmByFilmIdAndCategorieFilmId($film_id, $categorie_film_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeCategories = getListeCategorieFilmByFilmIdAndCategorieFilmId($film_id, $categorie_film_id);
 		if(count($listeCategories) > 0){
 			foreach ($listeCategories as $categorieFilm){

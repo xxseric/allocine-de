@@ -4,7 +4,7 @@
 	
 	function addUser($user_nom, $user_prenom, $user_num_rue=null, $user_lib_rue=null, $user_cp=null, $user_ville=null, $user_telephone=null, $user_email, $user_mdp, $user_groupe_id=null, $user_level=1)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$isExisting = getUserIdByEmail($user_email);
 		if($isExisting == -1){
 			$user = new User();
@@ -28,7 +28,7 @@
 	
 	function getUserById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -38,8 +38,8 @@
 	
 	function getUserIdByEmail($email)
 	{
-		Doctrine_Core :: loadModels('../models');
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_email', $email ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -49,7 +49,7 @@
 	
 	function getUserNomById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -59,7 +59,7 @@
 	
 	function getUserPrenomById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -69,7 +69,7 @@
 	
 	function getUserNumRueById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -79,7 +79,7 @@
 	
 	function getUserLibRueById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -89,7 +89,7 @@
 	
 	function getUserCPById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -99,7 +99,7 @@
 	
 	function getUserVilleById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -109,7 +109,7 @@
 	
 	function getUserTelephoneById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -119,7 +119,7 @@
 	
 	function getUserEmailById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -129,7 +129,7 @@
 	
 	function getUserMdpById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -139,7 +139,7 @@
 	
 	function getUserLevelById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -149,7 +149,7 @@
 	
 	function getUserGroupeIdById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -159,7 +159,7 @@
 	
 	function getUsersByIds($ids)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		if(count($ids)>1){
 			$listeUsers = array();
 			foreach ($ids as $id){
@@ -178,7 +178,7 @@
 	
 	function getUsersByGroupeId($groupeId)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeUsers = Doctrine_Core :: getTable ( 'User' )->findBy('user_groupe', $groupeId ,null);	
 		$listeUsers = $listeUsers->getData();
 		if(count($listeUsers) < 1)
@@ -203,7 +203,7 @@
 
 	function setUserNomById($id, $user_nom)
 	{
-		Doctrine_Core :: loadModels("../models");
+		Doctrine_Core :: loadModels("./models");
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_nom'] = $user_nom;
@@ -216,7 +216,7 @@
 
 	function setUserPrenomById($id, $user_prenom)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_prenom'] = $user_prenom;
@@ -229,7 +229,7 @@
 
 	function setUserNumRueById($id, $user_num_rue)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_num_rue'] = $user_num_rue;
@@ -242,7 +242,7 @@
 
 	function setUserLibRueById($id, $user_lib_rue)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_lib_rue'] = $user_lib_rue;
@@ -255,7 +255,7 @@
 
 	function setUserCPById($id, $user_cp)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_cp'] = $user_cp;
@@ -268,7 +268,7 @@
 
 	function setUserVilleById($id, $user_ville)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_ville'] = $user_ville;
@@ -281,7 +281,7 @@
 
 	function setUserTelephoneById($id, $user_telephone)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_telephone'] = $user_telephone;
@@ -294,7 +294,7 @@
 
 	function setUserEmailById($id, $user_email)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_email'] = $user_email;
@@ -307,7 +307,7 @@
 
 	function setUserMdpById($id, $user_Mdp)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_mdp'] = $user_mdp;
@@ -320,7 +320,7 @@
 
 	function setUserLevelById($id, $user_level)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_level'] = $user_level;
@@ -333,7 +333,7 @@
 
 	function setUserGroupeIdById($id, $user_groupe_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_groupe_id'] = $user_groupe_id;
@@ -346,7 +346,7 @@
 	
 	function deleteUserById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$user = getUserById($id);
 		if($user != -1){
 			$user->delete();

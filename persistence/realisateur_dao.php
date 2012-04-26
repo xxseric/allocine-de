@@ -1,10 +1,10 @@
 <?php
 
-	include_once ('../orm/bootstrap.php');
+	include_once ('./orm/bootstrap.php');
 	
 	function addRealisateur($realisateur_nom, $realisateur_prenom)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$realisateur = new Realisateur();
 		$realisateur['realisateur_nom'] = $realisateur_nom;
 		$realisateur['realisateur_prenom'] = $realisateur_prenom;
@@ -14,7 +14,7 @@
 	
 	function getRealisateurById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$realisateur = Doctrine_Core :: getTable ( 'Realisateur' )->findBy('realisateur_id', $id ,null);	
 		$realisateur = $realisateur->getData();
 		if(count($realisateur) != 1)
@@ -24,7 +24,7 @@
 	
 	function getRealisateurNomById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$realisateur = Doctrine_Core :: getTable ( 'Realisateur' )->findBy('realisateur_id', $id ,null);	
 		$realisateur = $realisateur->getData();
 		if(count($realisateur) != 1)
@@ -34,7 +34,7 @@
 	
 	function getRealisateurPrenomById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$realisateur = Doctrine_Core :: getTable ( 'Realisateur' )->findBy('realisateur_id', $id ,null);	
 		$realisateur = $realisateur->getData();
 		if(count($realisateur) != 1)
@@ -44,7 +44,7 @@
 	
 	function getAllRealisateurs()
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeRealisateurs = Doctrine_Core :: getTable ( 'Realisateur' )->findAll(null);	
 		$listeRealisateurs = $listeRealisateurs->getData();
 		if(count($listeRealisateurs) == 0)
@@ -54,7 +54,7 @@
 	
 	function setRealisateurNomById($id, $realisateur_nom)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$realisateur = getRealisateurById($id);
 		if($realisateur != -1){
 			$realisateur['realisateur_nom'] = $realisateur_nom;
@@ -67,7 +67,7 @@
 	
 	function setRealisateurPrenomById($id, $realisateur_prenom)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$realisateur = getRealisateurById($id);
 		if($realisateur != -1){
 			$realisateur['realisateur_prenom'] = $realisateur_prenom;
@@ -80,7 +80,7 @@
 	
 	function deleteRealisateurById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$realisateur = getRealisateurById($id);
 		if($realisateur != -1){
 			$realisateur->delete();

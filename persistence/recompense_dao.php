@@ -4,7 +4,7 @@
 	
 	function addRecompense($recompense_lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$isExisting = getRecompenseByLib($recompense_lib);
 		if($isExisting == -1){
 			$recompense = new Recompense();
@@ -18,7 +18,7 @@
 	
 	function getRecompenseById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$recompense = Doctrine_Core :: getTable ( 'Recompense' )->findBy('recompense_id', $id ,null);	
 		$recompense = $recompense->getData();
 		if(count($recompense) != 1)
@@ -28,7 +28,7 @@
 	
 	function getRecompenseByLib($lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$recompense = Doctrine_Core :: getTable ( 'Recompense' )->findBy('recompense_lib', $lib ,null);	
 		$recompense = $recompense->getData();
 		if(count($recompense) != 1)
@@ -38,7 +38,7 @@
 	
 	function getRecompenseIdByLib($lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$recompense = Doctrine_Core :: getTable ( 'Recompense' )->findBy('recompense_lib', $lib ,null);	
 		$recompense = $recompense->getData();
 		if(count($recompense) != 1)
@@ -48,7 +48,7 @@
 	
 	function getRecompenseLibById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$recompense = Doctrine_Core :: getTable ( 'Recompense' )->findBy('recompense_id', $id ,null);	
 		$recompense = $recompense->getData();
 		if(count($recompense) != 1)
@@ -58,7 +58,7 @@
 	
 	function getAllRecompenses()
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeRecompenses = Doctrine_Core :: getTable ( 'Recompense' )->findAll(null);	
 		$listeRecompenses = $listeRecompenses->getData();
 		if(count($listeRecompenses) == 0)
@@ -68,7 +68,7 @@
 	
 	function setRecompenseLibById($id, $lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$recompense = getRecompenseById($id);
 		if($recompense != -1){
 			$recompense['recompense_lib'] = $lib;
@@ -81,7 +81,7 @@
 	
 	function deleteRecompenseById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$recompense = getRecompenseById($id);
 		if($recompense != -1){
 			$recompense->delete();

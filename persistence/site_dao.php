@@ -4,7 +4,7 @@
 	
 	function addSite($site_lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$isExisting = getSiteByLib($site_lib);
 		if($isExisting == -1){
 			$site = new Site();
@@ -18,7 +18,7 @@
 	
 	function getSiteById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$site = Doctrine_Core :: getTable ( 'Site' )->findBy('site_id', $id ,null);	
 		$site = $site->getData();
 		if(count($site) != 1)
@@ -28,7 +28,7 @@
 	
 	function getSiteByLib($lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$site = Doctrine_Core :: getTable ( 'Site' )->findBy('site_lib', $lib ,null);	
 		$site = $site->getData();
 		if(count($site) != 1)
@@ -38,7 +38,7 @@
 	
 	function getSiteIdByLib($lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$site = Doctrine_Core :: getTable ( 'Site' )->findBy('site_lib', $lib ,null);	
 		$site = $site->getData();
 		if(count($site) != 1)
@@ -48,7 +48,7 @@
 	
 	function getSiteLibById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$site = Doctrine_Core :: getTable ( 'Site' )->findBy('site_id', $id ,null);	
 		$site = $site->getData();
 		if(count($site) != 1)
@@ -58,7 +58,7 @@
 	
 	function getAllSite()
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeSites = Doctrine_Core :: getTable ( 'Site' )->findAll(null);	
 		$listeSites = $listeSites->getData();
 		if(count($listeSites) == 0)
@@ -68,7 +68,7 @@
 	
 	function setSiteLibById($id, $lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$site = getSiteById($id);
 		if($site != -1){
 			$site['site_lib'] = $lib;
@@ -81,7 +81,7 @@
 	
 	function deleteSiteById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$site = getSiteById($id);
 		if($site != -1){
 			$site->delete();

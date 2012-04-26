@@ -4,7 +4,7 @@
 	
 	function addActeur($nom, $prenom)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$acteur = new Acteur();
 		$acteur['acteur_nom'] = $nom;
 		$acteur['acteur_prenom'] = $prenom;
@@ -13,7 +13,7 @@
 	
 	function getActeurById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$acteur = Doctrine_Core :: getTable ( 'Acteur' )->findBy('acteur_id', $id ,null);	
 		$acteur = $acteur->getData();
 		if(count($acteur) != 1)
@@ -23,7 +23,7 @@
 	
 	function getActeurNomById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$acteur = Doctrine_Core :: getTable ( 'Acteur' )->findBy('acteur_id', $id ,null);	
 		$acteur = $acteur->getData();
 		if(count($acteur) != 1)
@@ -33,7 +33,7 @@
 	
 	function getActeurPrenomById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$acteur = Doctrine_Core :: getTable ( 'Acteur' )->findBy('acteur_id', $id ,null);	
 		$acteur = $acteur->getData();
 		if(count($acteur) != 1)
@@ -43,7 +43,7 @@
 	
 	function setActeurNomById($id, $nom)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$acteur = getActeurById($id);
 		if($acteur != -1){
 			$acteur['acteur_nom'] = $nom;
@@ -56,7 +56,7 @@
 	
 	function setActeurPrenomById($id, $prenom)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$acteur = getActeurById($id);
 		if($acteur != -1){
 			$acteur['acteur_prenom'] = $prenom;
@@ -69,7 +69,7 @@
 	
 	function deleteActeurById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$acteur = getActeurById($id);
 		if($acteur != -1){
 			$acteur->delete();
