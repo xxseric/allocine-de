@@ -12,7 +12,7 @@
 	$user['user_ville'] =  $_POST['ville'] ;
 	$user['user_telephone'] =  $_POST['telephone'] ;
 	$user['user_email'] =  $_POST['mail'] ;
-	$user['user_level'] =  2 ;
+	$user['user_level'] =  1 ;
 	$user['user_mdp'] = md5($_POST['mot_de_passe']) ;
 	
 	
