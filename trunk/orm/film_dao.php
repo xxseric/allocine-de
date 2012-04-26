@@ -40,12 +40,12 @@
 
 	function getFilmById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$film = Doctrine_Core :: getTable ( 'Film' )->findBy('film_id', $id ,null);	
-		$film = $film->getData();
+	//	$film = $film->getData();
 		if(count($film) != 1)
 			return -1;
-		return $film;
+		return $film[0];
 	}
 	
 	function getFilmByTitre($titre)
@@ -159,6 +159,21 @@
 		if(count($listeFilms) == 0)
 			return -1;
 		return $listeFilms;
+	}
+	
+	function getFilmByCategorie($id_categorie){
+		Doctrine_Core :: loadModels('./models');
+		$listeIdFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_categorie_film', $id_categorie ,null);	
+		$listeFilm = array();
+		for($i = 0 ; $i < count($listeIdFilm) ; $i++ ){
+			$listeFilm[$i] = getFilmById($listeIdFilm[$i]['listeCategoriesFilms_film_id']);	
+		}
+		
+		if(count($listeFilm) == 0){
+			return -1;
+		}else {
+			return $listeFilm ;
+		}
 	}
 	
 	function getFilmCategoriesIdById($id)
