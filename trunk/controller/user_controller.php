@@ -79,6 +79,8 @@
 				$dest = processUserUpdateInformations();
 			}else if($action == "film"){
 				$dest = processFilm();
+			}else if($action == "change_level"){
+				$dest = processChangeLevel();
 			}
 			if(!empty($dest))
 				$this->destination = $dest;
