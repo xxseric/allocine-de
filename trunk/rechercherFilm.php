@@ -35,7 +35,7 @@ if($listeCategorie != -1){
 	for($i=0 ; $i< count($listeCategorie) ; $i++){
 		$j = $i+1 ;
 		$html .= '<form action="rechercherFilm.php" method=post>	
-	 				<div onClick="document.forms['.$j.'].submit();" style="cursor: pointer;" >-'.$listeCategorie[$i]['catFilm_libelle'].'</div>
+	 				<div onClick="document.forms['.$j.'].submit();" style="cursor: pointer;" >+'.$listeCategorie[$i]['catFilm_libelle'].'</div>
 	 				<input type="hidden" value="'.$listeCategorie[$i]['catFilm_id'].'" name="categorie"/>
 				  </form>';
 		

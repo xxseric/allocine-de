@@ -629,21 +629,38 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	font-family: Trebuchet MS;
 	font-size: 13px;
 	text-align: justify;
-	margin-bottom: 20px;
-	height: 30px;
+	margin-bottom: 40px;
+	height: 23px;
+	list-style: none;
+	padding: 0;
+	padding-left: 180px;
 }
  
 #contenu_recherche_film .criteres_recherche li
 {
 	float: left;
-	width: 210px;
+	padding: 3px 10px 3px 10px;	
+	margin-right: 40px; 
+	background:-moz-linear-gradient(top,#222,#111);
+	background:-webkit-gradient(linear,left top,left bottom,from(#222),to(#111));
+	color: goldenrod;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+	border-radius:8px;
 }
  
-#contenu_recherche_film .criteres_recherche #categorie_recherche
+#contenu_recherche_film #categorie_recherche 
 {
-	border: 1px solid black;
-	width: 200px;
-	height: 200px;
+	border: 3px dashed #111;
+	font-family: Trebuchet MS;
+	font-size: 12px;
+	font-weight: bolder;
+	color: #111;
+	text-align: center;
+	margin:auto;
+	padding: 10px 0 10px 0;
+	width: 150px;
+	font-style: italic;
 }
  
 #contenu_recherche_film .erreur
