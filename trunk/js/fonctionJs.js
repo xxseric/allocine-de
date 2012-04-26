@@ -55,8 +55,7 @@ function inscriptionUser(){
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Fonction permettant de recevoir et de traiter la reponse de la requete Ajax
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function recevoirReponseRequeteAjax(requeteHttp)
-{
+function recevoirReponseRequeteAjax(requeteHttp){
 if (requeteHttp.readyState==4)
 {
   if (requeteHttp.status==200)
@@ -68,4 +67,21 @@ if (requeteHttp.readyState==4)
   else
           alert("Erreur requete");
 }
+}
+
+
+function affichageGestion(val){
+	if(val == 0){
+		document.getElementById('gestion_groupe').style.display = 'block' ;
+		document.getElementById('ajout_film').style.display = 'none' ;
+		document.getElementById('gestion_compte').style.display = 'none' ;
+	}else if(val == 1){
+		document.getElementById('gestion_groupe').style.display = 'none' ;
+		document.getElementById('ajout_film').style.display = 'block' ;
+		document.getElementById('gestion_compte').style.display = 'none' ;
+	}else if(val == 2){
+		document.getElementById('gestion_groupe').style.display = 'none' ;
+		document.getElementById('ajout_film').style.display = 'none' ;
+		document.getElementById('gestion_compte').style.display = 'block' ;
+	}
 }
