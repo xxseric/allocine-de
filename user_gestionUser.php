@@ -21,9 +21,9 @@
 
 
 	<ul class="criteres_recherche" style="decoration:none;border-bottom: solid black 2px ;">
-		<li><div onclick="" style="width:auto; cursor: pointer;">Gestion Groupe</div></li>
-		<li><div onclick="" style="width:auto; cursor: pointer;">Ajouter un Film</div></li>
-		<li><div onclick="" style="width:auto; cursor: pointer;">Gestion du Compte</div></li>
+		<li><div onclick="affichageGestion(0);" style="width:auto; cursor: pointer;">Gestion Groupe</div></li>
+		<li><div onclick="affichageGestion(1);" style="width:auto; cursor: pointer;">Ajouter un Film</div></li>
+		<li><div onclick="affichageGestion(2);" style="width:auto; cursor: pointer;">Gestion du Compte</div></li>
 	</ul>
 	
 HEREDOC;
@@ -55,11 +55,58 @@ HEREDOC;
 						$html .= "Voirs les groupes , creer un groupe";
 				
 				          	}
-					echo $html ;	
+					
 					}
 		$html .= "</div>";			
 	//////FIn Gestion du Groupe///////////
 	//ajout d'un film///////
-	$html .= "<div id='ajout_film'>";
+	$html .= 
+	'
+	<div id="ajout_film" style="display:none;">
+	<form method="post" action="" name="formulaire_ajout_film" id="formulaire_ajout_film" enctype="multipart/form-data" class="soria" dojoType="dijit.form.Form">
+	<h3>Ajouter un film</h3>
+	<TABLE BORDER="0">
+		<tr>
+			<td>				
+				<label>Titre</label><span id="asterisque">*</span>
+			</td>
+			<td>
+				<input type="text" name="film_titre" id="film_titre" data-dojo-type="dijit.form.TextBox" required="true" 
+								data-dojo-props="trim:true, propercase:true" />
+			</td>
+					<td>				
+				<label>Date</label><span id="asterisque">*</span>
+			</td>
+			<td>
+			<input type="text" name="user_prenom" id="user_prenom" data-dojo-type="dijit.form.DateTextBox" required="true"  />
+			</td>
+		</tr>
+		<tr>
+	
+		</tr>				
+
+		<tr>
+			<td>				
+				<label>Réalisateur</label>
+			</td>
+			<td>
+				<input type="text"" name="user_lib_rue" id="user_lib_rue" data-dojo-type="dijit.form.TextBox"
+								data-dojo-props="trim:true, propercase:true" />
+			</td>
+		</tr>	
+	
+		<input type="hidden"  name="user_level" id="user_level" value="1"/>
+	</TABLE>
+		
+				<label>Resumé</label>
+			
+				<input type="text" name="user_num_rue" id="user_num_rue" data-dojo-type="dijit.form.SimpleTextarea"/>
+			
+	<center><button type="submit" data-dojo-type="dijit.form.Button" id="submitButton" >Ajouter</button></center>
+</form> ' ;
+	
+	
+	$html .= "</div>" ;
+	echo $html ;
 	$doc->end();
 ?>

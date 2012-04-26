@@ -89,6 +89,8 @@
 	    	dojo.require("dijit.form.Button");
    			dojo.require("dojox.validate.regexp");
    			dojo.require("dojox.form.PasswordValidator");
+   			dojo.require("dijit.form.SimpleTextarea");
+   			dojo.require("dijit.form.DateTextBox");
 	    </script>	
 		<title>Allocine</title>
 	</head>
@@ -206,6 +208,8 @@ HEREDOC;
 	    	dojo.require("dijit.form.Button");
    			dojo.require("dojox.validate.regexp");
    			dojo.require("dojox.form.PasswordValidator");
+   			dojo.require("dijit.form.SimpleTextarea");
+   			dojo.require("dijit.form.DateTextBox");
 	    </script>	
 		<title>Allocine</title>
 	</head>
