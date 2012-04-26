@@ -1,6 +1,6 @@
 <?php
 
-	include_once ('../orm/bootstrap.php');
+	include_once 'orm/bootstrap.php';
 	
 	function addUser($user_nom, $user_prenom, $user_num_rue=null, $user_lib_rue=null, $user_cp=null, $user_ville=null, $user_telephone=null, $user_email, $user_mdp, $user_groupe_id=null, $user_level=1)
 	{
@@ -38,6 +38,7 @@
 	
 	function getUserIdByEmail($email)
 	{
+		Doctrine_Core :: loadModels('../models');
 		Doctrine_Core :: loadModels('../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_email', $email ,null);	
 		$user = $user->getData();
@@ -187,17 +188,22 @@
 	
 	function getAllUsers()
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeUsers = Doctrine_Core :: getTable ( 'User' )->findAll(null);	
 		$listeUsers = $listeUsers->getData();
+		$liste = array();
+		foreach ($listeUsers as $user){
+			$user = $user->getData();
+			$liste[] = $user;
+		}
 		if(count($listeUsers) == 0)
 			return -1;
-		return $listeUsers;
+		return $liste;
 	}
 
 	function setUserNomById($id, $user_nom)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels("../models");
 		$user = getUserById($id);
 		if($user != -1){
 			$user['user_nom'] = $user_nom;

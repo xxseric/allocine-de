@@ -113,7 +113,9 @@ HEREDOC;
 			switch($this->user_level){
 				case 1: $this->header_level_1();	
 				break;
-				case 2: $this->header_level_2();		
+				case 2: $this->header_level_2();
+				break;
+				case 3: $this->header_level_3();		
 			}
 		}
 
@@ -125,7 +127,6 @@ HEREDOC;
 					<ul id="nav">
 						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
-						<li><a href="">Menu_Level_1</a></li>
 						<li><a href="./controller/user_controller.php?action=about">About</a></li>
 						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
 						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
@@ -144,9 +145,26 @@ HEREDOC;
 					<ul id="nav">
 						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
-						<li><a href="">Menu_Level_2</a></li>
 						<li><a href="./controller/user_controller.php?action=about">About</a></li>
 						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
+						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+HEREDOC;
+			echo $html."<br/>";
+		}	
+		
+		public function header_level_3()
+		{
+			$html=
+<<<HEREDOC
+				<div class="menu">
+					<ul id="nav">
+						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
+						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
+						<li><a href="./controller/user_controller.php?action=liste_users">Inscrits</a></li>
+						<li><a href="">Base de données</a></li>
 						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
 				</div>
