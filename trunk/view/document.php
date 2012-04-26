@@ -194,10 +194,11 @@ HEREDOC;
 				<div id="connexion" class="soria">
 				</div>
 				<div id="separator">
-					<form method='post' onsubmit='alert("rechercher");return false;' >
-						<input style="height: 25px;margin-left: 350px;margin-top: 12px;" type="text" id="recherche" value="" placeholder="Rechercher un Film..."/>
-					</form>
 				</div>
+				<form method='post' name='rechercher_film' id='rechercher_film' onsubmit='alert("rechercher");return false;' >
+					<input type="text" id="recherche" value="" placeholder="Rechercher un Film..."/>
+					<button type="submit" id="submitButton"><center><img src="./images/loupe.png" style="height: 12px; width: 12px;"></img></center></button>
+				</form>
 				<div class="menu">
 					<ul id="nav">
 						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
