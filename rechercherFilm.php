@@ -15,7 +15,7 @@
 	}
 	
 	
-	if(!isset($_POST['categorie'])){
+	
 	$html=
 <<<HEREDOC
 <div id="contenu_recherche_film">
@@ -36,7 +36,11 @@
 HEREDOC;
 	$html."<br/>";
 
+	
+	if(!isset($_POST['categorie'])){
 	$listeFilm = getAllFilms();
+	
+	}
 	
 	if($listeFilm != -1){
 		for($i = 0 ; $i < count($listeFilm) ; $i++){
@@ -76,7 +80,7 @@ HEREDOC;
 		echo $html."</br>"."<span class='erreur'>Il n'y a pour le moment aucun film dans notre base de donnees, veuillez nous en excuser.</span>"."</br>"."</div>";
 	}
 		
-}	
+	
 	$doc->end();
 
 ?>
