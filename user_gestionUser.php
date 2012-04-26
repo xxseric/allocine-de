@@ -4,34 +4,35 @@
 	//require_once 'view/user_view.php';
 	require_once 'view/document.php';
 	require_once 'persistence/user_dao.php';
-	
+	require_once 'persitence/realisateur_dao.php';
+	require_once 'persitence/acteur_dao.php';
 	
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
-		echo "pas ok" ;
+		
 		$doc->begin(0);
 		echo "<div id='gestion_user'>
 		<h1>Erreur d'authentification</h1>Erreur la page que vous demandez n'est pas accesible si vous n'êtes pas authentifier.
 			 </div>";
 	}else{
-		echo "ok" ;
+	
 		$doc->begin($_SESSION['user_level']);
 		$html = 
 		<<<HEREDOC
 <div id="contenu_recherche_film">
 	<h1>Gestion</h1>
 
-
-	<ul class="criteres_recherche" style="decoration:none;border-bottom: solid black 2px ;">
-		<li><div onclick="affichageGestion(0);" style="width:auto; cursor: pointer;">Gestion Groupe</div></li>
-		<li><div onclick="affichageGestion(1);" style="width:auto; cursor: pointer;">Ajouter un Film</div></li>
-		<li><div onclick="affichageGestion(2);" style="width:auto; cursor: pointer;">Gestion du Compte</div></li>
+<center>
+	<ul class="criteres_recherche" style="decoration:none; padding:0 ;">
+		<li><div onclick="affichageGestion(0);" style="width:auto; cursor: pointer;"><img src="./images/user.png"></img>Gestion Groupe</div></li>
+		<li><div onclick="affichageGestion(1);" style="width:auto; cursor: pointer;"><img src="./images/icook.png"></img>Ajouter un Film</div></li>
+		<li><div onclick="affichageGestion(2);" style="width:auto; cursor: pointer;"><img src="./images/config.png"></img>Gestion du Compte</div></li>
 	</ul>
-	
+</center>	
 HEREDOC;
 	
 	////////////Parite Gestion du Groupe /////
-	$html .= "<div id='gestion_groupe'>";
+	$html .= "<div id='gestion_groupe' style='border-top: solid black 2px ;'>";
 					if($_SESSION['user_groupe_id'] != NULL){
 						$html .= "				<div id='liste_users'>
 									<table border=0>
@@ -65,7 +66,7 @@ HEREDOC;
 	$html .= 
 	'
 	<div id="ajout_film" style="display:none;">
-	<form method="post" action="" name="formulaire_ajout_film" id="formulaire_ajout_film" enctype="multipart/form-data" class="soria" dojoType="dijit.form.Form">
+	<form method="post" action="./user_gestionUser.php" name="formulaire_ajout_film" id="formulaire_ajout_film" enctype="multipart/form-data" class="soria" dojoType="dijit.form.Form">
 	<h3>Ajouter un film</h3>
 	<TABLE BORDER="0">
 		<tr>
@@ -80,7 +81,7 @@ HEREDOC;
 				<label>Date</label><span id="asterisque">*</span>
 			</td>
 			<td>
-			<input type="text" name="user_prenom" id="user_prenom" data-dojo-type="dijit.form.DateTextBox" required="true"  />
+			<input type="text" name="date_film" id="date_film" data-dojo-type="dijit.form.DateTextBox" required="true"  />
 			</td>
 		</tr>
 		<tr>
@@ -92,15 +93,26 @@ HEREDOC;
 				<label>Réalisateur</label>
 			</td>
 			<td>
-				<input type="text"" name="user_lib_rue" id="user_lib_rue" data-dojo-type="dijit.form.TextBox"
+				<input type="text"" name="realisateur_film" id="realisateur_film" data-dojo-type="dijit.form.TextBox"
+								data-dojo-props="trim:true, propercase:true" />
+			</td>
+			<td>				
+				<label>Acteur</label>
+			</td>
+			<td>
+				<input type="text"" name="acteur_film" id="acteur_film" data-dojo-type="dijit.form.TextBox"
 								data-dojo-props="trim:true, propercase:true" />
 			</td>
 		</tr>	
-	</TABLE>
+	</TABLE> </br></br>
+				
 		
+					<label>Image : </label>  <input type="hidden" name="MAX_FILE_SIZE" value="2097152">    
+          	 		 <input type="file" name="nom_du_fichier">  </br>
+          	  	</br></br>
 				<label>Resumé</label>
 			
-				<input type="text" name="user_num_rue" id="user_num_rue" data-dojo-type="dijit.form.SimpleTextarea"/>
+				<input type="text" name="resumer_film" id="resumer_film" data-dojo-type="dijit.form.SimpleTextarea"/>
 			
 	<center><button type="submit" data-dojo-type="dijit.form.Button" id="submitButton" >Ajouter</button></center>
 </form> ' ;
@@ -176,4 +188,42 @@ HEREDOC;
 	echo $html ;
 }
 	$doc->end();
+	
+	//poste d'un film//
+	if(isset($_POST['film_titre']) && isset($_POST['film_date'])){
+	
+		echo '<script>affichageGestion(1);</script>';
+		
+		
+		if(isset($_POST['realisateur_film'])){
+			$resVal = explode( " " , $_POST['realisateur_film']);
+			if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
+				$resId = getRealisateurIdByPrenom($resVal[0]) ;
+			}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
+				$resId = getRealisateurIdByPrenom($resVal[0]) ;
+			}else{
+				addRealisateur($resVal[1],$resVal[0]);
+				$resId = getRealisateurIdByPrenom($resVal[0]) ;
+			}
+		}
+
+			if(isset($_POST['acteur_film'])){
+			$resVal = explode( " " , $_POST['acteur_film']);
+			if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
+				$resId = getRealisateurIdByPrenom($resVal[0]) ;
+			}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
+				$resId = getRealisateurIdByPrenom($resVal[0]) ;
+			}else{
+				addRealisateur($resVal[1],$resVal[0]);
+				$resId = getRealisateurIdByPrenom($resVal[0]) ;
+			}
+		}
+		
+		
+			if ((isset($_FILES['nom_du_fichier']['fichier'])&&($_FILES['nom_du_fichier']['error'] == UPLOAD_ERR_OK))) {    
+				$chemin_destination = './images/';    
+				move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);    
+				}   
+				
+	}
 ?>
