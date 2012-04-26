@@ -56,4 +56,10 @@
 		setUserLevelById($_POST['user_id'], $_POST['user_level']);
 		return "prototype.php";
 	}
+	
+	function processListeUsers()
+	{
+		return "liste_users.php";
+	}
+	
 ?>

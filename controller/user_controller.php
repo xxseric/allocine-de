@@ -26,7 +26,7 @@
 			$doc = new Document();
 			if(!isset($_SESSION['level'])){
 				$doc->begin(0);
-			}else if($_SESSION['level'] == '1' || $_SESSION['level'] == '2'){
+			}else if($_SESSION['level'] == '1' || $_SESSION['level'] == '2' || $_SESSION['level'] == '3'){
 				$doc->begin($_SESSION['level']);
 				//$doc->informations();
 				$doc->end();
@@ -38,7 +38,7 @@
 			$doc = new Document();
 			if(!isset($_SESSION['level'])){
 				$doc->begin(0);
-			}else if($_SESSION['level']=='1' || $_SESSION['level'] == '2'){
+			}else if($_SESSION['level']=='1' || $_SESSION['level'] == '2' || $_SESSION['level'] == '3'){
 				$doc->begin($_SESSION['level']);
 				//$doc->informationsModification();
 				$doc->end();
@@ -81,7 +81,10 @@
 				$dest = processFilm();
 			}else if($action == "change_level"){
 				$dest = processChangeLevel();
+			}else if($action == "liste_users"){
+				$dest = processListeUsers();
 			}
+			
 			if(!empty($dest))
 				$this->destination = $dest;
 		}
