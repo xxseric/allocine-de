@@ -220,7 +220,7 @@ body
 	color:#eee;
 	text-shadow:1px 1px 1px black;
 }
-<<<<<<< .mine
+
 
 /***Menu Liste des films***/
 
@@ -239,11 +239,7 @@ body
     -moz-border-radius:8px;
 	border-radius:8px;
 }
-#content_info
-	{
-	float : right;
-	width:500px;
-}
+
 
 #listeFilm
 {
