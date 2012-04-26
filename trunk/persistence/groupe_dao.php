@@ -4,7 +4,7 @@
 	
 	function addGroupe($groupe_lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$isExisting = getGroupeByLib($groupe_lib);
 		if($isExisting == -1){
 			$groupe = new Groupe();
@@ -18,7 +18,7 @@
 	
 	function getGroupeById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$groupe = Doctrine_Core :: getTable ( 'Groupe' )->findBy('groupe_id', $id ,null);	
 		$groupe = $groupe->getData();
 		if(count($groupe) != 1)
@@ -28,7 +28,7 @@
 	
 	function getGroupeByLib($lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$groupe = Doctrine_Core :: getTable ( 'Groupe' )->findBy('groupe_lib', $lib ,null);	
 		$groupe = $groupe->getData();
 		if(count($groupe) != 1)
@@ -38,7 +38,7 @@
 	
 	function getGroupeIdByLib($lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$groupe = Doctrine_Core :: getTable ( 'Groupe' )->findBy('groupe_lib', $lib ,null);	
 		$groupe = $groupe->getData();
 		if(count($groupe) != 1)
@@ -48,7 +48,7 @@
 	
 	function getGroupeLibById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$groupe = Doctrine_Core :: getTable ( 'Groupe' )->findBy('groupe_id', $id ,null);	
 		$groupe = $groupe->getData();
 		if(count($groupe) != 1)
@@ -58,7 +58,7 @@
 	
 	function getAllGroupe()
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeGroupes = Doctrine_Core :: getTable ( 'Groupe' )->findAll(null);	
 		$listeGroupes = $listeGroupes->getData();
 		if(count($listeGroupes) == 0)
@@ -68,7 +68,7 @@
 	
 	function setGroupeLibById($id, $lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$groupe = getGroupeById($id);
 		if($groupe != -1){
 			$groupe['groupe_lib'] = $lib;
@@ -81,7 +81,7 @@
 	
 	function deleteGroupeById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$groupe = getGroupeById($id);
 		if($groupe != -1){
 			$groupe->delete();

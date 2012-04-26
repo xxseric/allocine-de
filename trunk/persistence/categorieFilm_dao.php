@@ -1,10 +1,10 @@
 <?php
 
-	include_once ('../orm/bootstrap.php');
+	include_once ('./orm/bootstrap.php');
 	
 	function addCategorieFilm($categorie_film_lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$isExisting = getCategorieFilmByLib($categorie_film_lib);
 		if($isExisting == -1){
 			$catFilm = new CategorieFilm();
@@ -18,7 +18,7 @@
 	
 	function getCategorieFilmById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$catFilm = Doctrine_Core :: getTable ( 'CategorieFilm' )->findBy('catFilm_id', $id ,null);	
 		$catFilm = $catFilm->getData();
 		if(count($catFilm) != 1)
@@ -28,7 +28,7 @@
 	
 	function getCategorieFilmByLib($lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$catFilm = Doctrine_Core :: getTable ( 'CategorieFilm' )->findBy('catFilm_libelle', $lib ,null);	
 		$catFilm = $catFilm->getData();
 		if(count($catFilm) != 1)
@@ -38,7 +38,7 @@
 	
 	function getCategorieFilmIdByLib($lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$catFilm = Doctrine_Core :: getTable ( 'CategorieFilm' )->findBy('catFilm_libelle', $lib ,null);	
 		$catFilm = $catFilm->getData();
 		if(count($catFilm) != 1)
@@ -48,7 +48,7 @@
 	
 	function getCategorieFilmLibById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$catFilm = Doctrine_Core :: getTable ( 'CategorieFilm' )->findBy('catFilm_id', $id ,null);	
 		$catFilm = $catFilm->getData();
 		if(count($catFilm) != 1)
@@ -58,7 +58,7 @@
 	
 	function getAllCategories()
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeCategories = Doctrine_Core :: getTable ( 'CategorieFilm' )->findAll(null);	
 		$listeCategories = $listeCategories->getData();
 		if(count($listeCategories) == 0)
@@ -68,7 +68,7 @@
 	
 	function setCategorieFilmLibById($id, $lib)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$catFilm = getCategorieFilmById($id);
 		if($catFilm != -1){
 			$catFilm['catFilm_libelle'] = $lib;
@@ -81,7 +81,7 @@
 	
 	function deleteCategorieFilmById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$catFilm = getCategorieFilmById($id);
 		if($catFilm != -1){
 			$catFilm->delete();

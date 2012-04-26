@@ -3,7 +3,7 @@
 	
 	function addListeActeur($film_id, $acteur_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$isExisting = getListeActeurByFilmIdAndActeurId($film_id, $acteur_id);
 		if(null && $isExisting == -1){
 			$listeActeur = new ListeActeur();
@@ -18,7 +18,7 @@
 	
 	function getListeActeurById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeActeur = Doctrine_Core :: getTable ( 'ListeActeur' )->findBy('listeActeur_id', $id ,null);	
 		$listeActeur = $listeActeur->getData();
 		if(count($listeActeur) == 0)
@@ -28,7 +28,7 @@
 	
 	function getListeActeurByFilmId($film_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeActeur = Doctrine_Core :: getTable ( 'ListeActeur' )->findBy('listeActeur_film_id', $film_id ,null);	
 		$listeActeur = $listeActeur->getData();
 		if(count($listeActeur) == 0)
@@ -38,7 +38,7 @@
 	
 	function getListeActeurByActeurId($acteur_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeActeur = Doctrine_Core :: getTable ( 'ListeActeur' )->findBy('listeActeur_acteur_id', $acteur_id ,null);	
 		$listeActeur = $listeActeur->getData();
 		if(count($listeActeur) == 0)
@@ -64,7 +64,7 @@
 	
 	function deleteListeActeurById($id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeActeur = getListeActeurById($id);
 		if(count($listeActeur) == 1){
 			$listeActeur->delete();
@@ -76,7 +76,7 @@
 	
 	function deleteListeActeurByFilmId($film_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeActeur = getListeActeurByFilmId($film_id);
 		if(count($listeActeur) > 0){
 			foreach ($listeActeur as $acteur){
@@ -90,7 +90,7 @@
 	
 	function deleteListeActeurByActeurId($acteur_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeActeur = getListeActeurByActeurId($acteur_id);
 		if(count($listeActeur) > 0){
 			foreach ($listeActeur as $acteur){
@@ -104,7 +104,7 @@
 	
 	function deleteListeActeurByFilmIdAndActeurId($film_id, $acteur_id)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$listeActeur = getListeActeurByFilmIdAndActeurId($film_id, $acteur_id);
 		if(count($listeActeur) > 0){
 			foreach ($listeActeur as $acteur){
