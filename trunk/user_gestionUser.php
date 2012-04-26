@@ -4,6 +4,8 @@
 	//require_once 'view/user_view.php';
 	require_once 'view/document.php';
 	require_once 'persistence/user_dao.php';
+	
+	
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
 		echo "pas ok" ;
@@ -27,7 +29,7 @@
 	</ul>
 	
 HEREDOC;
-	 $html ;
+	
 	////////////Parite Gestion du Groupe /////
 	$html .= "<div id='gestion_groupe'>";
 					if($_SESSION['user_groupe_id'] != NULL){
@@ -56,7 +58,7 @@ HEREDOC;
 				
 				          	}
 					
-					}
+					
 		$html .= "</div>";			
 	//////FIn Gestion du Groupe///////////
 	//ajout d'un film///////
@@ -94,8 +96,6 @@ HEREDOC;
 								data-dojo-props="trim:true, propercase:true" />
 			</td>
 		</tr>	
-	
-		<input type="hidden"  name="user_level" id="user_level" value="1"/>
 	</TABLE>
 		
 				<label>Resumé</label>
@@ -105,8 +105,75 @@ HEREDOC;
 	<center><button type="submit" data-dojo-type="dijit.form.Button" id="submitButton" >Ajouter</button></center>
 </form> ' ;
 	
-	
+///////////Gestion du compte ///////////	
 	$html .= "</div>" ;
+	$user = getUserById($_SESSION['user_id']);
+	$html .= '<div id="gestion_compte" style="display:none;">
+						<TABLE id="gestion_tab" BORDER="0" cellspacing="10">
+		<tr>
+			<td>				
+				<label><b>Nom :</b></label>
+			</td>
+			<td>
+				'.$user['user_nom'].'
+			</td>
+			<td>				
+				<label><b>Prenom :</b></label>
+			</td>
+			<td>
+			'.$user['user_prenom'].'
+			</td>
+		</tr>
+		
+		<tr>
+			<td>				
+				<label><b>Adresse email :</b> </label>
+			</td>
+			<td>
+			'.$user['user_email'].'	
+			</td>
+			<td>				
+				<label><b>Numéro de rue : </b></label>
+			</td>
+			<td>
+				'.$user['user_num_rue'].'
+			</td>
+		</tr>	
+		<tr></tr>
+		<tr>
+			<td>				
+				<label><b>Nom de la rue : </b></label>
+			</td>
+			<td>
+				'.$user['user_lib_rue'].'
+			</td>
+			<td>				
+				<label><b>Code Postal :</b></label>
+			</td>
+			<td>
+				'.$user['user_cp'].'
+			</td>
+		</tr>	
+		<tr></tr>	
+			<tr>
+			<td>				
+				<label><b>Ville :</b></label>
+			</td>
+			<td>
+				'.$user['user_ville'].'
+			</td>
+			<td>				
+				<label><b>Téléphone :</b></label>
+			</td>
+			<td>
+				'.$user['user_telephone'].'
+			</td>
+		</tr>	
+	</TABLE>
+</div>
+</div>';
+	
 	echo $html ;
+}
 	$doc->end();
 ?>
