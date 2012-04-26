@@ -640,7 +640,6 @@ body
 	float : right;
 	margin-right: 10px;
 	width:400px;
-	border: 1px solid black;
 	height: 200px;
 }
 #contenu_recherche_film #listeFilm #content_info h3
