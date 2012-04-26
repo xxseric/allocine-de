@@ -6,7 +6,7 @@
 	require_once 'view/document.php';
 	require_once './orm/film_dao.php';	
 	require_once './orm/realisateur_dao.php';
-	
+	require_once './orm/categorieFilm_dao.php';
 	$doc = new Document();
 	if(!isset($_SESSION['level'])){
 		$doc->begin(0);
@@ -23,23 +23,39 @@
 	<h2>Trier par :</h2> 
 	<ul class="criteres_recherche">
 		<li><div onclick="document.getElementById('categorie_recherche').style.display = 'block';" style="width:auto; cursor: pointer;">Categories</div></li>
-		<li><div onclick="document.getElementById('categorie_recherche').style.display = 'block';" style="width:auto; cursor: pointer;">Recherche Avancee</div></li>
-		<li><div onclick="document.getElementById('categorie_recherche').style.display = 'block';" style="width:auto; cursor: pointer;">Note</div></li>
+		<li><div onclick="document.getElementById('categorie_recherche').style.display = 'none';" style="width:auto; cursor: pointer;">Recherche Avancee</div></li>
+		<li><div onclick="document.getElementById('categorie_recherche').style.display = 'none';" style="width:auto; cursor: pointer;">Note</div></li>
 	</ul>
-	<div id="categorie_recherche" style="display:none;">
-		<a>-Action </a><br>
-		<a>-Dramatique </a><br>
-		<a>-Comédie </a><br>
-		<a>-Aventure </a><br>
-		<a>-Science-Fiction </a><br>
-	</div>
 HEREDOC;
+
+	$listeCategorie = getAllCategories();
+if($listeCategorie != -1){	
+	$html .= '
+	<div id="categorie_recherche" style="display:none;">';
+	for($i=0 ; $i< count($listeCategorie) ; $i++){
+		$j = $i+1 ;
+		$html .= '<form action="rechercherFilm.php" method=post>	
+	 				<div onClick="document.forms['.$j.'].submit();" style="cursor: pointer;" >-'.$listeCategorie[$i]['catFilm_libelle'].'</div>
+	 				<input type="hidden" value="'.$listeCategorie[$i]['catFilm_id'].'" name="categorie"/>
+				  </form>';
+		
+	}
+	
+}else{
+	$html.= "Il n'y a pas de catégories disponible pour le moment !" ;
+}	
+	
+	$html .= '
+	</div>';
+
 	$html."<br/>";
 
 	
 	if(!isset($_POST['categorie'])){
 	$listeFilm = getAllFilms();
 	
+	}else if(isset($_POST['categorie'])){
+	$listeFilm = 	getFilmByCategorie($_POST['categorie']);
 	}
 	
 	if($listeFilm != -1){
