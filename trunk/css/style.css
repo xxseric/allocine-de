@@ -220,54 +220,6 @@ body
 	color:#eee;
 	text-shadow:1px 1px 1px black;
 }
-
-/***Menu Liste des films***/
-
-#listeFilm
-{
-	margin-top : 10px;
-	margin-right : 5px ;
-	margin-left : 5px;
-	height: 200px;
-    -webkit-border-radius:20px;
-    -moz-border-radius:20px;
-	border-radius:20px;
-	box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 255, 0.5);
-}
-
-#listeFilm h3
-{
-   	background: -moz-linear-gradient(, #222222, #111111) repeat scroll 0 0 transparent;
-	background : #111111 ;
-	background:-moz-linear-gradient(center top ,#222222,#111111);
-    background:-webkit-gradient(linear, left top, left bottom, from(#222222), to(#111111));
-    color : white ;
-    -webkit-border-radius:20px;
-    -moz-border-radius:20px;
-	border-radius:20px;
-}
-
-#picture
-{
-   	float:left;
-    overflow: hidden;
-    position: relative;
-    margin:0px;
-    padding: 5px 0 5px 5px;
-}
-
-#picture img
-{
-	-webkit-border-radius:20px;
-    -moz-border-radius:20px;
-	border-radius:20px;
-	height : 190px;
-}
-#content_info
-	{
-	float : right;
-	width:300px;
-}
 	
 /*
  *******************************************
@@ -649,6 +601,87 @@ body
 	width: 100%;
 	text-align: center;
 }
+
+
+/***Menu Liste des films***/
+
+#contenu_recherche_film #listeFilm
+{
+	margin: auto;
+	margin-top : 10px;
+	width: 550px;
+	height: 200px;
+    -webkit-border-radius:20px;
+    -moz-border-radius:20px;
+	border-radius:20px;
+	box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+#contenu_recherche_film #listeFilm #picture
+{
+   	float:left;
+    overflow: hidden;
+    position: relative;
+    margin:0px;
+    padding: 5px 0 5px 5px;
+}
+
+#contenu_recherche_film #listeFilm #picture img
+{
+	-webkit-border-radius:20px;
+    -moz-border-radius:20px;
+	border-radius:20px;
+	height : 190px;
+	width: 130px;
+}
+
+#contenu_recherche_film #listeFilm #content_info
+{
+	float : right;
+	margin-right: 10px;
+	width:400px;
+	border: 1px solid black;
+	height: 200px;
+}
+#contenu_recherche_film #listeFilm #content_info h3
+{
+   	background: -moz-linear-gradient(, #222222, #111111) repeat scroll 0 0 transparent;
+	background : #111111 ;
+	background:-moz-linear-gradient(center top ,#222222,#111111);
+    background:-webkit-gradient(linear, left top, left bottom, from(#222222), to(#111111));
+    color : white ;
+    -webkit-border-radius:20px;
+    -moz-border-radius:20px;
+	border-radius:20px;
+	font-family: Trebuchet MS;
+	font-size: 20px;
+	padding-left: 13px;
+	color: goldenrod;
+	margin-top: 5px;
+}
+
+#contenu_recherche_film #listeFilm #content_info ul
+{
+	width: 100%;
+	list-style: none;
+	padding: 0;
+	padding-left: 10px;
+	font-family: Trebuchet MS;
+}
+
+#contenu_recherche_film #listeFilm #content_info ul li
+{
+	font-size: 13px;
+	font-style: italic;
+}
+
+#contenu_recherche_film #listeFilm #content_info ul .bold
+{
+	font-weight: bolder;
+	font-size: 14px;
+	font-style: normal;
+}
+
 
 /*
  *			CONTENU AFFICHAGE FILM
