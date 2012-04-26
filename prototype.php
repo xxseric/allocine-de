@@ -148,7 +148,7 @@
 			<script type="text/javascript">
 				function changeUserLevel(id, level)
 				{
-					//document.level_change.submit();
+					document.level_change.submit();
 				}
 			</script>
 			<div id="contenu_liste_users">
@@ -161,7 +161,6 @@
              					<th style="width:100px; text-align:center;">Prenom</th> 
              					<th style="width:150px; text-align:center;">Email</th> 
              					<th style="width:50px; text-align:center;">Level</th>
-             					<th style="width:50px; text-align:center;">Valider</th>
              				</tr> 
              			</thead>
              			<tbody>
@@ -170,16 +169,14 @@
              					<td>Istrator</td>
              					<td>admin@allocine.fr</td>
              					<td>
-             						<form id="level_change" name="level_change" method="post" action="">
-             							<select name="level" onchange="changeUserLevel(1,this[this.selectedIndex].value);">
+             						<form id="level_change" name="level_change" method="post" action="./controller/user_controller.php?action=change_level">
+             							<select name="user_level" onchange="changeUserLevel(1,this[this.selectedIndex].value);">
              								<option value="1">1</option>
              								<option value="2">2</option>
              								<option value="3">3</option>
              							</select>
+             							<input type="hidden" name="user_id" value=""></input>
              						</form>
-             					</td>
-             					<td>
-             						<button type="submit" onclick=""></button>
              					</td>
              				</tr>
            				</tbody>

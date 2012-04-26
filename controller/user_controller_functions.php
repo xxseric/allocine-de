@@ -1,6 +1,7 @@
 <?php
 
 	require_once '../connect.php';
+	require_once './persistence/user_dao.php';
 
 	function processIndex()
 	{
@@ -49,5 +50,10 @@
 
 	function processFilm(){
 		return "rechercherFilm.php";
+	}
+	
+	function processChangeLevel(){
+		setUserLevelById($_POST['user_id'], $_POST['user_level']);
+		return "prototype.php";
 	}
 ?>
