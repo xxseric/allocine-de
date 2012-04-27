@@ -21,25 +21,29 @@
 		
 		$listeActeursFilm = getListeActeurByFilmId($film['film_id']);
 		$liste = "";
-		if(count($listeActeursFilm) >= 3){
+		if(count($listeActeursFilm) > 3){
 			for($i=0; $i<3; $i++)
 				$liste .= getActeurPrenomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' - ';
 			$liste .="...";
-		}else if(count($listeActeursFilm) > 0){
+		}else if(count($listeActeursFilm) > 1){
 			foreach ($listeActeursFilm as $acteurFilm)
-				$liste .= getActeurPrenomById($acteurFilm[0]["listeActeur_acteur_id"]).' '.getActeurNomById($acteurFilm[0]["listeActeur_acteur_id"]).' - ';
+				$liste .= getActeurPrenomById($acteurFilm["listeActeur_acteur_id"]).' '.getActeurNomById($acteurFilm["listeActeur_acteur_id"]).' - ';
 			$liste .="...";
+		}else if(count($listeActeursFilm) == 1){
+			$liste .= getActeurPrenomById($listeActeursFilm["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm["listeActeur_acteur_id"]);
 		}
 		
 		$listeCategories = getListeCategorieFilmByFilmId($film['film_id']);
 		$liste_cat = "";		
-		if(count($listeCategories) >= 3){
+		if(count($listeCategories) > 3){
 			for($i=0; $i<3; $i++)
 				$liste_cat .= getCategorieFilmLibById($listeCategories[$i]['listeCategoriesFilms_categorie_film']).'  ';
 			$liste_cat .= "...";
-		}else if(count($listeCategories) > 0){
+		}else if(count($listeCategories) > 1){
 			foreach ($listeCategories as $categorie)
 				$liste_cat .= getCategorieFilmLibById($categorie['listeCategoriesFilms_categorie_film']).'  ';
+		}else if(count($listeCategories) == 1){
+			$liste_cat .= getCategorieFilmLibById($listeCategories[0]["listeCategoriesFilms_categorie_film"]).' '.getCategorieFilmLibById($listeCategories[0]["listeCategoriesFilms_categorie_film"]);
 		}		
 		
 		$html=
