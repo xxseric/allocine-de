@@ -27,7 +27,6 @@
 			
 			if($action == "fiche_film"){							/* Affichage index */
 				$dest = processFicheFilm();
-				$dest =  $dest."?filmId=".$_POST['film_id'];
 			}
 			
 			if(!empty($dest))
