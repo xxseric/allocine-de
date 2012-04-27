@@ -109,7 +109,7 @@ include_once 'orm/bootstrap.php';
 			return -1;
 	}
 	
-	function deleteListeCategorieFilmByFilmId($film_id)
+	function film_deleteListeCategorieFilmByFilmId($film_id)
 	{
 		Doctrine_Core :: loadModels('./models');
 		$listeCategories = getListeCategorieFilmByFilmId($film_id);
@@ -123,7 +123,7 @@ include_once 'orm/bootstrap.php';
 			return -1;
 	}
 	
-	function deleteListeCategorieFilmByCategorieFilmId($categorie_film_id)
+	function film_deleteListeCategorieFilmByCategorieFilmId($categorie_film_id)
 	{
 		Doctrine_Core :: loadModels('./models');
 		$listeCategories = getListeCategorieFilmByCategorieFilmId($categorie_film_id);
@@ -137,7 +137,7 @@ include_once 'orm/bootstrap.php';
 			return -1;
 	}
 	
-	function deleteListeCategorieFilmByFilmIdAndCategorieFilmId($film_id, $categorie_film_id)
+	function film_deleteListeCategorieFilmByFilmIdAndCategorieFilmId($film_id, $categorie_film_id)
 	{
 		Doctrine_Core :: loadModels('./models');
 		$listeCategories = getListeCategorieFilmByFilmIdAndCategorieFilmId($film_id, $categorie_film_id);

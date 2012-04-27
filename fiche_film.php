@@ -7,6 +7,8 @@
 	require_once 'persistence/realisateur_dao.php';
 	require_once 'persistence/listeActeur_dao.php';
 	require_once 'persistence/acteur_dao.php';
+	require_once 'persistence/listeCategoriesFilm_dao.php';
+	require_once 'persistence/categorieFilm_dao.php';
 		
 	function contenu_fiche_film()
 	{
@@ -29,6 +31,17 @@
 			$liste .="...";
 		}
 		
+		$listeCategories = getListeCategorieFilmByFilmId($film['film_id']);
+		$liste_cat = "";		
+		if(count($listeCategories) >= 3){
+			for($i=0; $i<3; $i++)
+				$liste_cat .= getCategorieFilmLibById($listeCategories[$i]['listeCategoriesFilms_categorie_film']).'  ';
+			$liste_cat .= "...";
+		}else if(count($listeCategories) > 0){
+			foreach ($listeCategories as $categorie)
+				$liste_cat .= getCategorieFilmLibById($categorie['listeCategoriesFilms_categorie_film']).'  ';
+		}		
+		
 		$html=
 "<div id='contenu_film'>
 	<h1>".$film['film_titre']."</h1>
@@ -48,7 +61,7 @@
 					<span class='bold'>Acteurs : </span>".$liste."
 				</li>
 				<li>
-					<span class='bold'>Genre(s) : </span>Science fiction, Comédie
+					<span class='bold'>Genre(s) : </span>".$liste_cat."
 				</li>
 				<li>
 					<span class='bold'>Nationalité(s) : </span>Américain

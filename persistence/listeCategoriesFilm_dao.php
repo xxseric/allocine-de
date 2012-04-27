@@ -23,17 +23,21 @@
 		$listeCategoriesFilm = $listeCategoriesFilm->getData();
 		if(count($listeCategoriesFilm) == 0)
 			return -1;
-		return $listeCategoriesFilm;
+		return $listeCategoriesFilm[0];
 	}
 	
 	function getListeCategorieFilmByFilmId($film_id)
 	{
 		Doctrine_Core :: loadModels('./models');
-		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_film_id', $id ,null);	
+		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_film_id', $film_id ,null);	
 		$listeCategoriesFilm = $listeCategoriesFilm->getData();
 		if(count($listeCategoriesFilm) == 0)
 			return -1;
-		return $listeCategoriesFilm;
+		$liste = array();
+		foreach ($listeCategoriesFilm as $categorie){
+			$liste[] = $categorie;
+		}
+		return $liste;
 	}
 	
 	function getListeCategorieFilmByCategorieFilmId($categorie_film_id)
@@ -43,7 +47,10 @@
 		$listeCategoriesFilm = $listeCategoriesFilm->getData();
 		if(count($listeCategoriesFilm) == 0)
 			return -1;
-		return $listeCategoriesFilm;
+		foreach ($listeCategoriesFilm as $categorie){
+			$liste[] = $categorie;
+		}
+		return $liste;
 	}
 	
 	function getListeCategorieFilmByFilmIdAndCategorieFilmId($film_id, $categorie_film_id)
@@ -54,21 +61,10 @@
 			foreach ($listeCategoriesFilmByFilmId as $categorieFilm){
 				if($categorieFilm['listeCategoriesFilms_categorie_film'] == $categorie_film_id){
 					$listeCategories[] = $categorieFilm;
+					break;
 				}
 			}
 			return $listeCategories;
-		}
-		else
-			return -1;
-	}
-	
-	function deleteListeRecompensesById($id)
-	{
-		Doctrine_Core :: loadModels('./models');
-		$listeCategories = getListeCategorieFilmById($id);
-		if(count($listeCategories) == 1){
-			$listeCategories->delete();
-			return 1;
 		}
 		else
 			return -1;
