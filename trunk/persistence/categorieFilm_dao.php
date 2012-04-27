@@ -23,7 +23,7 @@
 		$catFilm = $catFilm->getData();
 		if(count($catFilm) != 1)
 			return -1;
-		return $catFilm;
+		return $catFilm[0];
 	}
 	
 	function getCategorieFilmByLib($lib)
@@ -33,7 +33,7 @@
 		$catFilm = $catFilm->getData();
 		if(count($catFilm) != 1)
 			return -1;
-		return $catFilm;
+		return $catFilm[0];
 	}
 	
 	function getCategorieFilmIdByLib($lib)
@@ -43,7 +43,7 @@
 		$catFilm = $catFilm->getData();
 		if(count($catFilm) != 1)
 			return -1;
-		return $catFilm['catFilm_id'];
+		return $catFilm[0]['catFilm_id'];
 	}
 	
 	function getCategorieFilmLibById($id)
@@ -53,7 +53,7 @@
 		$catFilm = $catFilm->getData();
 		if(count($catFilm) != 1)
 			return -1;
-		return $catFilm['catFilm_libelle'];
+		return $catFilm[0]['catFilm_libelle'];
 	}
 	
 	function getAllCategories()
@@ -63,7 +63,10 @@
 		$listeCategories = $listeCategories->getData();
 		if(count($listeCategories) == 0)
 			return -1;
-		return $listeCategories;
+		$liste = array();
+		foreach ($listeCategories as $categorie)
+			$liste[] = $categorie;
+		return $liste;
 	}
 	
 	function setCategorieFilmLibById($id, $lib)
