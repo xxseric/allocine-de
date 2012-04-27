@@ -4,8 +4,8 @@
 	//require_once 'view/user_view.php';
 	require_once 'view/document.php';
 	require_once 'persistence/user_dao.php';
-	require_once 'persitence/realisateur_dao.php';
-	require_once 'persitence/acteur_dao.php';
+	require_once 'persistence/realisateur_dao.php';
+	require_once 'persistence/acteur_dao.php';
 	
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
@@ -65,7 +65,7 @@ HEREDOC;
 	//ajout d'un film///////
 	$html .= 
 	'
-	<div id="ajout_film" style="display:none;">
+	<div id="ajout_film" style="display:none;border-top: solid black 2px ;">
 	<form method="post" action="./user_gestionUser.php" name="formulaire_ajout_film" id="formulaire_ajout_film" enctype="multipart/form-data" class="soria" dojoType="dijit.form.Form">
 	<h3>Ajouter un film</h3>
 	<TABLE BORDER="0">
@@ -120,7 +120,7 @@ HEREDOC;
 ///////////Gestion du compte ///////////	
 	$html .= "</div>" ;
 	$user = getUserById($_SESSION['user_id']);
-	$html .= '<div id="gestion_compte" style="display:none;">
+	$html .= '<div id="gestion_compte" style="display:none;border-top: solid black 2px ;">
 						<TABLE id="gestion_tab" BORDER="0" cellspacing="10">
 		<tr>
 			<td>				
