@@ -744,6 +744,50 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	font-style: normal;
 }
 
+#contenu_recherche_film #listeFilm #content_info #button_film_fiche
+{
+   	background: -moz-linear-gradient(, #222222, #111111) repeat scroll 0 0 transparent;
+	background : #111111 ;
+	background:-moz-linear-gradient(center top ,#222222,#111111);
+    background:-webkit-gradient(linear, left top, left bottom, from(#222222), to(#111111));
+    border:0;
+    padding: 2px 8px 2px 8px;
+	-webkit-border-radius:20px;
+    -moz-border-radius:20px;
+	border-radius:20px;
+	color: goldenrod;
+	font-family: Trebuchet MS;
+	font-weight: bolder;
+	float: right;
+}
+
+#contenu_recherche_film #listeFilm #content_info #button_film_fiche:hover
+{
+	cursor: pointer;
+}
+
+#contenu_recherche_film #listeFilm #content_info #button_film_fiche:active
+{
+	
+	box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+#contenu_recherche_film #listeFilm #content_info #button_film_fiche span
+{
+	float: left;
+	margin-top: 2px;
+	font-size: 12px;
+}
+
+#contenu_recherche_film #listeFilm #content_info #button_film_fiche img
+{
+	width: 12px;
+	height: 12px;
+	margin: 0;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
 
 /*
  *			CONTENU AFFICHAGE FILM
@@ -841,6 +885,17 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
  	margin-top: -10px;
 	font-family: Trebuchet MS;
 	text-align: justify;
+	padding: 0;
+	font-size: 13px;
+ }
+ 
+ #contenu_erreur
+ {
+ 	margin: auto;
+ 	margin-top: 10px;
+ 	margin-bottom: 10px;
+	font-family: Trebuchet MS;
+	text-align: center;
 	padding: 0;
 	font-size: 13px;
  }

@@ -60,13 +60,13 @@
 			}else if($action == "user_inscription"){
 				$dest = processInscription();
 			}else if($action == "login"){					/* Connexion adhérent */
-				if(!isset($_SESSION['user_prenom']) || !isset($_SESSION['user_level'])){			/* Si pas déjà connecté */ 
+				if(!isset($_SESSION['user_id']) || !isset($_SESSION['user_level'])){			/* Si pas déjà connecté */ 
 					$dest = processLogin();
 				}else{																	/* Si déjà connecté */
 					$dest = processIndex();
 				}					
 			}else if($action == "connexion"){				/* Etablissement de la connexion */
-				if(!isset($_SESSION['level'])){				/* Si pas connecté */
+				if(!isset($_SESSION['user_level'])){				/* Si pas connecté */
 					$dest = processConnexion();
 				}else{										/* Si déjà connecté on renvoi à l'index */
 					$dest = processIndex();

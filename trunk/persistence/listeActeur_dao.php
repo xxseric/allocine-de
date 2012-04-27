@@ -39,7 +39,7 @@
 				$liste[] = $acteur;
 			return $liste;
 		}
-		return $listeActeur[0];
+		return $listeActeur;
 	}
 	
 	function getListeActeurByActeurId($acteur_id)

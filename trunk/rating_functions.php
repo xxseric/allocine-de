@@ -1,5 +1,6 @@
 <?php
 
+
 sleep(1);
 
 // Fill [$options] with radiobutton properties now 
@@ -11,9 +12,15 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 {
 	// veriffy user input!
 	$vote = in_range($_POST['rate'], 1, 5);
+	$film_id = $_POST['film_id'];
+	/*$film_id = null;
+	if(isset($_POST['film_id'])){
+		$film_id = $_POST['film_id'];
+	}*/
+	save_note($vote, $film_id);
 
 	// update statistic and save to file
-	$db = save_vote($vote);
+	/*$db = save_vote($vote);
 
 	// For AJAX requests we'll return JSON object with current vote statistics
 	if($_SERVER['HTTP_X_REQUESTED_WITH'])
@@ -30,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 			$options[$id]['disabled'] = 'disabled="disabled"';
 			$options[$id]['checked']  = $id==$avg ? 'checked="checked"' : '';
 		}
-	}
+	}*/
 }
 
 
@@ -65,9 +72,23 @@ function save_vote($vote) {
 	$db['votes']++;
 	$db['sum'] += $vote;
 	$db['avg'] = sprintf('%01.1f', $db['sum'] / $db['votes']);
-	file_put_contents(get_dbfile(), serialize($db));
+	//file_put_contents(get_dbfile(), serialize($db));
+	
+	/*if($film_id != null){
+		if(isset($_SESSION['user_id']))
+			addNote($film_id, $_SESSION['user_id'], $vote);
+		else
+			addNote($film_id, null, $vote);
+	}*/
 
 	return $db;
+}
+
+function save_note($vote, $film_id)
+{	
+	//require_once './persistence/note_dao.php';
+	//addNote($film_id, null, $vote);
+	//file_put_contents(get_dbfile(), $film_id);
 }
 
 ?>
