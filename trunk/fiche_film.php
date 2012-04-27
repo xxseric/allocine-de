@@ -52,14 +52,13 @@
 				$resume = $film['film_resume'];
 		
 			@require_once 'rating_functions.php';
-			$filmId = $film['film_id'];
 			
 			$inputs = "";
 			$options = get_options();
 			foreach($options as $id => $rb){
 				$inputs .= "<input type='radio' name='rate' value='".$id."' title='".$rb['title']."' /></br>";
 			}
-			$inputs .= "<input type='hidden' name='film_id' value='".$filmId."' /></ br>
+			$inputs .= "<input type='hidden' name='film_id' value='".$film['film_id']."' /></ br>
 						<input type='submit' value='Rate it' />";
 			
 			$html=
