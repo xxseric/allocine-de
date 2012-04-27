@@ -69,6 +69,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
         <link rel="stylesheet" href="./css/style.css" />
 		<style type="text/css">
@@ -91,7 +92,7 @@
 		</style>
 		
 		
-		
+		<script type="text/javascript" src="./js/fonctionJs.js"></script>
 		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
 	    <script type="text/javascript">
 	    	dojo.require("dojo.parser");
