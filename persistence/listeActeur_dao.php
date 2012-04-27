@@ -33,7 +33,13 @@
 		$listeActeur = $listeActeur->getData();
 		if(count($listeActeur) == 0)
 			return -1;
-		return $listeActeur;
+		else if(count($listeActeur) > 1){
+			$liste = array();
+			foreach ($listeActeur as $acteur)
+				$liste[] = $acteur;
+			return $liste;
+		}
+		return $listeActeur[0];
 	}
 	
 	function getListeActeurByActeurId($acteur_id)

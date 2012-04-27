@@ -42,7 +42,7 @@ include_once 'orm/bootstrap.php';
 	{
 		Doctrine_Core :: loadModels('./models');
 		$film = Doctrine_Core :: getTable ( 'Film' )->findBy('film_id', $id ,null);	
-	//	$film = $film->getData();
+		$film = $film->getData();
 		if(count($film) != 1)
 			return -1;
 		return $film[0];
@@ -55,7 +55,7 @@ include_once 'orm/bootstrap.php';
 		$film = $film->getData();
 		if(count($film) != 1)
 			return -1;
-		return $film;
+		return $film[0];
 	}
 	
 
@@ -66,7 +66,7 @@ include_once 'orm/bootstrap.php';
 		$film = $film->getData();
 		if(count($film) != 1)
 			return -1;
-		return $film['film_id'];
+		return $film[0]['film_id'];
 	}
 
 
@@ -158,7 +158,10 @@ include_once 'orm/bootstrap.php';
 		$listeFilms = $listeFilms->getData();
 		if(count($listeFilms) == 0)
 			return -1;
-		return $listeFilms;
+		$liste = array();
+		foreach ($listeFilms as $film)
+			$liste[] = $film;
+		return $liste;
 	}
 	
 	function getFilmByCategorie($id_categorie){

@@ -1,6 +1,6 @@
 <?php
 
-	include_once ('../orm/bootstrap.php');
+	include_once ('./orm/bootstrap.php');
 	
 	function addActeur($nom, $prenom)
 	{
@@ -18,13 +18,13 @@
 		$acteur = $acteur->getData();
 		if(count($acteur) != 1)
 			return -1;
-		return $acteur;
+		return $acteur[0];
 	}
 	
 	function getIdbyNom($nom){
 		Doctrine_Core :: loadModels('./models');
 		$acteur = Doctrine_Core :: getTable ( 'Acteur' )->findBy('acteur_nom', $nom ,null);	
-
+		$acteur = $acteur->getData();
 		if(count($acteur) != 1)
 			return -1;
 		return $acteur[0]['acteur_id'];
@@ -37,7 +37,7 @@
 		$acteur = $acteur->getData();
 		if(count($acteur) != 1)
 			return -1;
-		return $acteur['acteur_nom'];
+		return $acteur[0]['acteur_nom'];
 	}
 	
 	function getActeurPrenomById($id)
@@ -47,7 +47,7 @@
 		$acteur = $acteur->getData();
 		if(count($acteur) != 1)
 			return -1;
-		return $acteur['acteur_prenom'];
+		return $acteur[0]['acteur_prenom'];
 	}
 	
 	function setActeurNomById($id, $nom)

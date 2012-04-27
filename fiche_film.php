@@ -5,14 +5,30 @@
 	require_once 'view/document.php';
 	require_once 'persistence/film_dao.php';
 	require_once 'persistence/realisateur_dao.php';
+	require_once 'persistence/listeActeur_dao.php';
+	require_once 'persistence/acteur_dao.php';
 		
 	function contenu_fiche_film()
 	{
-		$film = getFilmById($_GET['id']);
-		if(!is_object($film))
-			if($film == -1)
-			return "<div id='contenu_film'>Un probleme est survenu</div>";
-		$realisateur = getRealisateurById($film['film_realisateur_id']);
+		$film = getFilmById($_POST["filmId"]);
+		if(count($film) == 0)
+			return "Un probleme est survenu";	
+
+		$realisateur_nom = getRealisateurNomById(getFilmRealisateurIdById($film['film_id']));
+		$realisateur_prenom = getRealisateurPrenomById(getFilmRealisateurIdById($film['film_id']));
+		
+		$listeActeursFilm = getListeActeurByFilmId($film['film_id']);
+		$liste = "";
+		if(count($listeActeursFilm) >= 3){
+			for($i=0; $i<3; $i++)
+				$liste .= getActeurPrenomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' - ';
+			$liste .="...";
+		}else if(count($listeActeursFilm) > 0){
+			foreach ($listeActeursFilm as $acteurFilm)
+				$liste .= getActeurPrenomById($acteurFilm[0]["listeActeur_acteur_id"]).' '.getActeurNomById($acteurFilm[0]["listeActeur_acteur_id"]).' - ';
+			$liste .="...";
+		}
+		
 		$html=
 "<div id='contenu_film'>
 	<h1>".$film['film_titre']."</h1>
@@ -23,13 +39,13 @@
 		<div class='informations'>
 			<ul>
 				<li>
-					<span class='bold'>Annn√©e : </span>".$film['film_date']."
+					<span class='bold'>AnnnÈe : </span>".$film['film_date']."
 				</li>
 				<li>
-					<span class='bold'>R√©alis√© par : </span> ".$realisateur[0]['realisateur_prenom']." ".$realisateur[0]['realisateur_nom']."
+					<span class='bold'>RÈalisÈ par : </span>".$realisateur_prenom.' '.$realisateur_nom."
 				</li>
 				<li>
-					<span class='bold'>Acteurs : </span>Will Smith, Tommy Lee Jones, Vincent D'Onofrio
+					<span class='bold'>Acteurs : </span>".$liste."
 				</li>
 				<li>
 					<span class='bold'>Genre(s) : </span>Science fiction, Com√©die

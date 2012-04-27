@@ -74,13 +74,13 @@ if($listeCategorie != -1){
 						$html.= '
 						<ul>
 							<li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
-							<li><span class="bold">Realisateur : </span>'.$res[0]['realisateur_prenom'].' '.$res[0]['realisateur_nom'].'</li>
+							<li><span class="bold">Realisateur : </span>'.$res['realisateur_prenom'].' '.$res['realisateur_nom'].'</li>
 							<li><span class="bold">Acteurs : </span></li>
 							<li><span class="bold">Note : </span></li>
 						</ul>
-						<form id="form_fiche_film" name="form_fiche_film" encType="multipart/form-data" method="post" action="./controller/film_controller.php?action=fiche_film" >
-							<input type="hidden" id="film_id" name="film_id" value="'.$listeFilm[$i]['film_id'].'" />
-							<button type="submit" value="Submit" name="Submit">Voir la fiche</button>
+						<form method="post" action="fiche_film.php" >
+							<input type="hidden" name="filmId" value="'.$listeFilm[$i]['film_id'].'" />
+							<input type="submit" value="Voir la fiche" />
 						</form>
 					</div>
 					<div style="clear:both;"></div>
