@@ -1,6 +1,6 @@
 <?php
 
-	include_once ('../orm/bootstrap.php');
+	include_once ('./orm/bootstrap.php');
 	require_once '../config.php';
 	
 	function addNote($film_id, $user_id=null, $note_val, $note_commentaire=null)

@@ -31,13 +31,16 @@
 		Doctrine_Core :: loadModels('./models');
 		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_film_id', $film_id ,null);	
 		$listeCategoriesFilm = $listeCategoriesFilm->getData();
-		if(count($listeCategoriesFilm) == 0)
+		if(count($listeCategoriesFilm) == 0){
 			return -1;
-		$liste = array();
-		foreach ($listeCategoriesFilm as $categorie){
-			$liste[] = $categorie;
+		}else if(count($listeCategoriesFilm) > 1){
+			$liste = array();
+			foreach ($listeCategoriesFilm as $categorie){
+				$liste[] = $categorie;
+			}
+			return $liste;
 		}
-		return $liste;
+		return $listeCategoriesFilm;
 	}
 	
 	function getListeCategorieFilmByCategorieFilmId($categorie_film_id)

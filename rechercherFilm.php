@@ -7,11 +7,13 @@
 	require_once 'persistence/film_dao.php';	
 	require_once 'persistence/realisateur_dao.php';
 	require_once 'persistence/categorieFilm_dao.php';
+	
+	
 	$doc = new Document();
-	if(!isset($_SESSION['level'])){
+	if(!isset($_SESSION['user_level'])){
 		$doc->begin(0);
 	}else{
-		$doc->begin($_SESSION['level']);
+		$doc->begin($_SESSION['user_level']);
 	}
 	
 	
@@ -80,7 +82,7 @@ if($listeCategorie != -1){
 						</ul>
 						<form method="post" action="fiche_film.php" >
 							<input type="hidden" name="filmId" value="'.$listeFilm[$i]['film_id'].'" />
-							<input type="submit" value="Voir la fiche" />
+							<button type="submit" id="button_film_fiche" ><span>Voir la fiche</span><img src="./images/fleche.png"></img></button>
 						</form>
 					</div>
 					<div style="clear:both;"></div>

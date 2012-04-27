@@ -69,29 +69,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	        <link rel="stylesheet" href="./css/style.css" />
-        <script type="text/javascript" src="./js/fonctionJs.js" ></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <link rel="stylesheet" href="./css/style.css" />
 		<style type="text/css">
 			@import "./js/dojo/dijit/themes/soria/soria.css";
 			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
+			@import "./js/dojo/dijit/themes/tundra/a11y.css" />
+			@import "./js/dojo/dijit/themes/tundra/claro.css" />
+			@import "./js/dojo/dijit/themes/tundra/nihilo.css" />
 			@import "./js/dojo/dojo/resources/dojo.css";
+			@import "./js/dojo/dojox/grid/resources/soriaGrid.css";
+			@import "./js/dojo/dojox/grid/resources/Grid.css";
 		</style>
-		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
-		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+		<script type="text/javascript" src="js/jquery.min.js?v=1.4.2"></script>
+		<script type="text/javascript" src="js/jquery-ui.custom.min.js?v=1.8"></script>
+		<!-- Star Rating widget stuff here... -->
+		<script type="text/javascript" src="js/jquery.ui.stars.js?v=3.0.0b38"></script>
+		<link rel="stylesheet" type="text/css" href="css/crystal-stars.css?b38"/>
+		<style type="text/css">
+			#loader {display:none;padding-left:20px; background:url(images/crystal-arrows.gif) no-repeat center left;}
+		</style>
 		
+		
+		
+		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
 	    <script type="text/javascript">
-	    	dojo.require("dijit.form.ValidationTextBox");
-	    	dojo.require("dijit.form.NumberTextBox");
-	    	dojo.require("dijit.form.TextBox");
 	    	dojo.require("dojo.parser");
-	    	dojo.require("dijit.form.Form");
+	    	dojo.require("dijit.layout.ContentPane");
+	    	dojo.require("dijit.layout.TabContainer");
+	   		dojo.require("dijit.form.ValidationTextBox");
+	    	dojo.require("dijit.form.NumberTextBox");
+	    	dojo.require("dijit.form.DateTextBox");
+	    	dojo.require("dijit.form.TextBox")
+	    	dojo.require("dijit.form.SimpleTextarea");
+	    	dojo.require("dijit.form.FilteringSelect");
 	    	dojo.require("dijit.form.Button");
-   			dojo.require("dojox.validate.regexp");
-   			dojo.require("dojox.form.PasswordValidator");
-   			dojo.require("dijit.form.SimpleTextarea");
-   			dojo.require("dijit.form.DateTextBox");
-	    </script>	
+	    	dojo.require("dijit.form.RadioButton");
+	    	dojo.require("dijit.form.CheckBox");
+	    	dojo.require("dijit.form.Form");
+	    	dojo.require("dojox.grid.DataGrid");
+	    	dojo.require("dojo.data.ItemFileReadStore");
+	    	dojo.require("dojox.validate.regexp");
+	    	dojo.require('dijit.Editor');
+	    	dojo.require("dijit.form.Select");
+	    </script>
 		<title>Allocine</title>
 	</head>
 
@@ -188,29 +209,50 @@ HEREDOC;
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	        <link rel="stylesheet" href="./css/style.css" />
-        <script type="text/javascript" src="./js/fonctionJs.js" ></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <link rel="stylesheet" href="./css/style.css" />
 		<style type="text/css">
 			@import "./js/dojo/dijit/themes/soria/soria.css";
 			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
+			@import "./js/dojo/dijit/themes/tundra/a11y.css" />
+			@import "./js/dojo/dijit/themes/tundra/claro.css" />
+			@import "./js/dojo/dijit/themes/tundra/nihilo.css" />
 			@import "./js/dojo/dojo/resources/dojo.css";
+			@import "./js/dojo/dojox/grid/resources/soriaGrid.css";
+			@import "./js/dojo/dojox/grid/resources/Grid.css";
 		</style>
-		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
-		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+		<script type="text/javascript" src="js/jquery.min.js?v=1.4.2"></script>
+		<script type="text/javascript" src="js/jquery-ui.custom.min.js?v=1.8"></script>
+		<!-- Star Rating widget stuff here... -->
+		<script type="text/javascript" src="js/jquery.ui.stars.js?v=3.0.0b38"></script>
+		<link rel="stylesheet" type="text/css" href="css/crystal-stars.css?b38"/>
+		<style type="text/css">
+			#loader {display:none;padding-left:20px; background:url(images/crystal-arrows.gif) no-repeat center left;}
+		</style>
 		
+		
+		
+		<script type="text/javascript" src="./js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
 	    <script type="text/javascript">
-	    	dojo.require("dijit.form.ValidationTextBox");
-	    	dojo.require("dijit.form.NumberTextBox");
-	    	dojo.require("dijit.form.TextBox");
 	    	dojo.require("dojo.parser");
-	    	dojo.require("dijit.form.Form");
+	    	dojo.require("dijit.layout.ContentPane");
+	    	dojo.require("dijit.layout.TabContainer");
+	   		dojo.require("dijit.form.ValidationTextBox");
+	    	dojo.require("dijit.form.NumberTextBox");
+	    	dojo.require("dijit.form.DateTextBox");
+	    	dojo.require("dijit.form.TextBox")
+	    	dojo.require("dijit.form.SimpleTextarea");
+	    	dojo.require("dijit.form.FilteringSelect");
 	    	dojo.require("dijit.form.Button");
-   			dojo.require("dojox.validate.regexp");
-   			dojo.require("dojox.form.PasswordValidator");
-   			dojo.require("dijit.form.SimpleTextarea");
-   			dojo.require("dijit.form.DateTextBox");
-	    </script>	
+	    	dojo.require("dijit.form.RadioButton");
+	    	dojo.require("dijit.form.CheckBox");
+	    	dojo.require("dijit.form.Form");
+	    	dojo.require("dojox.grid.DataGrid");
+	    	dojo.require("dojo.data.ItemFileReadStore");
+	    	dojo.require("dojox.validate.regexp");
+	    	dojo.require('dijit.Editor');
+	    	dojo.require("dijit.form.Select");
+	    </script>
 		<title>Allocine</title>
 	</head>
 
