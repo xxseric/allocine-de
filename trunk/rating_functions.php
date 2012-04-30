@@ -29,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 	}
 
 	// update statistic and save to file
-	$db = save_vote($vote);
+	/*$db = save_vote($vote);
 
 	// For AJAX requests we'll return JSON object with current vote statistics
 	if($_SERVER['HTTP_X_REQUESTED_WITH'])
@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 			$options[$id]['disabled'] = 'disabled="disabled"';
 			$options[$id]['checked']  = $id==$avg ? 'checked="checked"' : '';
 		}
-	}
+	}*/
 }
 
 
