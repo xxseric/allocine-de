@@ -58,7 +58,7 @@
 			foreach($options as $id => $rb){
 				$inputs .= "<input type='radio' name='rate' value='".$id."' title='".$rb['title']."' /></br>";
 			}
-			$inputs .= "<input type='hidden' name='film_id' value='".$film['film_id']."' /></ br>
+			$inputs .= "<input type='hidden' name='film_id' id='film_id' value='".$film['film_id']."' /></ br>
 						<input type='submit' value='Rate it' />";
 			
 			$html=
@@ -68,12 +68,13 @@
 		$('#rat').children().not(':radio').hide();
 		$('#rat').stars({
 			// starWidth: 28,
+    		oneVoteOnly: true,
 			cancelShow: false,
 			callback: function(ui, type, value)
 			{
 				$('#rat').hide();
 				$('#loader').show();
-				$.post('rating_functions.php', {rate: value , film_id: value}, function()
+				$.post('rating_functions.php', {rate: value , film_id: document.getElementById('film_id').value}, function()
 				{
 					$('#loader').hide();
 					$('#rat').show();

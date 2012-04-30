@@ -32,6 +32,8 @@
  * @version     $Revision: 7657 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
+
+
 class Doctrine_Manager extends Doctrine_Configurable implements Countable, IteratorAggregate
 {
     /**
