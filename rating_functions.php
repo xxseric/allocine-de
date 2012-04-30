@@ -25,11 +25,11 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 		}else{
 			file_put_contents("test.dat", "echec-ajout");
 		}
-			file_put_contents("test.dat", "ajout");
+			file_put_contents("test.dat", "reussite-ajout");
 	}
 
 	// update statistic and save to file
-	//$db = save_vote($vote);
+	$db = save_vote($vote);
 
 	// For AJAX requests we'll return JSON object with current vote statistics
 	if($_SERVER['HTTP_X_REQUESTED_WITH'])

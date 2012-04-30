@@ -5,8 +5,10 @@
 	function addNote($film_id, $user_id, $note_val, $note_commentaire)
 	{
 		Doctrine_Core :: loadModels('./models');
-		$isExisting = getNoteByFilmIdAndUserId($film_id, $user_id);
-		if($isExisting == -1){
+		$isExisting = null;
+		if($user_id != null)
+			$isExisting = getNoteByUserId($user_id);
+		if($isExisting == null){
 			$note = new Note();
 			$note['film_id'] = $film_id;
 			$note['user_id'] = $user_id;
@@ -19,13 +21,28 @@
 		}
 	}
 	
+	function getAllNotes()
+	{
+		Doctrine_Core :: loadModels('./models');
+		$listeNotes = Doctrine_Core :: getTable ( 'Note' )->findAll(null);	
+		$listeNotes = $listeNotes->getData();
+		$liste = array();
+		foreach ($listeNotes as $note){
+			$note = $note->getData();
+			$liste[] = $note;
+		}
+		if(count($listeNotes) == 0)
+			return null;
+		return $liste;
+	}
+	
 	function getNoteById($id)
 	{
 		Doctrine_Core :: loadModels('./models');
 		$note = Doctrine_Core :: getTable ( 'Note' )->findBy('note_id', $id ,null);	
 		$note = $note->getData();
 		if(count($note) == 0)
-			return -1;
+			return null;
 		return $note;
 	}
 	
@@ -35,7 +52,7 @@
 		$listeNotes = Doctrine_Core :: getTable ( 'Note' )->findBy('film_id', $film_id ,null);	
 		$listeNotes = $listeNotes->getData();
 		if(count($listeNotes) == 0)
-			return -1;
+			return null;
 		return $listeNotes;
 	}	
 	
@@ -45,7 +62,7 @@
 		$listeNotes = Doctrine_Core :: getTable ( 'Note' )->findBy('user_id', $user_id ,null);	
 		$listeNotes = $listeNotes->getData();
 		if(count($listeNotes) == 0)
-			return -1;
+			return null;
 		return $listeNotes;
 	}
 	
@@ -62,7 +79,7 @@
 		if(count($listeNotes) > 0)
 			return $listeNotes;
 		else
-			return -1;
+			return null;
 	}
 	
 	function getNotesValByFilmId($film_id)
@@ -72,7 +89,7 @@
 		$listeNotes = $listeNotes->getData();
 		$listeNotesVal = array();
 		if(count($listeNotes) == 0)
-			return -1;
+			return null;
 		else{
 			foreach ($listeNotes as $note){
 				$listeNotesVal[] = $note['note_val'];
@@ -88,7 +105,7 @@
 		$listeNotes = $listeNotes->getData();
 		$listeNotesVal = array();
 		if(count($listeNotes) == 0)
-			return -1;
+			return null;
 		else{
 			foreach ($listeNotes as $note){
 				$listeNotesVal[] = $note['note_val'];
@@ -107,7 +124,7 @@
 			return $listeNotesVal;
 		}
 		else
-			return -1;
+			return null;
 	}
 	
 	function getNotesCommentairesByFilmId($film_id)
@@ -120,7 +137,7 @@
 			return $listeNotesCommentaires;
 		}
 		else
-			return -1;
+			return null;
 	}
 	
 	function getNotesCommentairesByUserId($user_id)
@@ -133,7 +150,7 @@
 			return $listeNotesCommentaires;
 		}
 		else
-			return -1;
+			return null;
 	}
 	
 	function getNoteCommentairesByFilmIdAndUserId($film_id, $user_id)
@@ -146,7 +163,7 @@
 			return $listeNotesCommentaires;
 		}
 		else
-			return -1;
+			return null;
 	}
 	
 	function setNoteValByFilmIdAndUserId($film_id, $user_id, $note_val)
@@ -160,7 +177,7 @@
 				return 1;
 			}
 		}else{
-			return -1;
+			return null;
 		}
 	}
 
@@ -175,7 +192,7 @@
 				return 1;
 			}
 		}else{
-			return -1;
+			return null;
 		}
 	}
 	
@@ -187,7 +204,7 @@
 			$note->delete();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}
 	}
 	
@@ -199,7 +216,7 @@
 			$note->delete();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}
 	}
 	
