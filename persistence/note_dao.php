@@ -1,13 +1,12 @@
 <?php
 
 	include_once ('./orm/bootstrap.php');
-	require_once '../config.php';
 	
-	function addNote($film_id, $user_id=null, $note_val, $note_commentaire=null)
+	function addNote($film_id, $user_id, $note_val, $note_commentaire)
 	{
 		Doctrine_Core :: loadModels('./models');
 		$isExisting = getNoteByFilmIdAndUserId($film_id, $user_id);
-		if($user_id != null && $isExisting == -1){
+		if($isExisting == -1){
 			$note = new Note();
 			$note['film_id'] = $film_id;
 			$note['user_id'] = $user_id;

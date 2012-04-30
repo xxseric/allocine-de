@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
 sleep(1);
 
@@ -12,17 +13,19 @@ $options = get_options();
 if($_SERVER["REQUEST_METHOD"] == 'POST')
 {
 	// veriffy user input!
-	$vote = $_POST['rate']/*in_range($_POST['rate'], 1, 5)*/;
-			file_put_contents("test.dat", "reussite_vote");
+	$vote = in_range($_POST['rate'], 1, 5);
 	if(isset($_POST['film_id'])){
-		@require_once 'persistence/note_dao.php';
+		$user_id = null;
 		if(isset($_SESSION['user_id'])){
-			file_put_contents("test.dat", "reussite");
-			addNote($_POST['film_id'], $_SESSION['user_id'], $vote);
+			$user_id = $_SESSION['user_id'];
+		}
+		include_once 'persistence/note_dao.php';
+		if(addNote($_POST['film_id'], $user_id, $vote, null)==1){
+			file_put_contents("test.dat", "reussite-ajout");
 		}else{
-			file_put_contents("test.dat", "echec");
-			addNote($_POST['film_id'], null, $vote);
-		}			
+			file_put_contents("test.dat", "echec-ajout");
+		}
+			file_put_contents("test.dat", "ajout");
 	}
 
 	// update statistic and save to file

@@ -39,7 +39,7 @@ abstract class BaseNote extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => false,
+             'notnull' => true,
              'autoincrement' => false,
              ));
         $this->hasColumn('user_id', 'integer', 4, array(
@@ -57,7 +57,7 @@ abstract class BaseNote extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => false,
+             'notnull' => true,
              'autoincrement' => false,
              ));
         $this->hasColumn('note_commentaire', 'string', null, array(
@@ -65,7 +65,7 @@ abstract class BaseNote extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
+             'notnull' => false,
              'autoincrement' => false,
              ));
     }
