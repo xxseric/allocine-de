@@ -30,6 +30,7 @@
  * @since       1.0
  * @version     $Revision: 6483 $
  */
+
 class Doctrine_Core
 {
     /**

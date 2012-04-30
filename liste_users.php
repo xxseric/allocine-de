@@ -2,8 +2,9 @@
 
 	session_start();
 	
+	
 	require_once 'view/document.php';
-	require_once 'persistence/user_dao.php';
+	include_once 'persistence/user_dao.php';
 		
 	function contenu_liste_users()
 	{
@@ -37,7 +38,7 @@
 					<td>".$user['user_prenom']."</td>
 					<td>".$user['user_email']."</td>
 					<td>
-						<form id='level_change_".$i."' name='level_change_".$i."' method='post' action='./controller/user_controller.php?action=change_level'>
+						<form id='level_change_".$i."' name='level_change_".$i."' method='post' action='update_user_level.php'>
 						 	<select  name='user_level' onchange='changeUserLevel(this.form);'>";
 								for($j=0; $j<3; $j++){
 									if($j+1 == $user['user_level']){

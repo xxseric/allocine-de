@@ -79,8 +79,6 @@
 				$dest = processUserUpdateInformations();
 			}else if($action == "film"){
 				$dest = processFilm();
-			}else if($action == "change_level"){
-				$dest = processChangeLevel();
 			}else if($action == "liste_users"){
 				$dest = processListeUsers();
 			}else if($action == "user_gestion"){
