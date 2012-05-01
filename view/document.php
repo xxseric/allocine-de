@@ -128,8 +128,8 @@
 				</div>
 				<div id="separator">
 				</div>
-				<form method='post' name='rechercher_film' id='rechercher_film' onsubmit='alert("rechercher");return false;' >
-					<input type="text" id="recherche" value="" placeholder="Rechercher un Film..."/>
+				<form method='post' action="rechercherFilm.php" name='rechercher_film' id='rechercher_film' >
+					<input type="text" name="recherche" id="recherche" value="" placeholder="Rechercher un Film..."/>
 					<button type="submit" id="submitButton"><center><img src="./images/loupe.png" style="height: 12px; width: 12px;"></img></center></button>
 				</form>
 HEREDOC;
@@ -268,8 +268,8 @@ HEREDOC;
 				</div>
 				<div id="separator">
 				</div>
-				<form method='post' name='rechercher_film' id='rechercher_film' onsubmit='alert("rechercher");return false;' >
-					<input type="text" id="recherche" value="" placeholder="Rechercher un Film..."/>
+				<form method='post' action="rechercherFilm.php" name='rechercher_film' id='rechercher_film' >
+					<input type="text" name="recherche" id="recherche" value="" placeholder="Rechercher un Film..."/>
 					<button type="submit" id="submitButton"><center><img src="./images/loupe.png" style="height: 12px; width: 12px;"></img></center></button>
 				</form>
 				<div class="menu">
