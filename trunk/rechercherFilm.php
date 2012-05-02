@@ -53,7 +53,7 @@ if($listeCategorie != -1){
 	$html."<br/>";
 
 	
-	if(!isset($_POST['categorie'])){
+	if(!isset($_POST['categorie']) && !isset($_POST['recherche'])){
 	$listeFilm = getAllFilms();
 	
 	}else if(isset($_POST['categorie'])){
@@ -61,10 +61,11 @@ if($listeCategorie != -1){
 	}else if(isset($_POST['recherche'])){
 	$listeFilmAll = getAllFilms();
 	$j = 0 ;
-		for($i=0;$i<count($listFilmAll) ;$i++){
+	$listeFilm = array();
+		for($i=0;$i<count($listeFilmAll) ;$i++){
 	
-			if (preg_match("/\b".$mot."\b/i", $listeFilmAll)){
-				$listFilm[$j] = $listeFilmAll[$i];
+			if (preg_match("/\b".$_POST['recherche']."\b/i", $listeFilmAll[$i]['film_titre'])){
+				$listeFilm[$j] = $listeFilmAll[$i];
 				$j++ ; 
 			}
 		}		

@@ -181,6 +181,7 @@
 		Doctrine_Core :: loadModels('./models');
 		$listeUsers = Doctrine_Core :: getTable ( 'User' )->findBy('user_groupe_id', $groupeId ,null);	
 		$listeUsers = $listeUsers->getData();
+		
 		if(count($listeUsers) < 1)
 			return -1;
 		if(count($listeUsers) == 1)
