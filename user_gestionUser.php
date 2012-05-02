@@ -6,6 +6,7 @@
 	require_once 'persistence/user_dao.php';
 	require_once 'persistence/realisateur_dao.php';
 	require_once 'persistence/acteur_dao.php';
+
 	
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
@@ -43,11 +44,13 @@ HEREDOC;
 				             				</tr> 
 				             			</thead>
 				             			<tbody>" ; 
-					$groupe = getUsersByGroupeId($_SESSION['user_groupe_id']);
-						for($i=0 ; $i < count($groupe) ; $i++){
-							$html .= '	<tr>
-				             					<td>'.$groupe[$i]["user_nom"].'</td>
-				             					<td>'.$groupe[$i]["user_prenom"].'</td>
+						
+				    	$groupe = getUsersByGroupeId($_SESSION['user_groupe_id']);
+				    
+						foreach($groupe as $user){
+							$html .= '	<tr> 
+				             					<td>'.$groupe["user_nom"].'</td> 
+				             				    <td>'.$groupe["user_prenom"].'</td>
 				             			</tr>';
 						}
 					$html .= ' 				</tbody>
@@ -190,40 +193,40 @@ HEREDOC;
 	$doc->end();
 	
 	//poste d'un film//
-	if(isset($_POST['film_titre']) && isset($_POST['film_date'])){
+if(isset($_POST['film_titre']) && isset($_POST['film_date'])){
 	
 		echo '<script>affichageGestion(1);</script>';
 		
 		
-		if(isset($_POST['realisateur_film'])){
-			$resVal = explode( " " , $_POST['realisateur_film']);
-			if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
-				$resId = getRealisateurIdByPrenom($resVal[0]) ;
-			}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
-				$resId = getRealisateurIdByPrenom($resVal[0]) ;
-			}else{
-				addRealisateur($resVal[1],$resVal[0]);
-				$resId = getRealisateurIdByPrenom($resVal[0]) ;
-			}
-		}
+						if(isset($_POST['realisateur_film'])){
+							$resVal = explode( " " , $_POST['realisateur_film']);
+							if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
+								$resId = getRealisateurIdByPrenom($resVal[0]) ;
+							}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
+								$resId = getRealisateurIdByPrenom($resVal[0]) ;
+							}else{
+								addRealisateur($resVal[1],$resVal[0]);
+								$resId = getRealisateurIdByPrenom($resVal[0]) ;
+							}
+						}
 
-			if(isset($_POST['acteur_film'])){
-			$resVal = explode( " " , $_POST['acteur_film']);
-			if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
-				$resId = getRealisateurIdByPrenom($resVal[0]) ;
-			}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
-				$resId = getRealisateurIdByPrenom($resVal[0]) ;
-			}else{
-				addRealisateur($resVal[1],$resVal[0]);
-				$resId = getRealisateurIdByPrenom($resVal[0]) ;
-			}
-		}
-		
+						if(isset($_POST['acteur_film'])){
+						$resVal = explode( " " , $_POST['acteur_film']);
+						if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
+							$resId = getRealisateurIdByPrenom($resVal[0]) ;
+						}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
+							$resId = getRealisateurIdByPrenom($resVal[0]) ;
+						}else{
+							addRealisateur($resVal[1],$resVal[0]);
+							$resId = getRealisateurIdByPrenom($resVal[0]) ;
+						}
+					}
+					
 		
 			if ((isset($_FILES['nom_du_fichier']['fichier'])&&($_FILES['nom_du_fichier']['error'] == UPLOAD_ERR_OK))) {    
 				$chemin_destination = './images/';    
 				move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);    
 				}   
-				
+			
 	}
 ?>
