@@ -1,7 +1,7 @@
 <?php
 
-	include_once ('./bootstrap.php');
-	Doctrine_Core :: loadModels('../models');
+	include_once ('./orm/bootstrap.php');
+	Doctrine_Core :: loadModels('./models');
 
 	$user = new User();
 	$user['user_nom'] = $_POST['nom'];

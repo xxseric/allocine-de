@@ -222,6 +222,7 @@ HEREDOC;
 			@import "./js/dojo/dojox/grid/resources/soriaGrid.css";
 			@import "./js/dojo/dojox/grid/resources/Grid.css";
 		</style>
+		<script type="text/javascript" src="js/fonctionJs.js"></script>
 		<script type="text/javascript" src="js/jquery.min.js?v=1.4.2"></script>
 		<script type="text/javascript" src="js/jquery-ui.custom.min.js?v=1.8"></script>
 		<!-- Star Rating widget stuff here... -->
