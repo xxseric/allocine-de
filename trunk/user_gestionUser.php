@@ -6,7 +6,7 @@
 	require_once 'persistence/user_dao.php';
 	require_once 'persistence/realisateur_dao.php';
 	require_once 'persistence/acteur_dao.php';
-
+	require_once 'persistence/categorieFilm_dao.php';
 	
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
@@ -32,7 +32,7 @@
 </center>	
 HEREDOC;
 	
-	////////////Parite Gestion du Groupe /////
+	////////////Partie Gestion du Groupe /////
 	$html .= "<div id='gestion_groupe' style='border-top: solid black 2px ;'>";
 					if($_SESSION['user_groupe_id'] != NULL){
 						$html .= "				<div id='liste_users'>
@@ -68,7 +68,7 @@ HEREDOC;
 	//ajout d'un film///////
 	$html .= 
 	'
-	<div id="ajout_film" style="display:none;border-top: solid black 2px ;">
+	<div id="ajout_film" class="" style="display:none;border-top: solid black 2px ;">
 	<form method="post" action="./user_gestionUser.php" name="formulaire_ajout_film" id="formulaire_ajout_film" enctype="multipart/form-data" class="soria" dojoType="dijit.form.Form">
 	<h3>Ajouter un film</h3>
 	<TABLE BORDER="0">
@@ -99,7 +99,21 @@ HEREDOC;
 				<input type="text"" name="realisateur_film" id="realisateur_film" data-dojo-type="dijit.form.TextBox"
 								data-dojo-props="trim:true, propercase:true" />
 			</td>
-			<td>				
+			<td>
+			<label>Catégorie</label>
+			</td>
+			<td> ';
+
+	$listeCat = getAllCategories();
+	
+	foreach($listeCat as $categorie){
+	$html	.= '<input type="checkbox" name="categorie'.$categorie['catFilm_id'].'" value="">'.$categorie['catFilm_libelle'].'<br>';
+	}
+
+      $html .= '	</td>
+		</tr>	
+		<tr>
+						<td>				
 				<label>Acteur</label>
 			</td>
 			<td>
@@ -193,11 +207,12 @@ HEREDOC;
 	$doc->end();
 	
 	//poste d'un film//
-if(isset($_POST['film_titre']) && isset($_POST['film_date'])){
+if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
 	
 		echo '<script>affichageGestion(1);</script>';
+		echo "ok";
 		
-		
+	/*	
 						if(isset($_POST['realisateur_film'])){
 							$resVal = explode( " " , $_POST['realisateur_film']);
 							if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
@@ -226,7 +241,10 @@ if(isset($_POST['film_titre']) && isset($_POST['film_date'])){
 			if ((isset($_FILES['nom_du_fichier']['fichier'])&&($_FILES['nom_du_fichier']['error'] == UPLOAD_ERR_OK))) {    
 				$chemin_destination = './images/';    
 				move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);    
-				}   
+				}
+				   
 			
+		//		addFilm($titre, $date, $resume=null, $image_id, $realisateur_id, $site_id=null, $site_note=null, $listeActeurs, $listeCategorie, $listeRecompenses)
+	*/
 	}
 ?>
