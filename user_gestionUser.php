@@ -210,9 +210,8 @@ HEREDOC;
 if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
 	
 		echo '<script>affichageGestion(1);</script>';
-		echo "ok";
 		
-	/*	
+		
 						if(isset($_POST['realisateur_film'])){
 							$resVal = explode( " " , $_POST['realisateur_film']);
 							if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
@@ -244,7 +243,7 @@ if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
 				}
 				   
 			
-		//		addFilm($titre, $date, $resume=null, $image_id, $realisateur_id, $site_id=null, $site_note=null, $listeActeurs, $listeCategorie, $listeRecompenses)
-	*/
+			addFilm($_POST['film_titre'], $_POST['date_film'], $resume=null, $image_id, $realisateur_id, $site_id=null, $site_note=null, $listeActeurs, $listeCategorie, $listeRecompenses)
+	
 	}
 ?>
