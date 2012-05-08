@@ -6,6 +6,8 @@
 	require_once 'persistence/user_dao.php';
 	require_once 'persistence/realisateur_dao.php';
 	require_once 'persistence/acteur_dao.php';
+	require_once 'persistence/film_dao.php';
+
 	require_once 'persistence/categorieFilm_dao.php';
 	
 	$doc = new Document();
@@ -96,7 +98,7 @@ HEREDOC;
 				<label>Réalisateur</label>
 			</td>
 			<td>
-				<input type="text"" name="realisateur_film" id="realisateur_film" data-dojo-type="dijit.form.TextBox"
+				<input placeholder="Nom Prenom" type="text"" name="realisateur_film" id="realisateur_film" data-dojo-type="dijit.form.TextBox"
 								data-dojo-props="trim:true, propercase:true" />
 			</td>
 			<td>
@@ -117,7 +119,7 @@ HEREDOC;
 				<label>Acteur</label>
 			</td>
 			<td>
-				<input type="text"" name="acteur_film" id="acteur_film" data-dojo-type="dijit.form.TextBox"
+				<input placeholder="Nom Prenom" type="text"" name="acteur_film" id="acteur_film" data-dojo-type="dijit.form.TextBox"
 								data-dojo-props="trim:true, propercase:true" />
 			</td>
 		</tr>	
@@ -211,39 +213,64 @@ if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
 	
 		echo '<script>affichageGestion(1);</script>';
 		
-		
 						if(isset($_POST['realisateur_film'])){
 							$resVal = explode( " " , $_POST['realisateur_film']);
 							if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
+							//	echo "1";
 								$resId = getRealisateurIdByPrenom($resVal[0]) ;
 							}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
+							//	echo "2";
 								$resId = getRealisateurIdByPrenom($resVal[0]) ;
 							}else{
+							//	echo "3";
 								addRealisateur($resVal[1],$resVal[0]);
 								$resId = getRealisateurIdByPrenom($resVal[0]) ;
 							}
+							
 						}
 
 						if(isset($_POST['acteur_film'])){
-						$resVal = explode( " " , $_POST['acteur_film']);
-						if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
-							$resId = getRealisateurIdByPrenom($resVal[0]) ;
-						}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
-							$resId = getRealisateurIdByPrenom($resVal[0]) ;
-						}else{
-							addRealisateur($resVal[1],$resVal[0]);
-							$resId = getRealisateurIdByPrenom($resVal[0]) ;
-						}
+						$actVal = explode( " " , $_POST['acteur_film']);
+		
+							if( getIdbyNomEtPrenom($actVal[1],$actVal[0]) == -1 ){
+								addActeur($actVal[1],$actVal[0]);
+							}
+						$actId	= getIdbyNomEtPrenom($actVal[1],$actVal[0]);
 					}
 					
+
+					$listeActeur = getActeurById($actId);
+					
+					$resumer = "";
+					if(isset($_POST['resumer_film'])){
+						$resumer = $_POST['resumer_film'] ;
+					}
+					
+					if ($_FILES["nom_du_fichier"]["error"] > 0)
+					  {
+					  echo "Error: " . $_FILES["nom_du_fichier"]["error"] . "<br />";
+					  }
+					else
+					  {
+					  $chemin_destination = './images/';  
+					  move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']); 
+					  }
+					  
+					  $date = explode( "/" , $_POST['date_film']);
+					$imgId	= explode(".", $_FILES['nom_du_fichier']['name'] );
+			
+		echo	addFilm($_POST['film_titre'],$date[0],$imgId[0],$resId,$listeActeur ,$resumer);
+			
+
+
 		
 			if ((isset($_FILES['nom_du_fichier']['fichier'])&&($_FILES['nom_du_fichier']['error'] == UPLOAD_ERR_OK))) {    
 				$chemin_destination = './images/';    
 				move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);    
 				}
-				   
+
 			
-			addFilm($_POST['film_titre'], $_POST['date_film'], $resume=null, $image_id, $realisateur_id, $site_id=null, $site_note=null, $listeActeurs, $listeCategorie, $listeRecompenses)
+			addFilm($_POST['film_titre'], $_POST['date_film'], $resume=null, $image_id, $realisateur_id, $site_id=null, $site_note=null, $listeActeurs, $listeCategorie, $listeRecompenses);
 	
 	}
 ?>
