@@ -1,15 +1,16 @@
 <?php
 
 include_once 'orm/bootstrap.php';
-	//require_once 'listeActeur_dao.php';
-//	require_once 'listeCategoriesFilm_dao.php';
-//	require_once 'listeRecompenses_dao.php';
+	require_once 'listeActeur_dao.php';
+	require_once 'listeCategoriesFilm_dao.php';
+	require_once 'listeRecompenses_dao.php';
 	
-	function addFilm($titre, $date, $resume=null, $image_id, $realisateur_id, $site_id=null, $site_note=null, $listeActeurs, $listeCategorie, $listeRecompenses)
+	function addFilm($titre, $date,  $image_id, $realisateur_id, $listeActeurs,$resume=null, $listeCategorie=0, $listeRecompenses=0 , $site_id=null, $site_note=null )
 	{
 		Doctrine_Core :: loadModels('./models');
 		$isExisting = getFilmByTitre($titre);
-		if(count($isExisting) == 0){
+		
+		if(!is_object($isExisting)){
 			$film = new Film();
 			$film['film_titre'] = $titre;
 			$film['film_date'] = $date;
@@ -38,6 +39,7 @@ include_once 'orm/bootstrap.php';
 		}		
 	}
 
+	
 	function getFilmById($id)
 	{
 		Doctrine_Core :: loadModels('./models');
@@ -97,7 +99,7 @@ include_once 'orm/bootstrap.php';
 			return -1;
 	}
 	
-	function deleteListeRecompensesById($id)
+	function film_deleteListeRecompensesById($id)
 	{
 		Doctrine_Core :: loadModels('./models');
 		$listeCategories = getListeCategorieFilmById($id);
