@@ -109,7 +109,7 @@ HEREDOC;
 	$listeCat = getAllCategories();
 	
 	foreach($listeCat as $categorie){
-	$html	.= '<input type="checkbox" name="categorie'.$categorie['catFilm_id'].'" value="">'.$categorie['catFilm_libelle'].'<br>';
+	$html	.= '<input type="checkbox" name="categorie'.$categorie['catFilm_id'].'" value="'.$categorie['catFilm_id'].'">'.$categorie['catFilm_libelle'].'<br>';
 	}
 
       $html .= '	</td>
@@ -259,18 +259,29 @@ if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
 					  $date = explode( "/" , $_POST['date_film']);
 					$imgId	= explode(".", $_FILES['nom_du_fichier']['name'] );
 			
-		echo	addFilm($_POST['film_titre'],$date[0],$imgId[0],$resId,$listeActeur ,$resumer);
+	//	echo	addFilm($_POST['film_titre'],$date[0],$imgId[0],$resId,$listeActeur ,$resumer);
 			
-
-
+			$listeCat = getAllCategories();
+			$listeCategories = array();
+			$j = 0 ;
+				foreach($listeCat as $categorie){
+					if(isset($_POST['categorie'.$categorie['catFilm_id']])){
+					$listeCategories[$j] = $categorie['catFilm_id'] ;  			
+					$j ++ ;
+					echo "ok" ;
+					}
+				}
+			
 		
 			if ((isset($_FILES['nom_du_fichier']['fichier'])&&($_FILES['nom_du_fichier']['error'] == UPLOAD_ERR_OK))) {    
 				$chemin_destination = './images/';    
 				move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);    
 				}
 
-			
-			addFilm($_POST['film_titre'], $_POST['date_film'], $resume=null, $image_id, $realisateur_id, $site_id=null, $site_note=null, $listeActeurs, $listeCategorie, $listeRecompenses);
-	
-	}
+				
+//		echo	addFilm($_POST['film_titre'], $_POST['date_film'], $resumer, $imgId[0], $resId, null, null, $listeActeur, $listeCategories, null);
+				echo "ok1";
+				echo	addFilm($_POST['film_titre'],$date[0],$imgId[0],$resId,$listeActeur ,$resumer,$listeCategories);
+				echo "ok2";	
+}
 ?>
