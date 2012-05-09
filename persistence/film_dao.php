@@ -225,7 +225,7 @@ include_once 'orm/bootstrap.php';
 	{
 		Doctrine_Core :: loadModels('./models');
 		$film = getFilmById($id);
-		if($film != -1){
+		if(count($film) > 0){
 			$film['film_titre'] = $titre;
 			$film->save();
 			return 1;
@@ -238,7 +238,7 @@ include_once 'orm/bootstrap.php';
 	{
 		Doctrine_Core :: loadModels('./models');
 		$film = getFilmById($id);
-		if($film != -1){
+		if(count($film) > 0){
 			$film['film_date'] = $date;
 			$film->save();
 			return 1;
@@ -251,7 +251,7 @@ include_once 'orm/bootstrap.php';
 	{
 		Doctrine_Core :: loadModels('./models');
 		$film = getFilmById($id);
-		if($film != -1){
+		if(count($film) > 0){
 			$film['film_resume'] = $resume;
 			$film->save();
 			return 1;
@@ -264,7 +264,7 @@ include_once 'orm/bootstrap.php';
 	{
 		Doctrine_Core :: loadModels('./models');
 		$film = getFilmById($id);
-		if($film != -1){
+		if(count($film) > 0){
 			$film['film_image_id'] = $image_id;
 			$film->save();
 			return 1;
@@ -277,7 +277,7 @@ include_once 'orm/bootstrap.php';
 	{
 		Doctrine_Core :: loadModels('./models');
 		$film = getFilmById($id);
-		if($film != -1){
+		if(count($film) > 0){
 			$film['film_realisateur_id'] = $realisateur_id;
 			$film->save();
 			return 1;
@@ -290,7 +290,7 @@ include_once 'orm/bootstrap.php';
 	{
 		Doctrine_Core :: loadModels('./models');
 		$film = getFilmById($id);
-		if($film != -1){
+		if(count($film) > 0){
 			$film->delete();
 			return 1;
 		}else{
@@ -302,7 +302,7 @@ include_once 'orm/bootstrap.php';
 	{
 		Doctrine_Core :: loadModels('./models');
 		$film = getFilmByTitre($titre);
-		if($film != -1){
+		if(count($film) > 0){
 			$film->delete();
 			return 1;
 		}else{
