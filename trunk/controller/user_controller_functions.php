@@ -55,7 +55,6 @@
 	
 	function processListeUsers()
 	{
-	echo "test";
 		return "liste_users.php";
 	}
 	
