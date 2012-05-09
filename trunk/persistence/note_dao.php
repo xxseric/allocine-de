@@ -5,20 +5,12 @@
 	function addNote($film_id, $user_id, $note_val, $note_commentaire)
 	{
 		Doctrine_Core :: loadModels('./models');
-		$isExisting = null;
-		if($user_id != null)
-			$isExisting = getNoteByUserId($user_id);
-		if($isExisting == null){
-			$note = new Note();
-			$note['film_id'] = $film_id;
-			$note['user_id'] = $user_id;
-			$note['note_val'] =  $note_val;
-			$note['note_commentaire'] =  $note_commentaire;
-			$note->save();
-			return 1;
-		}else{
-			return -1;
-		}
+		$note = new Note();
+		$note['film_id'] = $film_id;
+		$note['user_id'] = $user_id;
+		$note['note_val'] =  $note_val;
+		$note['note_commentaire'] =  $note_commentaire;
+		$note->save();
 	}
 	
 	function getAllNotes()
@@ -63,23 +55,22 @@
 		$listeNotes = $listeNotes->getData();
 		if(count($listeNotes) == 0)
 			return null;
-		return $listeNotes;
+		return $listeNotes[0];
 	}
 	
 	function getNoteByFilmIdAndUserId($film_id, $user_id)
 	{
 		Doctrine_Core :: loadModels('./models');
-		$listeNotes = array();
 		$listeNotesByFilmId = getNotesByFilmId($film_id);	
-		foreach ($listeNotesByFilmId as $noteByFilm){
-			if($noteByFilm['user_id'] == $user_id){
-				$listeNotes[] = $noteByFilm;
+		if(count($listeNotesByFilmId) == 0)
+			return null;
+		else{
+			foreach ($listeNotesByFilmId as $noteByFilm){
+				if($noteByFilm['user_id'] == $user_id){
+					return $noteByFilm[0];
+				}
 			}
 		}
-		if(count($listeNotes) > 0)
-			return $listeNotes;
-		else
-			return null;
 	}
 	
 	function getNotesValByFilmId($film_id)
