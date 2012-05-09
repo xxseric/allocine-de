@@ -22,7 +22,7 @@
 		$doc->begin($_SESSION['user_level']);
 		$html = 
 		<<<HEREDOC
-<div id="contenu_recherche_film">
+<div id="contenu_recherche_film" class="soria">
 	<h1>Gestion</h1>
 
 <center>
