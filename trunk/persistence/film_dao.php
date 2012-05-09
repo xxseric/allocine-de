@@ -26,8 +26,8 @@ include_once 'orm/bootstrap.php';
 					addListeActeur($film_id, $acteur['acteur_id']);
 			}
 			if(count($listeCategorie) > 0){
-				foreach ($listeCategorie as $categorie)
-					addListeCategorieFilm($film_id, $categorie['catFilm_id']);
+				for($i =0 ; $i < count($listeCategorie) ; $i++)
+					addListeCategorieFilm($film_id, $listeCategorie[$i]);
 			}
 			if(count($listeRecompenses) > 0){
 				foreach ($listeRecompenses as $recompense)

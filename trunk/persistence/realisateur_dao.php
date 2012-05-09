@@ -4,10 +4,10 @@
 	
 	function addRealisateur($realisateur_nom, $realisateur_prenom)
 	{
-		Doctrine_Core :: loadModels('../models');
+		Doctrine_Core :: loadModels('./models');
 		$realisateur = new Realisateur();
-		$realisateur[0]['realisateur_nom'] = $realisateur_nom;
-		$realisateur[0]['realisateur_prenom'] = $realisateur_prenom;
+		$realisateur['realisateur_nom'] = $realisateur_nom;
+		$realisateur['realisateur_prenom'] = $realisateur_prenom;
 		$realisateur->save();
 		return 1;		
 	}
