@@ -15,12 +15,17 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 	// veriffy user input!
 	$vote = in_range($_POST['rate'], 1, 5);
 	if(isset($_POST['film_id'])){
+		include_once 'persistence/note_dao.php';
 		$user_id = null;
 		if(isset($_SESSION['user_id'])){
 			$user_id = $_SESSION['user_id'];
+			if(getNoteByFilmIdAndUserId($_POST['film_id'], $user_id) == null){
+				addNote($_POST['film_id'], $user_id, $vote, null);
+			}
 		}
-		include_once 'persistence/note_dao.php';
-		addNote($_POST['film_id'], $user_id, $vote, null);
+		else{
+			addNote($_POST['film_id'], $user_id, $vote, null);
+		}
 	}
 
 	// update statistic and save to file
