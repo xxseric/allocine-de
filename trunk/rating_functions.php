@@ -20,12 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 			$user_id = $_SESSION['user_id'];
 		}
 		include_once 'persistence/note_dao.php';
-		if(addNote($_POST['film_id'], $user_id, $vote, null)==1){
-			file_put_contents("test.dat", "reussite-ajout");
-		}else{
-			file_put_contents("test.dat", "echec-ajout");
-		}
-			file_put_contents("test.dat", "reussite-ajout");
+		addNote($_POST['film_id'], $user_id, $vote, null);
 	}
 
 	// update statistic and save to file
