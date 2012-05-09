@@ -8,6 +8,10 @@
 	require_once 'persistence/realisateur_dao.php';
 	require_once 'persistence/categorieFilm_dao.php';
 	
+	require_once 'persistence/listeActeur_dao.php';
+	require_once 'persistence/acteur_dao.php';
+	require_once 'persistence/listeCategoriesFilm_dao.php';
+	
 	
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
@@ -15,6 +19,7 @@
 	}else{
 		$doc->begin($_SESSION['user_level']);
 	}
+	
 	
 	
 	
@@ -70,6 +75,7 @@ if($listeCategorie != -1){
 			}
 		}		
 	}
+	
 	
 	if($listeFilm != -1){
 		for($i = 0 ; $i < count($listeFilm) ; $i++){

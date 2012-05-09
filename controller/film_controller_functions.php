@@ -3,7 +3,7 @@
 	
 	function processFicheFilm()
 	{
-		return "fiche_film.php";
+		return "update_fiche_film.php";
 	}
 
 ?>
