@@ -66,6 +66,9 @@
 				$update_fiche_film = "
 					<form method='post' action='update_fiche_film.php'>
 						<input type='hidden' name='filmId' value='".$film['film_id']."' /></br>
+						<input type='hidden' name='date_film' value='".$film['film_date']."' />
+						<input type='hidden' name='realisateur_nom_film' value='".$realisateur_nom."' />
+						<input type='hidden' name='realisateur_prenom_film' value='".$realisateur_prenom."' />
 						<button type='submit' id='button_update_fiche_film' ><span>Modifier</span><img src='./images/fleche.png'></img></button>
 					</form>
 				";			
@@ -143,6 +146,72 @@
 </div>";
 	}	
 	
+	
+	if(isset($_POST['validUpdate'])){
+	
+	
+		if(isset($_POST['date_film'])){
+			setFilmDateById($_POST['filmId'], $_POST['date_film']);
+		}
+	
+		if(isset($_POST['realisateur_prenom_film']) && isset($_POST['realisateur_nom_film'])){
+			if(getRealisateurIdByNomAndPrenom($_POST['realisateur_nom_film'], $_POST['realisateur_prenom_film']) == -1)
+				addRealisateur($_POST['realisateur_nom_film'], $_POST['realisateur_prenom_film']);
+			$realisateur_id = getRealisateurIdByNomAndPrenom($_POST['realisateur_nom_film'], $_POST['realisateur_prenom_film']);
+			setFilmRealisateurIdById($_POST['filmId'], $realisateur_id);
+		}
+	
+		/*if(isset($_POST['acteur_film'])){
+		 $actVal = explode( " " , $_POST['acteur_film']);
+	
+		if( getIdbyNomEtPrenom($actVal[1],$actVal[0]) == -1 ){
+		addActeur($actVal[1],$actVal[0]);
+		}
+		$actId	= getIdbyNomEtPrenom($actVal[1],$actVal[0]);
+		}
+			
+	
+		$listeActeur = getActeurById($actId);*/
+			
+		$resumer = "";
+		if(isset($_POST['resumer_film'])){
+			$resumer = $_POST['resumer_film'] ;
+			setFilmResumeById($_POST['filmId'], $resumer);
+		}
+			
+		/*if ($_FILES["nom_du_fichier"]["error"] > 0)
+		{
+			echo "Error: " . $_FILES["nom_du_fichier"]["error"] . "<br />";
+		}
+		else
+		{
+			$chemin_destination = './images/';
+			move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);
+			$imgId	= explode(".", $_FILES['nom_du_fichier']['name'] );
+			setFilmImageIdById($_POST['filmId'], $imgId[0]);
+		}
+			
+			
+		$listeCat = getAllCategories();
+		 $listeCategories = array();
+		$j = 0 ;
+		foreach($listeCat as $categorie){
+		if(isset($_POST['categorie'.$categorie['catFilm_id']])){
+		$listeCategories[$j] = $categorie['catFilm_id'] ;
+		$j ++ ;
+		echo "ok" ;
+		}
+		}
+			
+	
+		if ((isset($_FILES['nom_du_fichier']['fichier'])&&($_FILES['nom_du_fichier']['error'] == UPLOAD_ERR_OK))) {
+			$chemin_destination = './images/';
+			move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);
+		}*/
+	}
+	
+	
+	
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
 		$doc->begin(0);
@@ -151,5 +220,6 @@
 	}
 	echo contenu_fiche_film();
 	$doc->end();
-
+	
+	
 ?>

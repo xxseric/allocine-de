@@ -16,9 +16,6 @@
 			$film = getFilmById($_POST["filmId"]);
 			if(count($film) == 0)
 				return "Un probleme est survenu";	
-
-			$realisateur_nom = getRealisateurNomById(getFilmRealisateurIdById($film['film_id']));
-			$realisateur_prenom = getRealisateurPrenomById(getFilmRealisateurIdById($film['film_id']));
 		
 			$listeActeursFilm = getListeActeurByFilmId($film['film_id']);
 			$liste = "";
@@ -47,15 +44,13 @@
 				$liste_cat .= getCategorieFilmLibById($listeCategories[0]["listeCategoriesFilms_categorie_film"]).' ';
 			}		
 		
-			$resume = "Il n'y a pour le moment aucun resume de ce film.";
-			if($film['film_resume'] != null)
-				$resume = $film['film_resume'];
+			$resume = $film['film_resume'];
 			
 			$html=
 "
 <div id='contenu_film' class='soria'>
 	<h1>".$film['film_titre']."</h1>
-	<form id='informations' method='post' action=''>
+	<form id='informations' method='post' action='fiche_film.php'>
 		<div id='jaq_infos'>
 			<div class='jaquette'>
 				<img src='./images/".$film['film_image_id'].".jpg'></img>
@@ -64,12 +59,14 @@
 			<div class='informations'>
 				<ul>
 					<li>
-						<span class='bold'>Annnée : </span><input type='text' name='date_film' id='date_film' data-dojo-type='dijit.form.DateTextBox' required='true'  value='".$film['film_date']."' />
+						<span class='bold'>Annnée : </span><input type='text' name='date_film' id='date_film' data-dojo-type='dijit.form.DateTextBox' required='true'  value='".$_POST['date_film']."' />
 					</li>
 					<li>
 						<span class='bold'>Réalisé par : </span>
-						<input placeholder='".$realisateur_prenom.' '.$realisateur_nom."' type='text' name='acteur_film' id='acteur_film' data-dojo-type='dijit.form.TextBox'
-								data-dojo-props='trim:true, propercase:true' />
+						<input value='".$_POST['realisateur_prenom_film']."' type='text' name='realisateur_prenom_film' id='realisateur_prenom_film' data-dojo-type='dijit.form.TextBox'
+								data-dojo-props='trim:true, propercase:true' style=' width: 100px;' />
+						<input value='".$_POST['realisateur_nom_film']."' type='text' name='realisateur_nom_film' id='realisateur_nom_film' data-dojo-type='dijit.form.TextBox'
+								data-dojo-props='trim:true, propercase:true' style=' width: 100px;' />
 					</li>
 					<li>
 						<span class='bold'>Acteurs : </span>".$liste."
@@ -85,8 +82,10 @@
 		</div>
 		<div id='resume'>
 			<h2>Synopsis</h2>
-			<input type='text' name='resumer_film' id='resumer_film' data-dojo-type='dijit.form.SimpleTextarea' value='".$film['film_resume']."'/>
+			<input type='text' name='resumer_film' id='resumer_film' data-dojo-type='dijit.form.SimpleTextarea' style='max-width: 650px;' value='".$resume."'/>
 		</div>	
+		<input type='hidden' name='filmId' value='".$film['film_id']."' />
+		<input type='hidden' name='validUpdate' value='1' />
 		<center><button type='submit' data-dojo-type='dijit.form.Button' id='submitButton' >Confirmer</button></center>
 	</form>	
 </div>";
@@ -110,5 +109,7 @@
 	}
 	echo contenu_fiche_film();
 	$doc->end();
+	
+
 
 ?>

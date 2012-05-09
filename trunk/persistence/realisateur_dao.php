@@ -21,13 +21,28 @@
 		return $realisateur[0]['realisateur_id'];
 	}
 	
-		function getRealisateurIdByPrenom($prenom){
+	function getRealisateurIdByPrenom($prenom){
 		Doctrine_Core :: loadModels('./models');
 		$realisateur = Doctrine_Core :: getTable ( 'Realisateur' )->findBy('realisateur_prenom', $prenom ,null);
 		$realisateur = $realisateur->getData();			
 		if(count($realisateur) != 1)
 			return -1;
 		return $realisateur[0]['realisateur_id'];
+	}
+	
+	function getRealisateurIdByNomAndPrenom($nom, $prenom){
+		Doctrine_Core :: loadModels('./models');
+		$realisateur = Doctrine_Core :: getTable ( 'Realisateur' )->findBy('realisateur_prenom', $prenom ,null);
+		$realisateur = $realisateur->getData();			
+		if(count($realisateur) > 1){
+			foreach ($realisateur as $real){
+				if($real['realisateur_nom'] == $nom)
+					return $real[0]['realisateur_id'];
+			}
+		}
+		else if(count($realisateur) == 1 && $realisateur[0]['realisateur_nom'] == $nom)
+			return $realisateur[0]['realisateur_id'];
+		return -1;
 	}
 	
 	function getRealisateurById($id)

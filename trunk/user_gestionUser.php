@@ -131,7 +131,7 @@ HEREDOC;
           	  	</br></br>
 				<label>Resumé</label>
 			
-				<input type="text" name="resumer_film" id="resumer_film" data-dojo-type="dijit.form.SimpleTextarea"/>
+				<input type="text" name="resumer_film" id="resumer_film" data-dojo-type="dijit.form.SimpleTextarea" style="max-width: 690px;" />
 			
 	<center><button type="submit" data-dojo-type="dijit.form.Button" id="submitButton" >Ajouter</button></center>
 </form> ' ;
