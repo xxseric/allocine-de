@@ -35,7 +35,7 @@
 		$note = $note->getData();
 		if(count($note) == 0)
 			return null;
-		return $note;
+		return $note[0];
 	}
 	
 	function getNotesByFilmId($film_id)

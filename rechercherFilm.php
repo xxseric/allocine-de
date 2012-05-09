@@ -7,7 +7,7 @@
 	require_once 'persistence/film_dao.php';	
 	require_once 'persistence/realisateur_dao.php';
 	require_once 'persistence/categorieFilm_dao.php';
-	
+	require_once 'persistence/note_dao.php';
 	require_once 'persistence/listeActeur_dao.php';
 	require_once 'persistence/acteur_dao.php';
 	require_once 'persistence/listeCategoriesFilm_dao.php';
@@ -82,6 +82,18 @@ if($listeCategorie != -1){
 			$idres =	getFilmRealisateurIdById($listeFilm[$i]['film_id']);
 			$res = getRealisateurById($idres);		
 			$image = getFilmImageIdById($listeFilm[$i]['film_id']); 
+			$listeNotesFilm = getNotesByFilmId($listeFilm[$i]['film_id']);
+			$sum = 0;
+			$moyenne = 0;
+			if(count($listeNotesFilm) == 1){
+				$sum = $sum + $listeNotesFilm['note_val'];
+				$moyenne = sprintf('%01.1f', $sum);
+			}
+			else if(count($listeNotesFilm) > 1){
+				foreach ($listeNotesFilm as $note)
+					$sum = $sum + $note['note_val'];
+				$moyenne = sprintf('%01.1f', $sum / count($listeNotesFilm));
+			}
 			$html .= 
 				'<div id="listeFilm">
 					<div id="picture">
@@ -95,7 +107,7 @@ if($listeCategorie != -1){
 							<li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
 							<li><span class="bold">Realisateur : </span>'.$res['realisateur_prenom'].' '.$res['realisateur_nom'].'</li>
 							<li><span class="bold">Acteurs : </span></li>
-							<li><span class="bold">Note : </span></li>
+							<li><span class="bold">Note : </span>'.$moyenne.'</li>
 						</ul>
 						<form method="post" action="fiche_film.php" >
 							<input type="hidden" name="filmId" value="'.$listeFilm[$i]['film_id'].'" />
