@@ -184,12 +184,12 @@
 		
 		if(count($listeUsers) < 1)
 			return -1;
-		if(count($listeUsers) == 1)
+	/*	if(count($listeUsers) == 1)
 			return $listeUsers[0];
 		$liste = array();
 		foreach ($listeUsers as $user)
-			$liste[] = $user[0];
-		return $liste;
+			$liste[] = $user[0];*/
+		return $listeUsers;
 	}
 	
 	function getAllUsers()

@@ -86,3 +86,47 @@ function affichageGestion(val){
 		document.getElementById('gestion_compte').style.display = 'block' ;
 	}
 }
+
+function affichageGroupe(val){
+	if(val == 0){
+		document.getElementById('creer_groupe').style.display = 'block' ;
+		document.getElementById('rejoindre_groupe').style.display = 'none' ;
+
+	}else if(val == 1){
+		document.getElementById('creer_groupe').style.display = 'none' ;
+		document.getElementById('rejoindre_groupe').style.display = 'block' ;
+
+	}
+}
+
+
+/////////////////creer groupe //////////////////////////
+
+function creerGroupe(idUser){
+
+	var requeteHttp=getRequeteHttp();
+  if (requeteHttp!=null)
+          {
+          requeteHttp.open("POST","./creerGroupe.php",true);
+          requeteHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+          requeteHttp.onreadystatechange = function () {recevoirReponseRequeteAjax(requeteHttp)};
+          requeteHttp.send("nomGroupe="+document.getElementById("name_groupe").value+"&userId="+idUser);
+          }
+  }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Fonction permettant de recevoir et de traiter la reponse de la requete Ajax
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function recevoirReponseRequeteAjax(requeteHttp){
+if (requeteHttp.readyState==4)
+{
+  if (requeteHttp.status==200)
+  {
+           if(requeteHttp.responseText){
+        	   window.location='./user_gestionUser.php';
+           }
+  }
+  else
+          alert("Erreur requete");
+}
+}

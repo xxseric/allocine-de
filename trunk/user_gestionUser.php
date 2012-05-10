@@ -7,8 +7,9 @@
 	require_once 'persistence/realisateur_dao.php';
 	require_once 'persistence/acteur_dao.php';
 	require_once 'persistence/film_dao.php';
-
+	require_once 'persistence/listeActeur_dao.php';
 	require_once 'persistence/categorieFilm_dao.php';
+	require_once 'persistence/groupe_dao.php';
 	
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
@@ -36,7 +37,9 @@ HEREDOC;
 	
 	////////////Partie Gestion du Groupe /////
 	$html .= "<div id='gestion_groupe' style='border-top: solid black 2px ;'>";
-					if($_SESSION['user_groupe_id'] != NULL){
+			$groupeId = getUserGroupeIdById($_SESSION['user_id']);		
+		
+			if($groupeId != NULL){
 						$html .= "				<div id='liste_users'>
 									<table border=0>
 				                    	<thead>
@@ -47,26 +50,51 @@ HEREDOC;
 				             			</thead>
 				             			<tbody>" ; 
 						
-				    	$groupe = getUsersByGroupeId($_SESSION['user_groupe_id']);
+				    	$groupe = getUsersByGroupeId($groupeId);
 				    
 						foreach($groupe as $user){
 							$html .= '	<tr> 
-				             					<td>'.$groupe["user_nom"].'</td> 
-				             				    <td>'.$groupe["user_prenom"].'</td>
+				             					<td>'.$user["user_nom"].'</td> 
+				             				    <td>'.$user["user_prenom"].'</td>
 				             			</tr>';
 						}
 					$html .= ' 				</tbody>
 									</table>
 								</div>';	
 					}else{
-						
-						$html .= "Voirs les groupes , creer un groupe";
-				
+						$allGroupe = getAllGroupe();
+						$html .= "	<table border=0>
+				                    	
+				                    		<tr>
+				        	    				<th style='width:100px; text-align:center;'><button onclick='affichageGroupe(0);'>Creer un groupe</button></th>
+				             					<th style='width:100px; text-align:center;'><button onclick='affichageGroupe(1);'>Voir les groupe</button></th> 
+				             				</tr> 
+				             			
+				             			<tbody>
+				             				</tbody>
+									</table>
+				             			<br/>
+				             			<div id='creer_groupe' >
+				             			<label>Nom du groupe : </label><input type='text' id='name_groupe' name='name_groupe' />
+				             			<button onclick='creerGroupe(".$_SESSION['user_id'].");' >Valider</button>
+				             			</div>
+				             			
+				             			<div id='rejoindre_groupe' style='display:none'>
+				             			";
+							if(count($allGroupe) > 0){
+								foreach($allGroupe as $groupe){
+									$html .= "".$groupe['groupe_lib']."<br>" ;
+								}	
+							}else {
+								$html .= "Pas de groupe creer pour le moment." ;
+							}
+							$html .= "  </div>";							    
 				          	}
 					
 					
 		$html .= "</div>";			
-	//////FIn Gestion du Groupe///////////
+	//////Fin Gestion du Groupe///////////
+	
 	//ajout d'un film///////
 	$html .= 
 	'
@@ -212,34 +240,32 @@ HEREDOC;
 if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
 	
 		echo '<script>affichageGestion(1);</script>';
-		
+	
 						if(isset($_POST['realisateur_film'])){
 							$resVal = explode( " " , $_POST['realisateur_film']);
 							if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
-							//	echo "1";
+							
 								$resId = getRealisateurIdByPrenom($resVal[0]) ;
 							}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
-							//	echo "2";
+							
 								$resId = getRealisateurIdByPrenom($resVal[0]) ;
 							}else{
-							//	echo "3";
+							
 								addRealisateur($resVal[1],$resVal[0]);
 								$resId = getRealisateurIdByPrenom($resVal[0]) ;
 							}
 							
 						}
 
+						
 						if(isset($_POST['acteur_film'])){
-						$actVal = explode( " " , $_POST['acteur_film']);
-		
-							if( getIdbyNomEtPrenom($actVal[1],$actVal[0]) == -1 ){
+						$actVal = explode(" ",$_POST['acteur_film']);
+							if(acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]) == -1 ){
 								addActeur($actVal[1],$actVal[0]);
 							}
-						$actId	= getIdbyNomEtPrenom($actVal[1],$actVal[0]);
+						$actId	= acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]);
 					}
 					
-
-					$listeActeur = getActeurById($actId);
 					
 					$resumer = "";
 					if(isset($_POST['resumer_film'])){
@@ -257,9 +283,8 @@ if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
 					  }
 					  
 					  $date = explode( "/" , $_POST['date_film']);
-					$imgId	= explode(".", $_FILES['nom_du_fichier']['name'] );
+					  $imgId = explode(".", $_FILES['nom_du_fichier']['name'] );
 			
-	//	echo	addFilm($_POST['film_titre'],$date[0],$imgId[0],$resId,$listeActeur ,$resumer);
 			
 			$listeCat = getAllCategories();
 			$listeCategories = array();
@@ -268,7 +293,6 @@ if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
 					if(isset($_POST['categorie'.$categorie['catFilm_id']])){
 					$listeCategories[$j] = $categorie['catFilm_id'] ;  			
 					$j ++ ;
-					echo "ok" ;
 					}
 				}
 			
@@ -279,9 +303,16 @@ if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
 				}
 
 				
-//		echo	addFilm($_POST['film_titre'], $_POST['date_film'], $resumer, $imgId[0], $resId, null, null, $listeActeur, $listeCategories, null);
-				echo "ok1";
-				echo	addFilm($_POST['film_titre'],$date[0],$imgId[0],$resId,$listeActeur ,$resumer,$listeCategories);
-				echo "ok2";	
+		
+				addFilm($_POST['film_titre'],$date[0],$imgId[0],$resId, null ,$resumer,null,null,null,null);
+						
+				$id_film=getFilmIdByTitre($_POST['film_titre']);		
+				
+				echo addListeActeur($id_film,$actId);
+				
+				for($i = 0 ; $i < count($listeCategories) ; $i++ ) {
+				addListeCategorieFilm($id_film, $listeCategories[$i]);
+				}
+		
 }
 ?>
