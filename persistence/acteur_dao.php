@@ -88,14 +88,14 @@
 		}
 	}
 	
-	function getIdbyNomEtPrenom($nom,$prenom){
+	function acteur_getIdbyNomEtPrenom($nom,$prenom){
 		$requete = Doctrine_Query::create()
 		   		
 		  			->from('Acteur')
-		   			->where('acteur_nom ="Jamel"') 
-		   			->andWhere('acteur_prenom="Debouze"')
-					->orWhere('acteur_prenom="Jamel"')
-					->andWhere('acteur_nom="Debouze"')
+		   			->where('acteur_nom ="'.$prenom.'"') 
+		   			->andWhere('acteur_prenom="'.$nom.'"')
+					->orWhere('acteur_prenom="'.$prenom.'"')
+					->andWhere('acteur_nom="'.$nom.'"')
 		   			->execute();
 					
 			if(count($requete) != 1)			

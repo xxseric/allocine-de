@@ -1,6 +1,6 @@
 <?php
 
-	include_once ('../orm/bootstrap.php');
+	include_once ('./orm/bootstrap.php');
 	
 	function addGroupe($groupe_lib)
 	{
@@ -60,7 +60,7 @@
 	{
 		Doctrine_Core :: loadModels('./models');
 		$listeGroupes = Doctrine_Core :: getTable ( 'Groupe' )->findAll(null);	
-		$listeGroupes = $listeGroupes->getData();
+		//$listeGroupes = $listeGroupes->getData();
 		if(count($listeGroupes) == 0)
 			return -1;
 		return $listeGroupes;

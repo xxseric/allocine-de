@@ -4,16 +4,16 @@
 	function addListeActeur($film_id, $acteur_id)
 	{
 		Doctrine_Core :: loadModels('./models');
-		$isExisting = getListeActeurByFilmIdAndActeurId($film_id, $acteur_id);
-		if(null && $isExisting == -1){
+	/*	$isExisting = getListeActeurByFilmIdAndActeurId($film_id, $acteur_id);
+		if( $isExisting == -1){*/
 			$listeActeur = new ListeActeur();
 			$listeActeur['listeActeur_film_id'] = $film_id;
 			$listeActeur['listeActeur_acteur_id'] = $acteur_id;
 			$listeActeur->save();
-			return 1;
+	/*		return 1;
 		}else{
 			return -1;
-		}
+		}*/
 	}
 	
 	function getListeActeurById($id)
@@ -55,7 +55,7 @@
 	function getListeActeurByFilmIdAndActeurId($film_id, $acteur_id)
 	{
 		$listeActeurByFilmId = getListeActeurByFilmId($film_id);	
-		if(count($listeActeurByFilmId) > 0){
+		if(is_object($listeActeurByFilmId)){
 			$listeActeur = array();
 			foreach ($listeActeurByFilmId as $acteur){
 				if($acteur['listeActeur_acteur_id'] == $acteur_id){

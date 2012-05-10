@@ -1,11 +1,11 @@
 <?php
 
-	
 	function addListeCategorieFilm($film_id, $categorie_film_id)
 	{
 		Doctrine_Core :: loadModels('./models');
 		$isExisting = getListeCategorieFilmByFilmIdAndCategorieId($film_id, $categorie_film_id);
-		if(null && $isExisting == -1){
+	
+		if($isExisting != -1){
 			$listeCategoriesFilm = new ListeCategoriesFilm();
 			$listeCategoriesFilm['listeCategoriesFilms_film_id'] = $film_id;
 			$listeCategoriesFilm['listeCategoriesFilms_categorie_film'] = $categorie_film_id;
@@ -15,6 +15,19 @@
 			return -1;
 		}
 	}	
+	
+function	getListeCategorieFilmByFilmIdAndCategorieId($id , $cat_id){
+		Doctrine_Core :: loadModels('./models');
+		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_film_id', $id ,null);	
+		
+		foreach ($listeCategoriesFilm as $categorie){
+			if($categorie['listeCategoriesFilms_categorie_film'] == $cat_id){
+				return -1 ;
+			}
+		}
+		
+		return 1 ;
+	}
 	
 	function getListeCategorieFilmById($id)
 	{
