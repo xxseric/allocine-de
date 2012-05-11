@@ -38,7 +38,7 @@ HEREDOC;
 	////////////Partie Gestion du Groupe /////
 	$html .= "<div id='gestion_groupe' style='border-top: solid black 2px ;'>";
 			$groupeId = getUserGroupeIdById($_SESSION['user_id']);		
-		
+			//si l'utilisateur est dans un groupe
 			if($groupeId != NULL){
 						$html .= "				<div id='liste_users'>
 									<table border=0>
@@ -51,7 +51,7 @@ HEREDOC;
 				             			<tbody>" ; 
 						
 				    	$groupe = getUsersByGroupeId($groupeId);
-				    
+				    	$html .= "<div style='float:right;'><button>quitter le groupe</button></div>" ;
 						foreach($groupe as $user){
 							$html .= '	<tr> 
 				             					<td>'.$user["user_nom"].'</td> 
@@ -62,6 +62,7 @@ HEREDOC;
 									</table>
 								</div>';	
 					}else{
+						//recuperer les groupe
 						$allGroupe = getAllGroupe();
 						$html .= "	<table border=0>
 				                    	
@@ -82,9 +83,22 @@ HEREDOC;
 				             			<div id='rejoindre_groupe' style='display:none'>
 				             			";
 							if(count($allGroupe) > 0){
+								$html .= "<table border=0>
+										<thead style='border-bottom : solid black 2px ;' >
+				                    		<tr >
+				        	    				<th style='width:200px;'>Nom du groupe</th>
+				             					<th style='width:200px;'>Rejoindre</th> 
+				             				</tr> 
+				             			</thead>
+				             			<tbody>
+				                    	" ;
 								foreach($allGroupe as $groupe){
-									$html .= "".$groupe['groupe_lib']."<br>" ;
+									$html .= "<tr><th>"
+									.$groupe['groupe_lib']."</th>
+									<th><button onclick='rejoindreGroupe(".$_SESSION['user_id'].",".$groupe['groupe_id'].")'>Rejoindre</button></th>
+									</tr>" ;
 								}	
+								$html .= "</tbody></table>";
 							}else {
 								$html .= "Pas de groupe creer pour le moment." ;
 							}

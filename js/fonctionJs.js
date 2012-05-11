@@ -109,15 +109,28 @@ function creerGroupe(idUser){
           {
           requeteHttp.open("POST","./creerGroupe.php",true);
           requeteHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-          requeteHttp.onreadystatechange = function () {recevoirReponseRequeteAjax(requeteHttp)};
+          requeteHttp.onreadystatechange = function () {recevoirReponseCreerGroupe(requeteHttp)};
           requeteHttp.send("nomGroupe="+document.getElementById("name_groupe").value+"&userId="+idUser);
+          }
+  }
+
+////////////rejoindre groupe /////////////
+function rejoindreGroupe(idUser,idGroupe){
+
+	var requeteHttp=getRequeteHttp();
+  if (requeteHttp!=null)
+          {
+          requeteHttp.open("POST","./rejoindreGroupe.php",true);
+          requeteHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+          requeteHttp.onreadystatechange = function () {recevoirReponseCreerGroupe(requeteHttp)};
+          requeteHttp.send("id_Groupe="+idGroupe+"&userId="+idUser);
           }
   }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Fonction permettant de recevoir et de traiter la reponse de la requete Ajax
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function recevoirReponseRequeteAjax(requeteHttp){
+function recevoirReponseCreerGroupe(requeteHttp){
 if (requeteHttp.readyState==4)
 {
   if (requeteHttp.status==200)
