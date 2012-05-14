@@ -62,7 +62,7 @@
 						<input type='submit' value='Rate it' />";
 			
 			$update_fiche_film = "";
-			if(isset($_SESSION['user_level'])){
+			if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1){
 				$update_fiche_film = "
 					<form method='post' action='update_fiche_film.php'>
 						<input type='hidden' name='filmId' value='".$film['film_id']."' /></br>
