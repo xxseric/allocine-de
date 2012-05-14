@@ -74,9 +74,6 @@
 					<li>
 						<span class='bold'>Genre(s) : </span>".$liste_cat."
 					</li>
-					<li>
-						<span class='bold'>Nationalité(s) : </span>Américain
-					</li>
 				</ul>								
 			</div>
 		</div>
