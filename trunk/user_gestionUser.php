@@ -34,7 +34,7 @@
 <center>
 	<ul class="criteres_recherche" style="decoration:none; padding:0 ;">
 		<li><div onclick="affichageGestion(0);" style="width:auto; cursor: pointer; "><img src="./images/user.png"></img>Gestion Groupe</div></li>
-		<?php echo $ajout_film; ?>
+		$ajout_film
 		<li><div onclick="affichageGestion(2);" style="width:auto; cursor: pointer;"><img src="./images/config.png"></img>Gestion du Compte</div></li>
 	</ul>
 </center>	
@@ -97,12 +97,18 @@ HEREDOC;
 				             			</thead>
 				             			<tbody>
 				                    	" ;
-								
-								foreach($allGroupe as $groupe){
+								if(count($allGroupe) == 1){
 									$html .= "<tr><th>"
-									.$groupe['groupe_lib']."</th>
-									<th><button onclick='rejoindreGroupe(".$_SESSION['user_id'].",".$groupe['groupe_id'].")'>Rejoindre</button></th>
+									.$allGroupe['groupe_lib']."</th>
+										<th><button onclick='rejoindreGroupe(".$_SESSION['user_id'].",".$allGroupe['groupe_id'].")'>Rejoindre</button></th>
 									</tr>" ;
+								}else if(count($allGroupe) > 1){
+									foreach($allGroupe as $groupe){
+										$html .= "<tr><th>"
+										.$groupe['groupe_lib']."</th>
+										<th><button onclick='rejoindreGroupe(".$_SESSION['user_id'].",".$groupe['groupe_id'].")'>Rejoindre</button></th>
+										</tr>" ;
+									}
 								}	
 								
 								$html .= "</tbody></table>";
