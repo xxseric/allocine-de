@@ -133,10 +133,10 @@
 		<div class='informations'>
 			<ul>
 				<li>
-					<span class='bold'>Annn�e : </span>".$film['film_date']."
+					<span class='bold'>Annn&eacute;e : </span>".$film['film_date']."
 				</li>
 				<li>
-					<span class='bold'>R�alis� par : </span>".$realisateur_prenom.' '.$realisateur_nom."
+					<span class='bold'>R&eacute;alis&eacute; par : </span>".$realisateur_prenom.' '.$realisateur_nom."
 				</li>
 				<li>
 					<span class='bold'>Acteurs : </span>".$liste."
@@ -161,7 +161,7 @@
 	<h1>Erreur</h1>
 	<div id='contenu_erreur'>
 		<img src='./images/warning.png' style='margin: auto; width:80px; height: 66px; margin-bottom: 20px;'></img></br>
-		Il n'y a pas de film correspondant � votre requete.
+		Il n'y a pas de film correspondant &agrave; votre requete.
 	</div>
 </div>";
 	}	

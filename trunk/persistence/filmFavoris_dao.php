@@ -49,7 +49,7 @@
 	function deleteFilmFavorisById($id)
 	{
 		$film = getFilmFavorisById($id);
-		if(count($film) == 1){
+		if($film != null){
 			$film->delete();
 			return 1;
 		}
