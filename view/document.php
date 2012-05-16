@@ -122,7 +122,7 @@
 		<div id="page">
 		
 			<div id="header">
-				<h1>ALLOCINE</h1>
+				<h1><a href="./controller/user_controller.php?action=index">ALLOCINE</a></h1>
 				<h2>A chacun son film...</h2>
 				<div id="connexion" class="soria">
 				</div>
@@ -149,11 +149,8 @@ HEREDOC;
 <<<HEREDOC
 				<div class="menu">
 					<ul id="nav">
-						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
 						<li><a href="./controller/user_controller.php?action=user_gestion">Gestion</a></li>
-						<li><a href="./controller/user_controller.php?action=about">About</a></li>
-						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
 						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
 				</div>
@@ -168,10 +165,7 @@ HEREDOC;
 <<<HEREDOC
 				<div class="menu">
 					<ul id="nav">
-						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
-						<li><a href="./controller/user_controller.php?action=about">About</a></li>
-						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
 						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
 				</div>
@@ -186,7 +180,6 @@ HEREDOC;
 <<<HEREDOC
 				<div class="menu">
 					<ul id="nav">
-						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
 						<li><a href="./controller/user_controller.php?action=liste_users">Inscrits</a></li>
 						<li><a href="">Base de données</a></li>
@@ -264,7 +257,7 @@ HEREDOC;
 		<div id="page">
 		
 			<div id="header">
-				<h1>ALLOCINE</h1>
+				<h1><a href="./controller/user_controller.php?action=index">ALLOCINE</a></h1>
 				<h2>A chacun son film...</h2>
 				<div id="connexion" class="soria">
 				</div>
@@ -276,12 +269,8 @@ HEREDOC;
 				</form>
 				<div class="menu">
 					<ul id="nav">
-						<li><a href="./controller/user_controller.php?action=index">Home</a></li>
 						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
-						<li><a href="./controller/user_controller.php?action=user_inscription">Inscription</a></li>
 						<li><a href="./controller/user_controller.php?action=login">Login</a></li>
-						<li><a href="./controller/user_controller.php?action=about">About</a></li>
-						<li><a href="./controller/user_controller.php?action=contact">Contact</a></li>
 						
 					</ul>
 				</div>
@@ -324,7 +313,8 @@ HEREDOC;
 			$html=
 <<<HEREDOC
 <div id="footer">
-				<p>Copyright � 2012 <a href="#">Desmauts-Evers</a></p>
+				<p><a href="./controller/user_controller.php?action=about">About</a> | <a href="./controller/user_controller.php?action=contact">Contact</a></p>
+				<p>Tous droits réservés 2012 : <a href="#">Desmauts-Evers</a></p>
 				<p><a href="#">Valid XHTML 1.0 Strict</a> | <a href="#">Valid CSS</a></p>
 			</div>
 			
