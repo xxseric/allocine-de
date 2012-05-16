@@ -6,7 +6,7 @@
 	{
 		Doctrine_Core :: loadModels('./models');
 		$isExisting = getCategorieFilmByLib($categorie_film_lib);
-		if($isExisting == -1){
+		if(!is_object($isExisting)){
 			$catFilm = new CategorieFilm();
 			$catFilm['catFilm_libelle'] = $categorie_film_lib;
 			$catFilm->save();

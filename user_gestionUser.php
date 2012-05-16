@@ -316,8 +316,7 @@ if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
 				move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);    
 				}
 
-				
-		
+			
 				addFilm($_POST['film_titre'],$date[0],$imgId[0],$resId, null ,$resumer,null,null,null,null);
 						
 				$id_film=getFilmIdByTitre($_POST['film_titre']);		
