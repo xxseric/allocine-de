@@ -11,15 +11,16 @@ Doctrine_Manager::getInstance()->bindComponent('Film', 'doctrine');
  * @property string $film_titre
  * @property date $film_date
  * @property string $film_resume
- * @property integer $film_image_id
+ * @property string $film_image_id
  * @property integer $film_realisateur_id
  * @property integer $film_site_id
  * @property integer $film_site_note
  * @property Realisateur $Realisateur
  * @property Site $Site
- * @property Doctrine_Collection $ListeActeur
- * @property Doctrine_Collection $ListeCategoriesFilm
- * @property Doctrine_Collection $ListeRecompenses
+ * @property Doctrine_Collection $FilmFavoris
+ * @property Doctrine_Collection $Listeacteur
+ * @property Doctrine_Collection $Listecategoriesfilm
+ * @property Doctrine_Collection $Listerecompenses
  * @property Doctrine_Collection $Note
  * 
  * @package    ##PACKAGE##
@@ -31,7 +32,7 @@ abstract class BaseFilm extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->setTableName('Film');
+        $this->setTableName('film');
         $this->hasColumn('film_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
@@ -65,7 +66,7 @@ abstract class BaseFilm extends Doctrine_Record
              'notnull' => true,
              'autoincrement' => false,
              ));
-        $this->hasColumn('film_image_id', 'integer', 4, array(
+        $this->hasColumn('film_image_id', 'string', 40, array(
              'type' => 'string',
              'length' => 40,
              'fixed' => false,
@@ -114,15 +115,19 @@ abstract class BaseFilm extends Doctrine_Record
              'local' => 'film_site_id',
              'foreign' => 'site_id'));
 
-        $this->hasMany('ListeActeur', array(
+        $this->hasMany('FilmFavoris', array(
+             'local' => 'film_id',
+             'foreign' => 'film_id'));
+
+        $this->hasMany('Listeacteur', array(
              'local' => 'film_id',
              'foreign' => 'listeActeur_film_id'));
 
-        $this->hasMany('ListeCategoriesFilm', array(
+        $this->hasMany('Listecategoriesfilm', array(
              'local' => 'film_id',
              'foreign' => 'listeCategoriesFilms_film_id'));
 
-        $this->hasMany('ListeRecompenses', array(
+        $this->hasMany('Listerecompenses', array(
              'local' => 'film_id',
              'foreign' => 'listeRecompense_film_id'));
 

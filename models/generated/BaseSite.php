@@ -20,7 +20,7 @@ abstract class BaseSite extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->setTableName('Site');
+        $this->setTableName('site');
         $this->hasColumn('site_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,

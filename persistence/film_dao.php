@@ -1,6 +1,6 @@
 <?php
 
-include_once 'orm/bootstrap.php';
+	include_once ( dirname(__FILE__) . '/../orm/bootstrap.php');
 	require_once 'listeActeur_dao.php';
 	require_once 'listeCategoriesFilm_dao.php';
 	require_once 'listeRecompenses_dao.php';

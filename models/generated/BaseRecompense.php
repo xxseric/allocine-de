@@ -9,7 +9,7 @@ Doctrine_Manager::getInstance()->bindComponent('Recompense', 'doctrine');
  * 
  * @property integer $recompense_id
  * @property string $recompense_lib
- * @property Doctrine_Collection $ListeRecompenses
+ * @property Doctrine_Collection $Listerecompenses
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -20,7 +20,7 @@ abstract class BaseRecompense extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->setTableName('Recompense');
+        $this->setTableName('recompense');
         $this->hasColumn('recompense_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
@@ -43,7 +43,7 @@ abstract class BaseRecompense extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('ListeRecompenses', array(
+        $this->hasMany('Listerecompenses', array(
              'local' => 'recompense_id',
              'foreign' => 'listeRecompense_recompense_id'));
     }

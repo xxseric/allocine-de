@@ -1,6 +1,6 @@
 <?php
 //Chargement de Doctrine
-require_once ( './orm/Doctrine/Doctrine.php');
+require_once ( dirname(__FILE__) . '/Doctrine/Doctrine.php');
 //Inscription de l'autoloader
 spl_autoload_register( array ( 'Doctrine', 'autoload' ));
 spl_autoload_register( array ( 'Doctrine_Core', 'modelsAutoload' )) ;
@@ -20,5 +20,5 @@ $conn->setOption('password', $password);
 $manager->setAttribute(Doctrine_Core :: ATTR_VALIDATE, Doctrine_Core :: VALIDATE_ALL);
 $manager->setAttribute(Doctrine_Core :: ATTR_EXPORT, Doctrine_Core :: EXPORT_ALL);
 $manager->setAttribute(Doctrine_Core :: ATTR_MODEL_LOADING, Doctrine_Core :: MODEL_LOADING_CONSERVATIVE);
-Doctrine_Core::loadModels('models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 ?>

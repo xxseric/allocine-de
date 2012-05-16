@@ -20,6 +20,7 @@ Doctrine_Manager::getInstance()->bindComponent('User', 'doctrine');
  * @property integer $user_level
  * @property integer $user_groupe_id
  * @property Groupe $Groupe
+ * @property Doctrine_Collection $FilmFavoris
  * @property Doctrine_Collection $Note
  * 
  * @package    ##PACKAGE##
@@ -31,7 +32,7 @@ abstract class BaseUser extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->setTableName('User');
+        $this->setTableName('user');
         $this->hasColumn('user_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
@@ -147,6 +148,10 @@ abstract class BaseUser extends Doctrine_Record
         $this->hasOne('Groupe', array(
              'local' => 'user_groupe_id',
              'foreign' => 'groupe_id'));
+
+        $this->hasMany('FilmFavoris', array(
+             'local' => 'user_id',
+             'foreign' => 'user_id'));
 
         $this->hasMany('Note', array(
              'local' => 'user_id',

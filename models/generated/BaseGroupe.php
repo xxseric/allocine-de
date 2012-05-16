@@ -20,7 +20,7 @@ abstract class BaseGroupe extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->setTableName('Groupe');
+        $this->setTableName('groupe');
         $this->hasColumn('groupe_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
