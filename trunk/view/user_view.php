@@ -7,7 +7,6 @@
 		{
 			$html=
 <<<HEREDOC
-<div id="response" ></div>
 <form method="post" action="" onSubmit="inscriptionUser();return false;" name="formulaire_user_inscription" id="formulaire_user_inscription" enctype="multipart/form-data" class="soria" dojoType="dijit.form.Form">
 	<h1>Inscription</h1>
 	<TABLE BORDER="0">

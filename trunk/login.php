@@ -43,6 +43,7 @@
 			</tr>
 		</table>
 		<center><button type="submit" dojoType="dijit.form.Button" onClick="dijit.byId('formulaire_connexion').validate();">Se connecter</button></center>
+		<center><a href="./controller/user_controller.php?action=user_inscription">Pas encore inscrit(e) ?</a></center>
 	</form>
 HEREDOC;
 		echo $html."<br/>";

@@ -72,7 +72,7 @@ body
 #header h1, #header h2
 {
 	color: #000;
-    text-shadow: 1px 3px 4px #555;
+    text-shadow: 0px 10px 10px #444;
     padding: 0px;
     margin: 0px;
 }
@@ -83,6 +83,12 @@ body
 	font-family: FrederickaTheGreatRegular;
 	font-weight: bolder;
     margin-left: 20px;
+}
+
+#header h1 a
+{
+	text-decoration: none;
+	color: #000;
 }
 
 #header h2
@@ -586,6 +592,14 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	text-decoration: underline;
 }
 
+#formulaire_connexion a
+{
+	text-decoration: none;
+	color: #000;
+	font-style: italic;
+	font-size: 12px;
+}
+
 /*
  *			CONTENU RECHERCHE FILM
  */
@@ -629,7 +643,7 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	height: 23px;
 	list-style: none;
 	padding: 0;
-	padding-left: 180px;
+	padding-left: 300px;
 }
  
 #contenu_recherche_film .criteres_recherche li

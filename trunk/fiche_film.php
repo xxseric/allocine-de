@@ -54,24 +54,33 @@
 			@require_once 'rating_functions.php';
 			
 			$inputs = "";
-			$options = get_options();
-			foreach($options as $id => $rb){
-				$inputs .= "<input type='radio' name='rate' value='".$id."' title='".$rb['title']."' /></br>";
-			}
-			$inputs .= "<input type='hidden' name='film_id' id='film_id' value='".$film['film_id']."' /></ br>
-						<input type='submit' value='Rate it' />";
+			$rate = null;
 			
 			$update_fiche_film = "";
-			if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1){
-				$update_fiche_film = "
-					<form method='post' action='update_fiche_film.php'>
-						<input type='hidden' name='filmId' value='".$film['film_id']."' /></br>
-						<input type='hidden' name='date_film' value='".$film['film_date']."' />
-						<input type='hidden' name='realisateur_nom_film' value='".$realisateur_nom."' />
-						<input type='hidden' name='realisateur_prenom_film' value='".$realisateur_prenom."' />
-						<button type='submit' id='button_update_fiche_film' ><span>Modifier</span><img src='./images/fleche.png'></img></button>
-					</form>
-				";			
+			
+			if(isset($_SESSION['user_level'])){
+				$options = get_options();
+				foreach($options as $id => $rb){
+					$inputs .= "<input type='radio' name='rate' value='".$id."' title='".$rb['title']."' /></br>";
+				}
+				$inputs .= "<input type='hidden' name='film_id' id='film_id' value='".$film['film_id']."' /></ br>
+						<input type='submit' value='Rate it' />";				
+				$rate = "<li class='rating'>
+							<form id='rat' action='' method='post'>".$inputs." 
+							</form>
+							<div id='loader'><div style='padding-top: 5px;'>please wait...</div></div>
+						</li>";	
+				if($_SESSION['user_level'] > 1){
+					$update_fiche_film = "
+						<form method='post' action='update_fiche_film.php'>
+							<input type='hidden' name='filmId' value='".$film['film_id']."' /></br>
+							<input type='hidden' name='date_film' value='".$film['film_date']."' />
+							<input type='hidden' name='realisateur_nom_film' value='".$realisateur_nom."' />
+							<input type='hidden' name='realisateur_prenom_film' value='".$realisateur_prenom."' />
+							<button type='submit' id='button_update_fiche_film' ><span>Modifier</span><img src='./images/fleche.png'></img></button>
+						</form>
+					";	
+				}		
 			}	
 			
 			$html=
@@ -105,22 +114,17 @@
 		<div class='informations'>
 			<ul>
 				<li>
-					<span class='bold'>Annnée : </span>".$film['film_date']."
+					<span class='bold'>Annnï¿½e : </span>".$film['film_date']."
 				</li>
 				<li>
-					<span class='bold'>Réalisé par : </span>".$realisateur_prenom.' '.$realisateur_nom."
+					<span class='bold'>Rï¿½alisï¿½ par : </span>".$realisateur_prenom.' '.$realisateur_nom."
 				</li>
 				<li>
 					<span class='bold'>Acteurs : </span>".$liste."
 				</li>
 				<li>
 					<span class='bold'>Genre(s) : </span>".$liste_cat."
-				</li>
-				<li class='rating'>
-					<form id='rat' action='' method='post'>".$inputs." 
-					</form>
-					<div id='loader'><div style='padding-top: 5px;'>please wait...</div></div>
-				</li>
+				</li>".$rate."
 			</ul>								
 		</div>
 	</div>
@@ -138,7 +142,7 @@
 	<h1>Erreur</h1>
 	<div id='contenu_erreur'>
 		<img src='./images/warning.png' style='margin: auto; width:80px; height: 66px; margin-bottom: 20px;'></img></br>
-		Il n'y a pas de film correspondant à votre requete.
+		Il n'y a pas de film correspondant ï¿½ votre requete.
 	</div>
 </div>";
 	}	

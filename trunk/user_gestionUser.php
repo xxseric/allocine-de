@@ -19,17 +19,22 @@
 		<h1>Erreur d'authentification</h1>Erreur la page que vous demandez n'est pas accesible si vous n'êtes pas authentifier.
 			 </div>";
 	}else{
+		
+	$ajout_film = '';
+	if(isset($_SESSION['user_level']) && $_SESSION['user_level'] > 1){
+		$ajout_film = '<li><div onclick="affichageGestion(1);" style="width:auto; cursor: pointer;"><img src="./images/icook.png"></img>Ajouter un Film</div></li>';
+	}
 	
 		$doc->begin($_SESSION['user_level']);
 		$html = 
-		<<<HEREDOC
+<<<HEREDOC
 <div id="contenu_recherche_film" class="soria">
 	<h1>Gestion</h1>
 
 <center>
 	<ul class="criteres_recherche" style="decoration:none; padding:0 ;">
-		<li><div onclick="affichageGestion(0);" style="width:auto; cursor: pointer;"><img src="./images/user.png"></img>Gestion Groupe</div></li>
-		<li><div onclick="affichageGestion(1);" style="width:auto; cursor: pointer;"><img src="./images/icook.png"></img>Ajouter un Film</div></li>
+		<li><div onclick="affichageGestion(0);" style="width:auto; cursor: pointer; "><img src="./images/user.png"></img>Gestion Groupe</div></li>
+		<?php echo $ajout_film; ?>
 		<li><div onclick="affichageGestion(2);" style="width:auto; cursor: pointer;"><img src="./images/config.png"></img>Gestion du Compte</div></li>
 	</ul>
 </center>	
