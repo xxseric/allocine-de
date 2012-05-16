@@ -6,7 +6,7 @@
 	{
 		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$isExisting = getFilmFavorisByFilmIdAndUserId($film_id, $user_id);
-		if($isExisting == -1){
+		if($isExisting == null){
 			$film_favoris = new FilmFavoris();
 			$film_favoris['film_id'] = $film_id;
 			$film_favoris['user_id'] = $user_id;
