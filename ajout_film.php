@@ -36,8 +36,9 @@ $acteurs = $movie->cast();
 $image = $movie->photo();
 //echo $movie->savephoto("http://localhost/Allocine/trunk/images/");
 
+echo $title."</br>".$year[1]['day'].$year[1]['mon'].$year[1]['year']."</br>"."</br>" ;
 
-
+$res = $realisateur[0]['name'];
 
 for($i = 0 ; $i < count($genre) ; $i++){
 	echo $genre[$i]."</br>" ;
