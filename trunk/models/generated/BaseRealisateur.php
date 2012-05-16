@@ -21,7 +21,7 @@ abstract class BaseRealisateur extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->setTableName('Realisateur');
+        $this->setTableName('realisateur');
         $this->hasColumn('realisateur_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,

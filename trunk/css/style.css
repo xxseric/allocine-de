@@ -812,6 +812,19 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	width: 700px;
  }
  
+ #contenu_film #ajout_favoris button
+ { 	
+	background: none;
+	border: 0px;
+	float : right;
+ }
+ 
+ #contenu_film #ajout_favoris button img
+ { 	
+	width: 25px;
+	height: 25px;
+ }
+ 
  #contenu_film h1
  { 	
 	font-family: ComfortaaBold;

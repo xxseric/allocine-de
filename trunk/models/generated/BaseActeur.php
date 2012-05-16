@@ -10,7 +10,7 @@ Doctrine_Manager::getInstance()->bindComponent('Acteur', 'doctrine');
  * @property integer $acteur_id
  * @property string $acteur_nom
  * @property string $acteur_prenom
- * @property Doctrine_Collection $ListeActeur
+ * @property Doctrine_Collection $Listeacteur
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -21,7 +21,7 @@ abstract class BaseActeur extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->setTableName('Acteur');
+        $this->setTableName('acteur');
         $this->hasColumn('acteur_id', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
@@ -53,7 +53,7 @@ abstract class BaseActeur extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('ListeActeur', array(
+        $this->hasMany('Listeacteur', array(
              'local' => 'acteur_id',
              'foreign' => 'listeActeur_acteur_id'));
     }

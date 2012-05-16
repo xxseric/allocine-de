@@ -9,6 +9,7 @@
 	require_once 'persistence/acteur_dao.php';
 	require_once 'persistence/listeCategoriesFilm_dao.php';
 	require_once 'persistence/categorieFilm_dao.php';
+	require_once 'persistence/filmFavoris_dao.php';
 		
 	function contenu_fiche_film()
 	{
@@ -83,6 +84,23 @@
 				}		
 			}	
 			
+			$favoris = "";
+			if(isset($_SESSION['user_level'])){
+				$filmFavoris = getFilmFavorisByFilmIdAndUserId($film['film_id'], $_SESSION['user_id']);
+				if( count($filmFavoris) > 0 ){
+					$favoris .=    "<form id='ajout_favoris' method='post' action='./controller/filmFavoris_controller.php?action=enlever_film_favoris' >
+									<input type='hidden' name='film_favoris_id' value='".$filmFavoris['film_favoris_id']."' />
+									<button type='submit'><img src='./images/delete.png'></img></button>
+									</form>";
+				}else{
+					$favoris .=    "<form id='ajout_favoris' method='post' action='./controller/filmFavoris_controller.php?action=ajouter_film_favoris' >
+									<input type='hidden' name='film_id' value='".$film['film_id']."' />
+									<input type='hidden' name='user_id' value='".$_SESSION['user_id']."' />
+									<button type='submit'><img src='./images/add.png' value='ajouter aux favoris'></img></button>
+									</form>";
+				}				
+			}
+			
 			$html=
 "
 <script type='text/javascript'>
@@ -106,6 +124,7 @@
 	});
 </script>
 <div id='contenu_film'>
+	".$favoris."
 	<h1>".$film['film_titre']."</h1>
 	<div id='jaq_infos'>
 		<div class='jaquette'>
