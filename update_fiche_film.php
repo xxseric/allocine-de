@@ -59,10 +59,10 @@
 			<div class='informations'>
 				<ul>
 					<li>
-						<span class='bold'>Annnée : </span><input type='text' name='date_film' id='date_film' data-dojo-type='dijit.form.DateTextBox' required='true'  value='".$_POST['date_film']."' />
+						<span class='bold'>Annn&eacute;e : </span><input type='text' name='date_film' id='date_film' data-dojo-type='dijit.form.DateTextBox' required='true'  value='".$_POST['date_film']."' />
 					</li>
 					<li>
-						<span class='bold'>Réalisé par : </span>
+						<span class='bold'>R&eacute;alis&eacute; par : </span>
 						<input value='".$_POST['realisateur_prenom_film']."' type='text' name='realisateur_prenom_film' id='realisateur_prenom_film' data-dojo-type='dijit.form.TextBox'
 								data-dojo-props='trim:true, propercase:true' style=' width: 100px;' />
 						<input value='".$_POST['realisateur_nom_film']."' type='text' name='realisateur_nom_film' id='realisateur_nom_film' data-dojo-type='dijit.form.TextBox'

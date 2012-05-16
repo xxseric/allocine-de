@@ -184,7 +184,6 @@ HEREDOC;
 						<li><a href="./controller/user_controller.php?action=film">Films</a></li>
 						<li><a href="./controller/user_controller.php?action=user_gestion">Gestion</a></li>
 						<li><a href="./controller/user_controller.php?action=liste_users">Inscrits</a></li>
-						<li><a href="">Base de données</a></li>
 						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
 				</div>
@@ -316,7 +315,7 @@ HEREDOC;
 <<<HEREDOC
 <div id="footer">
 				<p><a href="./controller/user_controller.php?action=about">About</a> | <a href="./controller/user_controller.php?action=contact">Contact</a></p>
-				<p>Tous droits réservés 2012 : <a href="#">Desmauts-Evers</a></p>
+				<p>Tous droits r&eacute;serv&eacute;s 2012 : <a href="#">Desmauts-Evers</a></p>
 				<p><a href="#">Valid XHTML 1.0 Strict</a> | <a href="#">Valid CSS</a></p>
 			</div>
 			
