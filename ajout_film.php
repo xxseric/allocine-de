@@ -34,7 +34,6 @@ $realisateur = $movie->director();
 $resumer = $movie->storyline();
 $acteurs = $movie->cast();
 $image = $movie->photo();
-//echo $movie->savephoto("http://localhost/Allocine/trunk/images/");
 
 echo $title."</br>".$year[1]['day'].$year[1]['mon'].$year[1]['year']."</br>"."</br>" ;
 
@@ -86,6 +85,8 @@ copy($url,$path.'/'.$_POST['ajout_1'].'.jpg');
 						
 				$id_film=getFilmIdByTitre($title);		
 				
+				
+				//ajout acteur 
 				for($i = 0 ; $i < count($acteurs) ; $i++){
 								$actVal = explode(" ", $acteurs[$i]['name']);
 											if(acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]) == -1 ){
