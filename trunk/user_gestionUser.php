@@ -51,7 +51,7 @@ HEREDOC;
 				             			<tbody>" ; 
 						
 				    	$groupe = getUsersByGroupeId($groupeId);
-				    	$html .= "<div style='float:right;'><button>quitter le groupe</button></div>" ;
+				    	$html .= "<div style='float:right;'><button  onclick='quitterGroupe(".$_SESSION['user_id'].");'>quitter le groupe</button></div>" ;
 						foreach($groupe as $user){
 							$html .= '	<tr> 
 				             					<td>'.$user["user_nom"].'</td> 
@@ -92,12 +92,14 @@ HEREDOC;
 				             			</thead>
 				             			<tbody>
 				                    	" ;
+								
 								foreach($allGroupe as $groupe){
 									$html .= "<tr><th>"
 									.$groupe['groupe_lib']."</th>
 									<th><button onclick='rejoindreGroupe(".$_SESSION['user_id'].",".$groupe['groupe_id'].")'>Rejoindre</button></th>
 									</tr>" ;
 								}	
+								
 								$html .= "</tbody></table>";
 							}else {
 								$html .= "Pas de groupe creer pour le moment." ;
@@ -321,7 +323,7 @@ if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
 						
 				$id_film=getFilmIdByTitre($_POST['film_titre']);		
 				
-				echo addListeActeur($id_film,$actId);
+				 addListeActeur($id_film,$actId);
 				
 				for($i = 0 ; $i < count($listeCategories) ; $i++ ) {
 				addListeCategorieFilm($id_film, $listeCategories[$i]);

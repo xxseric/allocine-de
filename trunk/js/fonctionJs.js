@@ -127,6 +127,18 @@ function rejoindreGroupe(idUser,idGroupe){
           }
   }
 
+//quiter groupe
+function quitterGroupe(idUser){
+
+	var requeteHttp=getRequeteHttp();
+  if (requeteHttp!=null)
+          {
+          requeteHttp.open("POST","./quitterGroupe.php",true);
+          requeteHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+          requeteHttp.onreadystatechange = function () {recevoirReponseCreerGroupe(requeteHttp)};
+          requeteHttp.send("userId="+idUser);
+          }
+  }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Fonction permettant de recevoir et de traiter la reponse de la requete Ajax
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
