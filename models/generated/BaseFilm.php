@@ -66,8 +66,8 @@ abstract class BaseFilm extends Doctrine_Record
              'autoincrement' => false,
              ));
         $this->hasColumn('film_image_id', 'integer', 4, array(
-             'type' => 'integer',
-             'length' => 4,
+             'type' => 'string',
+             'length' => 40,
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,
