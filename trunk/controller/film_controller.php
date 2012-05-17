@@ -27,6 +27,8 @@
 			
 			if($action == "fiche_film"){							/* Affichage index */
 				$dest = processFicheFilm();
+			}else if($action == "ajout_film_via_id"){
+				$dest = processAjoutFilmById();
 			}
 			
 			if(!empty($dest))

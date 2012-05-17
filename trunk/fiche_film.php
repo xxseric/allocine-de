@@ -31,12 +31,13 @@
 				foreach ($listeActeursFilm as $acteurFilm)
 					$liste .= getActeurPrenomById($acteurFilm["listeActeur_acteur_id"]).' '.getActeurNomById($acteurFilm["listeActeur_acteur_id"]).' - ';
 				$liste .="...";
-			}else if((int)$listeActeursFilm != -1){
+			}else if((int)$listeActeursFilm != null){
 				$liste .= getActeurPrenomById($listeActeursFilm[0]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[0]["listeActeur_acteur_id"]);
 			}
 		
 			$listeCategories = getListeCategorieFilmByFilmId($film['film_id']);
 			$liste_cat = "";		
+			if($listeCategories != null){
 			if(count($listeCategories) > 3){
 				for($i=0; $i<3; $i++)
 					$liste_cat .= getCategorieFilmLibById($listeCategories[$i]['listeCategoriesFilms_categorie_film']).'  ';
@@ -46,7 +47,7 @@
 					$liste_cat .= getCategorieFilmLibById($categorie['listeCategoriesFilms_categorie_film']).'  ';
 			}else if(count($listeCategories) == 1){
 				$liste_cat .= getCategorieFilmLibById($listeCategories[0]["listeCategoriesFilms_categorie_film"]).' ';
-			}		
+			}	}	
 		
 			$resume = "Il n'y a pour le moment aucun resume de ce film.";
 			if($film['film_resume'] != null)
@@ -175,7 +176,7 @@
 		}
 	
 		if(isset($_POST['realisateur_prenom_film']) && isset($_POST['realisateur_nom_film'])){
-			if(getRealisateurIdByNomAndPrenom($_POST['realisateur_nom_film'], $_POST['realisateur_prenom_film']) == -1)
+			if(getRealisateurIdByNomAndPrenom($_POST['realisateur_nom_film'], $_POST['realisateur_prenom_film']) == null)
 				addRealisateur($_POST['realisateur_nom_film'], $_POST['realisateur_prenom_film']);
 			$realisateur_id = getRealisateurIdByNomAndPrenom($_POST['realisateur_nom_film'], $_POST['realisateur_prenom_film']);
 			setFilmRealisateurIdById($_POST['filmId'], $realisateur_id);
@@ -184,7 +185,7 @@
 		/*if(isset($_POST['acteur_film'])){
 		 $actVal = explode( " " , $_POST['acteur_film']);
 	
-		if( getIdbyNomEtPrenom($actVal[1],$actVal[0]) == -1 ){
+		if( getIdbyNomEtPrenom($actVal[1],$actVal[0]) == null ){
 		addActeur($actVal[1],$actVal[0]);
 		}
 		$actId	= getIdbyNomEtPrenom($actVal[1],$actVal[0]);

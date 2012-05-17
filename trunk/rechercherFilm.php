@@ -34,7 +34,7 @@
 HEREDOC;
 
 	$listeCategorie = getAllCategories();
-if($listeCategorie != -1){	
+if($listeCategorie != null){	
 	$html .= '
 	<div id="categorie_recherche" style="display:none;">';
 	for($i=0 ; $i< count($listeCategorie) ; $i++){
@@ -46,16 +46,12 @@ if($listeCategorie != -1){
 		
 	}
 	
-}else{
-	$html.= "Il n'y a pas de catégories disponible pour le moment !" ;
-}	
+}
 	
-	$html .= '
-	</div>';
 
 	$html."<br/>";
 
-	
+	$listeFilm = null;
 	if(!isset($_POST['categorie']) && !isset($_POST['recherche'])){
 	$listeFilm = getAllFilms();
 	
@@ -75,7 +71,7 @@ if($listeCategorie != -1){
 	}
 	
 	
-	if($listeFilm != -1){
+	if($listeFilm != null){
 		for($i = 0 ; $i < count($listeFilm) ; $i++){
 			$idres =	getFilmRealisateurIdById($listeFilm[$i]['film_id']);
 			$res = getRealisateurById($idres);		

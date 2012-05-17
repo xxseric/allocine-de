@@ -1,8 +1,10 @@
 <?php
 
+	include_once (dirname(__FILE__) . '/../orm/bootstrap.php');
+
 	function addListeCategorieFilm($film_id, $categorie_film_id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$isExisting = getListeCategorieFilmByFilmIdAndCategorieId($film_id, $categorie_film_id);
 	
 		if($isExisting != -1){
@@ -12,17 +14,17 @@
 			$listeCategoriesFilm->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}
 	}	
 	
-function	getListeCategorieFilmByFilmIdAndCategorieId($id , $cat_id){
-		Doctrine_Core :: loadModels('./models');
+	function	getListeCategorieFilmByFilmIdAndCategorieId($id , $cat_id){
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_film_id', $id ,null);	
 		
 		foreach ($listeCategoriesFilm as $categorie){
 			if($categorie['listeCategoriesFilms_categorie_film'] == $cat_id){
-				return -1 ;
+				return null ;
 			}
 		}
 		
@@ -31,21 +33,21 @@ function	getListeCategorieFilmByFilmIdAndCategorieId($id , $cat_id){
 	
 	function getListeCategorieFilmById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_id', $id ,null);	
 		$listeCategoriesFilm = $listeCategoriesFilm->getData();
 		if(count($listeCategoriesFilm) == 0)
-			return -1;
+			return null;
 		return $listeCategoriesFilm[0];
 	}
 	
 	function getListeCategorieFilmByFilmId($film_id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_film_id', $film_id ,null);	
 		$listeCategoriesFilm = $listeCategoriesFilm->getData();
 		if(count($listeCategoriesFilm) == 0){
-			return -1;
+			return null;
 		}else if(count($listeCategoriesFilm) > 1){
 			$liste = array();
 			foreach ($listeCategoriesFilm as $categorie){
@@ -58,11 +60,11 @@ function	getListeCategorieFilmByFilmIdAndCategorieId($id , $cat_id){
 	
 	function getListeCategorieFilmByCategorieFilmId($categorie_film_id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$listeCategoriesFilm = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_categorie_film', $categorie_film_id ,null);	
 		$listeCategoriesFilm = $listeCategoriesFilm->getData();
 		if(count($listeCategoriesFilm) == 0)
-			return -1;
+			return null;
 		foreach ($listeCategoriesFilm as $categorie){
 			$liste[] = $categorie;
 		}
@@ -83,12 +85,12 @@ function	getListeCategorieFilmByFilmIdAndCategorieId($id , $cat_id){
 			return $listeCategories;
 		}
 		else
-			return -1;
+			return null;
 	}
 	
 	function deleteListeCategorieFilmByFilmId($film_id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$listeCategories = getListeCategorieFilmByFilmId($film_id);
 		if(count($listeCategories) > 0){
 			foreach ($listeCategories as $categorieFilm){
@@ -97,12 +99,12 @@ function	getListeCategorieFilmByFilmIdAndCategorieId($id , $cat_id){
 			return 1;
 		}
 		else
-			return -1;
+			return null;
 	}
 	
 	function deleteListeCategorieFilmByCategorieFilmId($categorie_film_id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$listeCategories = getListeCategorieFilmByCategorieFilmId($categorie_film_id);
 		if(count($listeCategories) > 0){
 			foreach ($listeCategories as $categorieFilm){
@@ -111,12 +113,12 @@ function	getListeCategorieFilmByFilmIdAndCategorieId($id , $cat_id){
 			return 1;
 		}
 		else
-			return -1;
+			return null;
 	}
 	
 	function deleteListeCategorieFilmByFilmIdAndCategorieFilmId($film_id, $categorie_film_id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$listeCategories = getListeCategorieFilmByFilmIdAndCategorieFilmId($film_id, $categorie_film_id);
 		if(count($listeCategories) > 0){
 			foreach ($listeCategories as $categorieFilm){
@@ -125,7 +127,7 @@ function	getListeCategorieFilmByFilmIdAndCategorieId($id , $cat_id){
 			return 1;
 		}
 		else
-			return -1;
+			return null;
 	}
 
 ?>

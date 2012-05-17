@@ -1,11 +1,11 @@
 <?php
 
-	include_once ('./orm/bootstrap.php');
+	include_once (dirname(__FILE__) . '/../orm/bootstrap.php');
 	
 	
 	function addUser($user_nom, $user_prenom, $user_num_rue=null, $user_lib_rue=null, $user_cp=null, $user_ville=null, $user_telephone=null, $user_email, $user_mdp, $user_groupe_id=null, $user_level=1)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$isExisting = getUserIdByEmail($user_email);
 		if($isExisting == -1){
 			$user = new User();
@@ -23,13 +23,13 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}		
 	}
 	
 	function getUserById($id)
 	{
-		Doctrine_Core::loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core::getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
@@ -39,127 +39,127 @@
 	
 	function getUserIdByEmail($email)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_email', $email ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_id'];
 	}
 	
 	function getUserNomById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_nom'];
 	}
 	
 	function getUserPrenomById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_prenom'];
 	}
 	
 	function getUserNumRueById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_num_rue'];
 	}
 	
 	function getUserLibRueById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_lib_rue'];
 	}
 	
 	function getUserCPById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_cp'];
 	}
 	
 	function getUserVilleById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_ville'];
 	}
 	
 	function getUserTelephoneById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_telephone'];
 	}
 	
 	function getUserEmailById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_email'];
 	}
 	
 	function getUserMdpById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_mdp'];
 	}
 	
 	function getUserLevelById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_level'];
 	}
 	
 	function getUserGroupeIdById($id)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$user = Doctrine_Core :: getTable ( 'User' )->findBy('user_id', $id ,null);	
 		$user = $user->getData();
 		if(count($user) != 1)
-			return -1;
+			return null;
 		return $user[0]['user_groupe_id'];
 	}
 	
 	function getUsersByIds($ids)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		if(count($ids)>1){
 			$listeUsers = array();
 			foreach ($ids as $id){
@@ -172,18 +172,18 @@
 			$user = getUserById($ids);
 			return $user;
 		}else{
-			return -1;
+			return null;
 		}
 	}
 	
 	function getUsersByGroupeId($groupeId)
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$listeUsers = Doctrine_Core :: getTable ( 'User' )->findBy('user_groupe_id', $groupeId ,null);	
 		$listeUsers = $listeUsers->getData();
 		
 		if(count($listeUsers) < 1)
-			return -1;
+			return null;
 	/*	if(count($listeUsers) == 1)
 			return $listeUsers[0];
 		$liste = array();
@@ -194,7 +194,7 @@
 	
 	function getAllUsers()
 	{
-		Doctrine_Core :: loadModels('./models');
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$listeUsers = Doctrine_Core :: getTable ( 'User' )->findAll(null);	
 		$listeUsers = $listeUsers->getData();
 		$liste = array();
@@ -203,7 +203,7 @@
 			$liste[] = $user;
 		}
 		if(count($listeUsers) == 0)
-			return -1;
+			return null;
 		return $liste;
 	}
 
@@ -215,7 +215,7 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 
@@ -227,7 +227,7 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 
@@ -239,7 +239,7 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 
@@ -251,7 +251,7 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 
@@ -263,7 +263,7 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 
@@ -275,7 +275,7 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 
@@ -287,7 +287,7 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 
@@ -299,7 +299,7 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 
@@ -311,7 +311,7 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 
@@ -323,7 +323,7 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 
@@ -335,7 +335,7 @@
 			$user->save();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 	
@@ -346,7 +346,7 @@
 			$user->delete();
 			return 1;
 		}else{
-			return -1;
+			return null;
 		}	
 	}
 ?>
