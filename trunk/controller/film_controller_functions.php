@@ -97,7 +97,8 @@
 		require_once (dirname(__FILE__) . '/../persistence/film_dao.php');
 		require_once (dirname(__FILE__) . '/../persistence/listeActeur_dao.php');
 		require_once (dirname(__FILE__) . '/../persistence/categorieFilm_dao.php');
-		
+		$ajoutRea = true ; 
+		$ajoutActeur = true ; 
 		
 		if(isset($_POST['site_lib']) && isset($_POST['film_id'])){
 		
@@ -126,14 +127,19 @@
 		
 			///////////////////////ajout du film /////////////////////////////////
 			//verifie si le realisateur à déja été ajouter
-			$resVal = explode( " " ,$realisateur[0]['name']);
-			if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
-				$resId = getRealisateurIdByPrenom($resVal[0]) ;
-			}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
-				$resId = getRealisateurIdByPrenom($resVal[0]) ;
-			}else{
-				addRealisateur($resVal[1],$resVal[0]); //ajout du réalisateur si il est pas dans la bdd
-				$resId = getRealisateurIdByPrenom($resVal[0]) ;
+			try{
+					$resVal = explode( " " ,$realisateur[0]['name']);
+					if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
+						$resId = getRealisateurIdByPrenom($resVal[0]) ;
+					}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
+						$resId = getRealisateurIdByPrenom($resVal[0]) ;
+					}else{
+						addRealisateur($resVal[1],$resVal[0]); //ajout du réalisateur si il est pas dans la bdd
+						$resId = getRealisateurIdByPrenom($resVal[0]) ;
+					}
+			}catch(Exception $e) {
+				echo "probleme détecter lors de l'ajout du realisateur " ;
+				$resId = null ;
 			}
 			//ajout du film
 			//date = 2012-05-09 Y-M-D
@@ -144,14 +150,22 @@
 			$id_film=getFilmIdByTitre($title);
 		
 			//ajout acteur
-			for($i = 0 ; $i < count($acteurs) ; $i++){
-				$actVal = explode(" ", $acteurs[$i]['name']);
-				if(acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]) == -1 ){
-					addActeur($actVal[1],$actVal[0]);
-				}
-				$actId	= acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]);
-				addListeActeur($id_film,$actId);
-			}
+	
+					for($i = 0 ; $i < count($acteurs) ; $i++){
+								try{
+						$actVal = explode(" ", $acteurs[$i]['name']);
+						
+						if(acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]) == -1 ){
+							addActeur($actVal[1],$actVal[0]);
+						}
+						
+						$actId	= acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]);
+						addListeActeur($id_film,$actId);
+								}catch (Exception $e){
+									echo "probleme détecter lors de l'ajout d'un acteur " ;
+								}
+					}
+		
 			for($i = 0 ; $i < count($genre) ; $i++){
 				addCategorieFilm($genre[$i]);
 				$id_cat = getCategorieFilmIdByLib($genre[$i]);
