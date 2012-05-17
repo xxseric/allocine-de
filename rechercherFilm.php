@@ -11,7 +11,8 @@
 	require_once 'persistence/listeActeur_dao.php';
 	require_once 'persistence/acteur_dao.php';
 	require_once 'persistence/listeCategoriesFilm_dao.php';
-	
+	require_once 'persistence/filmFavoris_dao.php';
+	require_once 'persistence/user_dao.php';
 	
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
@@ -27,12 +28,19 @@
 <<<HEREDOC
 <div id="contenu_recherche_film">
 	<h1>Liste des Films</h1>
-	<h2>Trier par :</h2> 
-	<ul class="criteres_recherche">
-		<li><div onclick="afficheCategorie();" style="width:auto; cursor: pointer;">Categories</div></li>
-	</ul>
+	
 HEREDOC;
 
+	
+	
+	if(isset($_POST['favoris_user_id'])){
+		$user = getUserById($_POST['favoris_user_id']);		
+		$html .=	'<h2>Liste des films favoris de l\'utilisateur '.$user['user_nom']." ".$user['user_prenom'].'</h2>';
+	}else{
+		$html .= '<h2>Trier par :</h2> 
+			<ul class="criteres_recherche">
+		<li><div onclick="afficheCategorie();" style="width:auto; cursor: pointer;">Categories</div></li>
+	</ul>';
 	$listeCategorie = getAllCategories();
 if($listeCategorie != null){	
 	$html .= '
@@ -43,20 +51,18 @@ if($listeCategorie != null){
 	 				<div onClick="document.forms['.$j.'].submit();" style="cursor: pointer;" >+'.$listeCategorie[$i]['catFilm_libelle'].'</div>
 	 				<input type="hidden" value="'.$listeCategorie[$i]['catFilm_id'].'" name="categorie"/>
 				  </form>';	
+		}
 	}
+
 	
+$html.="</div><br/>";
 }
-	
-
-	$html.="</div><br/>";
-
 	$listeFilm = null;
-	if(!isset($_POST['categorie']) && !isset($_POST['recherche'])){
-	$listeFilm = getAllFilms();
+
 	
-	}else if(isset($_POST['categorie'])){
+	 if(isset($_POST['categorie'])){ //liste des films trier par categorie
 	$listeFilm = 	getFilmByCategorie($_POST['categorie']);
-	}else if(isset($_POST['recherche'])){
+	}else if(isset($_POST['recherche'])){ //liste des films par une recherche
 	$listeFilmAll = getAllFilms();
 	$j = 0 ;
 	$listeFilm = array();
@@ -67,6 +73,23 @@ if($listeCategorie != null){
 				$j++ ; 
 			}
 		}		
+	}else if(isset($_POST['favoris_user_id'])){ //film favori d'un utilisateur
+		$listeFilm = array();
+		$listeFilmAll = getFilmFavorisByUserId($_POST['favoris_user_id']);	
+		if(is_object($listeFilmAll)){
+			 	$film = getFilmById($listeFilmAll['film_id']);
+				$listeFilm[0] = $film ;
+		}else{
+		
+		 	for($i = 0 ; $i < count($listeFilmAll) ; $i++){
+			 	$film = getFilmById($listeFilmAll['film_id']);
+			 	$listeFilm[$i] = $film ; 	
+		 	}
+		}
+	}else { //liste de tous les films
+		
+		$listeFilm = getAllFilms();
+		
 	}
 	
 	
@@ -74,7 +97,12 @@ if($listeCategorie != null){
 	if($listeFilm != null){
 		for($i = 0 ; $i < count($listeFilm) ; $i++){
 			$idres =	getFilmRealisateurIdById($listeFilm[$i]['film_id']);
-			$res = getRealisateurById($idres);		
+				if($idres != null){
+					$res = getRealisateurById($idres);	
+				}else {
+					$res = null ;
+				}
+				
 			$image = getFilmImageIdById($listeFilm[$i]['film_id']); 
 			$listeNotesFilm = getNotesByFilmId($listeFilm[$i]['film_id']);
 			$sum = 0;
@@ -87,26 +115,29 @@ if($listeCategorie != null){
 			}
 			
 			else if(count($listeNotesFilm) > 1){
-				//foreach ($listeNotesFilm as $note){
-				//	$sum = $sum + $note[0]['note_val'];
-				//}
-				//	
-				//$moyenne = sprintf('%01.1f', $sum / count($listeNotesFilm));
-				$sum = 0 ;
+				foreach ($listeNotesFilm as $note){
+					$sum = $sum + $note['note_val'];
+				}					
+				$moyenne = sprintf('%01.1f', $sum / count($listeNotesFilm));
 			}
 			
 			$listeActeursFilm = getListeActeurByFilmId($listeFilm[$i]['film_id']);
+			
 			$liste = "";
-			if(count($listeActeursFilm) > 3){
-				for($j=0; $j<3; $j++)
-					$liste .= getActeurPrenomById($listeActeursFilm[$j]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$j]["listeActeur_acteur_id"]).' - ';
-					$liste .="...";
-			}else if(count($listeActeursFilm) > 1){
-			foreach ($listeActeursFilm as $acteurFilm)
-				$liste .= getActeurPrenomById($acteurFilm["listeActeur_acteur_id"]).' '.getActeurNomById($acteurFilm["listeActeur_acteur_id"]).' - ';
-				$liste .="...";
-			}else if((int)$listeActeursFilm != null){
-				$liste .= getActeurPrenomById($listeActeursFilm[0]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[0]["listeActeur_acteur_id"]);
+			for($k = 0 ; $k < count($listeActeursFilm) ; $k ++){
+				
+				if($listeActeursFilm[$k]['listeActeur_acteur_id'] != null){
+			
+					$liste .= getActeurPrenomById($listeActeursFilm[$k]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$k]["listeActeur_acteur_id"]).' - ';
+				
+				}else {
+					$liste .= "..." ;
+					break ;
+				}	
+				
+				if( $k > 3 ){
+					break ;
+				}		
 			}
 			
 			$html .= 
@@ -117,20 +148,32 @@ if($listeCategorie != null){
 					<div id="content_info"> ';
 						$html .=
 						"<h3>".$listeFilm[$i]['film_titre']."</h3>" ;
+						if($res == null){							
+							$html.= '
+						<ul>
+							<li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
+							<li><span class="bold">Realisateur : </span>Pas de realisateur</li>
+							<li><span class="bold">Acteurs : </span>'.$liste.'</li>
+							<li><span class="bold">Note : </span>'.$moyenne.'</li>
+						</ul>' ;
+						}else{
+						
 						$html.= '
 						<ul>
 							<li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
 							<li><span class="bold">Realisateur : </span>'.$res['realisateur_prenom'].' '.$res['realisateur_nom'].'</li>
 							<li><span class="bold">Acteurs : </span>'.$liste.'</li>
 							<li><span class="bold">Note : </span>'.$moyenne.'</li>
-						</ul>
-						<form method="post" action="fiche_film.php" >
+						</ul>' ;
+						}
+					$html.= '	<form method="post" action="fiche_film.php" >
 							<input type="hidden" name="filmId" value="'.$listeFilm[$i]['film_id'].'" />
 							<button type="submit" id="button_film_fiche" ><span>Voir la fiche</span><img src="./images/fleche.png"></img></button>
 						</form>
 					</div>
 					<div style="clear:both;"></div>
 				';
+						
 		}
 		echo $html.'</div></div>' ;		
 	}else{

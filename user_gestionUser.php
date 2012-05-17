@@ -10,6 +10,7 @@
 	require_once 'persistence/listeActeur_dao.php';
 	require_once 'persistence/categorieFilm_dao.php';
 	require_once 'persistence/groupe_dao.php';
+	require_once 'persistence/filmFavoris_dao.php';
 	include_once 'ajout_film.php';
 	
 	$doc = new Document();
@@ -61,7 +62,16 @@ HEREDOC;
 						foreach($groupe as $user){
 							$html .= '	<tr> 
 				             					<td>'.$user["user_nom"].'</td> 
-				             				    <td>'.$user["user_prenom"].'</td>
+				             				    <td>'.$user["user_prenom"].'</td>' ;
+				             				    if(is_object(getFilmFavorisByUserId($user['user_id']))){
+				             				    $html.=	'<td><form action="./rechercherFilm.php" method="post">
+				             				    <input type=hidden value="'.$user['user_id'].'" name="favoris_user_id" />
+				             				    <input type=submit value="Voir ses favoris" />
+				             				    </form></td>' ;
+				             				    }else{
+				             				    $html .= '<td>Pas encore de favoris</td>'	;
+				             				    }
+				             				   $html .= '
 				             			</tr>';
 						}
 					$html .= ' 				</tbody>
