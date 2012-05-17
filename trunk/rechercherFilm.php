@@ -71,6 +71,7 @@ if($listeCategorie != null){
 	}
 	
 	
+	
 	if($listeFilm != null){
 		for($i = 0 ; $i < count($listeFilm) ; $i++){
 			$idres =	getFilmRealisateurIdById($listeFilm[$i]['film_id']);
@@ -79,15 +80,32 @@ if($listeCategorie != null){
 			$listeNotesFilm = getNotesByFilmId($listeFilm[$i]['film_id']);
 			$sum = 0;
 			$moyenne = 0;
-			if(count($listeNotesFilm) == 1){
-				$sum = $sum + $listeNotesFilm['note_val'];
+			if($listeNotesFilm == null){
+				$moyenne = "Il n'y a pour le moment aucune note d'attribu&eacute;e";
+			}else if(count($listeNotesFilm) == 1){
+				$sum = $sum + $listeNotesFilm[0]['note_val'];
 				$moyenne = sprintf('%01.1f', $sum);
 			}
 			else if(count($listeNotesFilm) > 1){
 				foreach ($listeNotesFilm as $note)
-					$sum = $sum + $note['note_val'];
+					$sum = $sum + $note[0]['note_val'];
 				$moyenne = sprintf('%01.1f', $sum / count($listeNotesFilm));
 			}
+			
+			$listeActeursFilm = getListeActeurByFilmId($listeFilm[$i]['film_id']);
+			$liste = "";
+			if(count($listeActeursFilm) > 3){
+				for($i=0; $i<3; $i++)
+					$liste .= getActeurPrenomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' - ';
+					$liste .="...";
+			}else if(count($listeActeursFilm) > 1){
+			foreach ($listeActeursFilm as $acteurFilm)
+				$liste .= getActeurPrenomById($acteurFilm["listeActeur_acteur_id"]).' '.getActeurNomById($acteurFilm["listeActeur_acteur_id"]).' - ';
+				$liste .="...";
+			}else if((int)$listeActeursFilm != null){
+				$liste .= getActeurPrenomById($listeActeursFilm[0]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[0]["listeActeur_acteur_id"]);
+			}
+			
 			$html .= 
 				'<div id="listeFilm">
 					<div id="picture">
@@ -100,7 +118,7 @@ if($listeCategorie != null){
 						<ul>
 							<li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
 							<li><span class="bold">Realisateur : </span>'.$res['realisateur_prenom'].' '.$res['realisateur_nom'].'</li>
-							<li><span class="bold">Acteurs : </span></li>
+							<li><span class="bold">Acteurs : </span>'.$liste.'</li>
 							<li><span class="bold">Note : </span>'.$moyenne.'</li>
 						</ul>
 						<form method="post" action="fiche_film.php" >
