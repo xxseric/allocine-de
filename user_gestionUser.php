@@ -10,6 +10,7 @@
 	require_once 'persistence/listeActeur_dao.php';
 	require_once 'persistence/categorieFilm_dao.php';
 	require_once 'persistence/groupe_dao.php';
+	include_once 'ajout_film.php';
 	
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
@@ -87,7 +88,7 @@ HEREDOC;
 				             			
 				             			<div id='rejoindre_groupe' style='display:none'>
 				             			";
-							if(count($allGroupe) > 0){
+							if($allGroupe != null){
 								$html .= "<table border=0>
 										<thead style='border-bottom : solid black 2px ;' >
 				                    		<tr >
@@ -125,10 +126,10 @@ HEREDOC;
 	//ajout d'un film///////
 	$html .= 
 	'
-	<div id="ajout_film" class="" style="display:none;border-top: solid black 2px ;">
-	<form method="post" action="./user_gestionUser.php" name="formulaire_ajout_film" id="formulaire_ajout_film" enctype="multipart/form-data" class="soria" dojoType="dijit.form.Form">
+	<div id="ajout_film" class="soria" style="display:none;border-top: solid black 2px ;">
+	<form method="post" action="./user_gestionUser.php" name="formulaire_ajout_film" id="formulaire_ajout_film" enctype="multipart/form-data" dojoType="dijit.form.Form">
 	<h3>Ajouter un film</h3>
-	<TABLE BORDER="0">
+	<center><TABLE BORDER="0">
 		<tr>
 			<td>				
 				<label>Titre</label><span id="asterisque">*</span>
@@ -163,8 +164,12 @@ HEREDOC;
 
 	$listeCat = getAllCategories();
 	
-	foreach($listeCat as $categorie){
-	$html	.= '<input type="checkbox" name="categorie'.$categorie['catFilm_id'].'" value="'.$categorie['catFilm_id'].'">'.$categorie['catFilm_libelle'].'<br>';
+	if(count($listeCat) > 1){
+		foreach($listeCat as $categorie){
+			$html	.= '<input type="checkbox" name="categorie'.$categorie['catFilm_id'].'" value="'.$categorie['catFilm_id'].'">'.$categorie['catFilm_libelle'].'<br>';
+		}
+	}else if(count($listeCat) == 1){
+		$html	.= '<input type="checkbox" name="categorie'.$listeCat['catFilm_id'].'" value="'.$listeCat['catFilm_id'].'">'.$listeCat['catFilm_libelle'].'<br>';
 	}
 
       $html .= '	</td>
@@ -178,7 +183,7 @@ HEREDOC;
 								data-dojo-props="trim:true, propercase:true" />
 			</td>
 		</tr>	
-	</TABLE> </br></br>
+	</TABLE></center> </br></br>
 				
 		
 					<label>Image : </label>  <input type="hidden" name="MAX_FILE_SIZE" value="2097152">    
@@ -189,13 +194,57 @@ HEREDOC;
 				<input type="text" name="resumer_film" id="resumer_film" data-dojo-type="dijit.form.SimpleTextarea" style="max-width: 690px;" />
 			
 	<center><button type="submit" data-dojo-type="dijit.form.Button" id="submitButton" >Ajouter</button></center>
-</form> ' ;
+</form> 
+<center><p>------------------------------ OU ------------------------------</p></center>
+<h3>Importer un film via l\'id</h3>
+<form method="post" action="./controller/film_controller.php?action=ajout_film_via_id" name="formulaire_import_film_via_id" id="formulaire_import_film_via_id"  enctype="multipart/form-data" dojoType="dijit.form.Form">
+	<center><table border=0>
+		<tr>
+			<td><label>Site d\'import : </label></td>
+			<td>
+				<select name="site_lib" data-dojo-type="dijit.form.Select">
+					<option value="allo">Allocine</option>
+					<option value="imdb">Imdb</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Film id : </label></td>
+			<td><input type="text" name="film_id" placeholder="Rentrez un id valide" data-dojo-type="dijit.form.TextBox" required="true"  /></td>
+		</tr>
+		<tr> 
+			<td align="center" colspan="2"><button type="submit" data-dojo-type="dijit.form.Button" id="submitButton2" >Ajouter</button></td>
+		</tr>
+	</table></center>	
+</form>
+<center><p>------------------------------ OU ------------------------------</p></center>
+<h3>Importer un film via le titre</h3>
+<form method="post" action="" name="formulaire_import_film_via_titre" id="formulaire_import_film_via_titre"  enctype="multipart/form-data" dojoType="dijit.form.Form">
+	<center><table border=0>
+		<tr>
+			<td><label>Site d\'import : </label></td>
+			<td>
+				<select name="site_lib" data-dojo-type="dijit.form.Select">
+					<option value="allo">Allocine</option>
+					<option value="imdb">Imdb</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Titre du film : </label></td>
+			<td><input type="text" name="film_id" placeholder="Rentrez un titre valide" data-dojo-type="dijit.form.TextBox" required="true"  /></td>
+		</tr>
+		<tr> 
+			<td align="center" colspan="2"><button type="submit" data-dojo-type="dijit.form.Button" id="submitButton3" >Ajouter</button></td>
+		</tr>
+	</table></center>	
+</form>';
 	
 ///////////Gestion du compte ///////////	
 	$html .= "</div>" ;
 	$user = getUserById($_SESSION['user_id']);
 	$html .= '<div id="gestion_compte" style="display:none;border-top: solid black 2px ;">
-						<TABLE id="gestion_tab" BORDER="0" cellspacing="10">
+						<center><TABLE id="gestion_tab" BORDER="0" cellspacing="10">
 		<tr>
 			<td>				
 				<label><b>Nom :</b></label>
@@ -255,7 +304,7 @@ HEREDOC;
 				'.$user['user_telephone'].'
 			</td>
 		</tr>	
-	</TABLE>
+	</TABLE></center>
 </div>
 </div>';
 	
