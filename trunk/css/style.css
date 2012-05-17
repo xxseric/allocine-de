@@ -227,6 +227,21 @@ body
 	text-shadow:1px 1px 1px black;
 }
 
+#header .menu #user_favoris
+{
+	float: right;
+	margin-top: -42px;
+	margin-right: 5px;
+}
+
+#header .menu #user_favoris a
+{
+	font-family:"ComfortaaBold";
+	text-decoration: none;
+	color: goldenrod;
+	font-size: 12px;
+}
+
 
 /***Menu Liste des films***/
 

@@ -21,4 +21,9 @@
 		return "rechercherFilm.php";
 	}
 	
+	function processUserFavorisListe()
+	{
+		return "user_films_favoris.php";
+	}
+	
 ?>

@@ -153,6 +153,7 @@ HEREDOC;
 						<li><a href="./controller/user_controller.php?action=user_gestion">Gestion</a></li>
 						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
+					<div id="user_favoris"><a href="./controller/filmFavoris_controller.php?action=user_favoris">Vos favoris</a></div>
 				</div>
 			</div>
 HEREDOC;
@@ -169,6 +170,7 @@ HEREDOC;
 						<li><a href="./controller/user_controller.php?action=user_gestion">Gestion</a></li>
 						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
+					<div id="user_favoris"><a href="./controller/filmFavoris_controller.php?action=user_favoris">Vos favoris</a></div>
 				</div>
 			</div>
 HEREDOC;
@@ -186,6 +188,7 @@ HEREDOC;
 						<li><a href="./controller/user_controller.php?action=liste_users">Inscrits</a></li>
 						<li><a href="./controller/user_controller.php?action=logout">Logout</a></li>
 					</ul>
+					<div id="user_favoris"><a href="./controller/filmFavoris_controller.php?action=user_favoris">Vos favoris</a></div>
 				</div>
 			</div>
 HEREDOC;
