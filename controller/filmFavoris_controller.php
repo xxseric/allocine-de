@@ -20,6 +20,8 @@
 				$dest = processAjouterFilmFavoris();
 			}else if($action == "enlever_film_favoris"){							/* Affichage index */
 				$dest = processEnleverFilmFavoris();
+			}else if($action == "user_favoris"){
+				$dest = processUserFavorisListe();
 			}
 			
 			if(!empty($dest))
