@@ -702,12 +702,13 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	margin: auto;
 	margin-top : 10px;
 	width: 550px;
-	height: 200px;
     -webkit-border-radius:20px;
     -moz-border-radius:20px;
 	border-radius:20px;
 	box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 255, 0.5);
 }
+
+
 
 #contenu_recherche_film #listeFilm #picture
 {

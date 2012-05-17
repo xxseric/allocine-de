@@ -99,7 +99,17 @@ function affichageGroupe(val){
 	}
 }
 
-
+//////////////////affiche categorie///////////
+var compteur = 0 ;
+function afficheCategorie(){
+	compteur++ ;
+	if(compteur == 1){
+	document.getElementById('categorie_recherche').style.display = 'block';
+	}else{
+	document.getElementById('categorie_recherche').style.display = 'none';
+	compteur = 0 ;
+	}
+	}
 /////////////////creer groupe //////////////////////////
 
 function creerGroupe(idUser){
