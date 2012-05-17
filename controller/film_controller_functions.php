@@ -1,9 +1,92 @@
 <?php
 
+	require_once (dirname(__FILE__) . '/../persistence/user_dao.php');
+	require_once (dirname(__FILE__) . '/../persistence/realisateur_dao.php');
+	require_once (dirname(__FILE__) . '/../persistence/acteur_dao.php');
+	require_once (dirname(__FILE__) . '/../persistence/film_dao.php');
+	require_once (dirname(__FILE__) . '/../persistence/listeActeur_dao.php');
+	require_once (dirname(__FILE__) . '/../persistence/categorieFilm_dao.php');
+	require_once (dirname(__FILE__) . '/../persistence/groupe_dao.php');
 	
 	function processFicheFilm()
 	{
 		return "update_fiche_film.php";
+	}
+	
+	function processAjoutFilmBrut()
+	{	
+		if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
+			if(isset($_POST['realisateur_film'])){
+				$resVal = explode( " " , $_POST['realisateur_film']);
+				if(!(getRealisateurIdByPrenom($resVal[0]) == null && getRealisateurIdByNom($resVal[1]) == null)){
+						
+					$resId = getRealisateurIdByPrenom($resVal[0]) ;
+				}else if (!(getRealisateurIdByNom($resVal[0]) == null && getRealisateurIdByPrenom($resVal[1]) == null)){
+						
+					$resId = getRealisateurIdByPrenom($resVal[0]) ;
+				}else{
+						
+					addRealisateur($resVal[1],$resVal[0]);
+					$resId = getRealisateurIdByPrenom($resVal[0]) ;
+				}
+					
+			}				
+				
+			$resumer = "";
+			if(isset($_POST['resumer_film'])){
+				$resumer = $_POST['resumer_film'] ;
+			}
+				
+			if ($_FILES["nom_du_fichier"]["error"] > 0)
+			{
+				echo "Error: " . $_FILES["nom_du_fichier"]["error"] . "<br />";
+			}
+			else
+			{
+				$chemin_destination = dirname(__FILE__) .'/../images/';
+				move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);
+			}
+				
+			$date = explode( "/" , $_POST['date_film']);
+			$imgId = explode(".", $_FILES['nom_du_fichier']['name'] );
+				
+				
+			$listeCat = getAllCategories();
+			if($listeCat != null){
+				$listeCategories = array();
+				$j = 0 ;
+				foreach($listeCat as $categorie){
+					if(isset($_POST['categorie'.$categorie['catFilm_id']])){
+						$listeCategories[$j] = $categorie['catFilm_id'] ;
+						$j ++ ;
+					}
+				}
+				for($i = 0 ; $i < count($listeCategories) ; $i++ ) {
+					addListeCategorieFilm($id_film, $listeCategories[$i]);
+				}
+			}
+				
+		
+			if ((isset($_FILES['nom_du_fichier']['fichier'])&&($_FILES['nom_du_fichier']['error'] == UPLOAD_ERR_OK))) {
+				$chemin_destination = dirname(__FILE__) .'/../images/';
+				move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);
+			}
+		
+				
+			addFilm($_POST['film_titre'],$date[0],$imgId[0],$resId, null ,$resumer,null,null,null,null);
+		
+			$id_film=getFilmIdByTitre($_POST['film_titre']);			
+			
+			if(isset($_POST['acteur_film'])){
+				$actVal = explode(" ",$_POST['acteur_film']);
+				if(acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]) == null ){
+					addActeur($actVal[1],$actVal[0]);
+				}
+				$act	= getActeurByNomAndPrenom($actVal[1], $actVal[0]); 
+				addListeActeur($id_film,$act['acteur_id']);
+			}		
+		}
+		return "rechercherFilm.php";
 	}
 	
 	function processAjoutFilmById()
@@ -76,7 +159,12 @@
 			}
 		
 		}
-		return "fiche_film.php";
+		return "rechercherFilm.php";
+	}
+	
+	function processAjoutFilmByTitre()
+	{
+		return "rechercherFilm.php";
 	}
 
 ?>

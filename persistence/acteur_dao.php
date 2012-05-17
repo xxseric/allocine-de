@@ -30,6 +30,24 @@
 		return $acteur[0]['acteur_id'];
 	}
 	
+	function getActeurByNomAndPrenom($nom, $prenom)
+	{
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
+		$acteur = Doctrine_Core :: getTable ( 'Acteur' )->findBy('acteur_nom', $nom ,null);	
+		$acteur = $acteur->getData();
+		if(count($acteur) == 0)
+			return null;
+		else if(count($acteur) == 1 && $acteur[0]['acteur_prenom'] == $prenom)
+			return $acteur[0];
+		else if(count($acteur) > 1){
+			foreach ($acteur as $ac){
+				if($act[0]['acteur_prenom'] == $prenom)
+					return $act[0];
+			}
+		}
+		return null;
+	}
+	
 	function getActeurNomById($id)
 	{
 		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');

@@ -127,7 +127,7 @@ HEREDOC;
 	$html .= 
 	'
 	<div id="ajout_film" class="soria" style="display:none;border-top: solid black 2px ;">
-	<form method="post" action="./user_gestionUser.php" name="formulaire_ajout_film" id="formulaire_ajout_film" enctype="multipart/form-data" dojoType="dijit.form.Form">
+	<form method="post" action="./controller/film_controller.php?action=ajout_film_brut" name="formulaire_ajout_film" id="formulaire_ajout_film" enctype="multipart/form-data" dojoType="dijit.form.Form">
 	<h3>Ajouter un film</h3>
 	<center><TABLE BORDER="0">
 		<tr>
@@ -164,9 +164,11 @@ HEREDOC;
 
 	$listeCat = getAllCategories();
 	
-	if(count($listeCat) > 1){
-		foreach($listeCat as $categorie){
-			$html	.= '<input type="checkbox" name="categorie'.$categorie['catFilm_id'].'" value="'.$categorie['catFilm_id'].'">'.$categorie['catFilm_libelle'].'<br>';
+	if($listeCat != null){
+		if(count($listeCat) > 1){
+			foreach($listeCat as $categorie){
+				$html	.= '<input type="checkbox" name="categorie'.$categorie['catFilm_id'].'" value="'.$categorie['catFilm_id'].'">'.$categorie['catFilm_libelle'].'<br>';
+			}
 		}
 	}else if(count($listeCat) == 1){
 		$html	.= '<input type="checkbox" name="categorie'.$listeCat['catFilm_id'].'" value="'.$listeCat['catFilm_id'].'">'.$listeCat['catFilm_libelle'].'<br>';
@@ -311,83 +313,5 @@ HEREDOC;
 	echo $html ;
 }
 	$doc->end();
-	
-	//poste d'un film//
-if(isset($_POST['film_titre']) && isset($_POST['date_film'])){
-	
-		echo '<script>affichageGestion(1);</script>';
-	
-						if(isset($_POST['realisateur_film'])){
-							$resVal = explode( " " , $_POST['realisateur_film']);
-							if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == -1)){
-							
-								$resId = getRealisateurIdByPrenom($resVal[0]) ;
-							}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == -1)){
-							
-								$resId = getRealisateurIdByPrenom($resVal[0]) ;
-							}else{
-							
-								addRealisateur($resVal[1],$resVal[0]);
-								$resId = getRealisateurIdByPrenom($resVal[0]) ;
-							}
-							
-						}
 
-						
-						if(isset($_POST['acteur_film'])){
-						$actVal = explode(" ",$_POST['acteur_film']);
-							if(acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]) == -1 ){
-								addActeur($actVal[1],$actVal[0]);
-							}
-						$actId	= acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]);
-					}
-					
-					
-					$resumer = "";
-					if(isset($_POST['resumer_film'])){
-						$resumer = $_POST['resumer_film'] ;
-					}
-					
-					if ($_FILES["nom_du_fichier"]["error"] > 0)
-					  {
-					  echo "Error: " . $_FILES["nom_du_fichier"]["error"] . "<br />";
-					  }
-					else
-					  {
-					  $chemin_destination = './images/';  
-					  move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']); 
-					  }
-					  
-					  $date = explode( "/" , $_POST['date_film']);
-					  $imgId = explode(".", $_FILES['nom_du_fichier']['name'] );
-			
-			
-			$listeCat = getAllCategories();
-			$listeCategories = array();
-			$j = 0 ;
-				foreach($listeCat as $categorie){
-					if(isset($_POST['categorie'.$categorie['catFilm_id']])){
-					$listeCategories[$j] = $categorie['catFilm_id'] ;  			
-					$j ++ ;
-					}
-				}
-			
-		
-			if ((isset($_FILES['nom_du_fichier']['fichier'])&&($_FILES['nom_du_fichier']['error'] == UPLOAD_ERR_OK))) {    
-				$chemin_destination = './images/';    
-				move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);    
-				}
-
-			
-				addFilm($_POST['film_titre'],$date[0],$imgId[0],$resId, null ,$resumer,null,null,null,null);
-						
-				$id_film=getFilmIdByTitre($_POST['film_titre']);		
-				
-				 addListeActeur($id_film,$actId);
-				
-				for($i = 0 ; $i < count($listeCategories) ; $i++ ) {
-				addListeCategorieFilm($id_film, $listeCategories[$i]);
-				}
-		
-}
 ?>
