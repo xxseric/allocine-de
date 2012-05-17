@@ -29,7 +29,7 @@
 	<h1>Liste des Films</h1>
 	<h2>Trier par :</h2> 
 	<ul class="criteres_recherche">
-		<li><div onclick="document.getElementById('categorie_recherche').style.display = 'block';" style="width:auto; cursor: pointer;">Categories</div></li>
+		<li><div onclick="afficheCategorie();" style="width:auto; cursor: pointer;">Categories</div></li>
 	</ul>
 HEREDOC;
 
@@ -42,14 +42,13 @@ if($listeCategorie != null){
 		$html .= '<form action="rechercherFilm.php" method=post>	
 	 				<div onClick="document.forms['.$j.'].submit();" style="cursor: pointer;" >+'.$listeCategorie[$i]['catFilm_libelle'].'</div>
 	 				<input type="hidden" value="'.$listeCategorie[$i]['catFilm_id'].'" name="categorie"/>
-				  </form>';
-		
+				  </form>';	
 	}
 	
 }
 	
 
-	$html."<br/>";
+	$html.="</div><br/>";
 
 	$listeFilm = null;
 	if(!isset($_POST['categorie']) && !isset($_POST['recherche'])){
@@ -71,7 +70,7 @@ if($listeCategorie != null){
 	}
 	
 	
-	
+	$html .= '<div id="listeFilm">' ;
 	if($listeFilm != null){
 		for($i = 0 ; $i < count($listeFilm) ; $i++){
 			$idres =	getFilmRealisateurIdById($listeFilm[$i]['film_id']);
@@ -86,17 +85,21 @@ if($listeCategorie != null){
 				$sum = $sum + $listeNotesFilm[0]['note_val'];
 				$moyenne = sprintf('%01.1f', $sum);
 			}
+			
 			else if(count($listeNotesFilm) > 1){
-				foreach ($listeNotesFilm as $note)
-					$sum = $sum + $note[0]['note_val'];
-				$moyenne = sprintf('%01.1f', $sum / count($listeNotesFilm));
+				//foreach ($listeNotesFilm as $note){
+				//	$sum = $sum + $note[0]['note_val'];
+				//}
+				//	
+				//$moyenne = sprintf('%01.1f', $sum / count($listeNotesFilm));
+				$sum = 0 ;
 			}
 			
 			$listeActeursFilm = getListeActeurByFilmId($listeFilm[$i]['film_id']);
 			$liste = "";
 			if(count($listeActeursFilm) > 3){
-				for($i=0; $i<3; $i++)
-					$liste .= getActeurPrenomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' - ';
+				for($j=0; $j<3; $j++)
+					$liste .= getActeurPrenomById($listeActeursFilm[$j]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$j]["listeActeur_acteur_id"]).' - ';
 					$liste .="...";
 			}else if(count($listeActeursFilm) > 1){
 			foreach ($listeActeursFilm as $acteurFilm)
@@ -107,7 +110,7 @@ if($listeCategorie != null){
 			}
 			
 			$html .= 
-				'<div id="listeFilm">
+				'
 					<div id="picture">
 						<img  src="./images/'.$image.'.jpg"></img>
 					</div> 
@@ -127,9 +130,9 @@ if($listeCategorie != null){
 						</form>
 					</div>
 					<div style="clear:both;"></div>
-				</div>';
+				';
 		}
-		echo $html.'</div>' ;		
+		echo $html.'</div></div>' ;		
 	}else{
 		echo $html."</br>"."<span class='erreur'>Il n'y a pour le moment aucun film dans notre base de donnees, veuillez nous en excuser.</span>"."</br>"."</div>";
 	}
