@@ -13,8 +13,11 @@
 		
 	function contenu_fiche_film()
 	{
-		if(isset($_POST["filmId"])){
-			$film = getFilmById($_POST["filmId"]);
+		if(isset($_POST["filmId"]) || isset($_GET["filmId"])){
+			if(isset($_POST["filmId"]))
+				$film = getFilmById($_POST["filmId"]);
+			else if(isset($_GET["filmId"]))
+				$film = getFilmById($_GET["filmId"]);
 			if(count($film) == 0)
 				return "Un probleme est survenu";	
 

@@ -30,7 +30,7 @@
 				$film = getFilmById($listeFilms[$i]['film_id']);
 				$html .= "	<tr>
 								<td><img src='./images/".$film['film_image_id'].".jpg'></img></td>
-								<td>".$film['film_titre']."</td>
+								<td><a href='fiche_film.php?filmId=".$film['film_id']."'>".$film['film_titre']."</a></td>
 								<td>
 									<form id='form_favoris' method='post' action='' >
 										<input type='hidden' name='' value='' />
