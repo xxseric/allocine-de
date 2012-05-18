@@ -37,7 +37,7 @@
 		else if(count($film_favoris) > 1){
 			return $film_favoris;
 		}
-		return $film_favoris[0];
+		return $film_favoris;
 	}
 	
 	function getFilmFavorisByFilmId($film_id)
