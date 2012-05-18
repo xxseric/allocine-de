@@ -8,7 +8,7 @@
 
 	function content_user_favoris()
 	{
-		$listeFilms = getFilmFavorisByUserId($_SESSION['user_id']);
+		$listeFilms = getFilmFavorisByUserId($_SESSION['user_id']);	
 		if($listeFilms == null){
 			$html = "
 					<div id='content_user_favoris'>
@@ -21,23 +21,46 @@
 			";
 			return $html;
 		}
+		else if(count($listeFilms) == 1){
+			$html = "
+					<div id='content_user_favoris'>
+						<h1>Vos favoris</h1>
+						<center><table border=0>";
+			$film = getFilmById($listeFilms[0]['film_id']);
+			$html .= "	<tr>
+							<td><img src='./images/".$film['film_image_id'].".jpg'></img></td>
+							<td><a href='fiche_film.php?filmId=".$film['film_id']."'>".$film['film_titre']."</a></td>
+							<td>
+								<form id='form_favoris' method='post' action='./controller/filmFavoris_controller.php?action=enlever_film_favoris' >
+									<input type='hidden' name='film_favoris_id' value='".$listeFilms[0]['film_favoris_id']."' />
+									<button type='submit'><img src='./images/delete.png'></img></button>
+								</form>
+							</td>
+						</tr>";
+			$html .= "
+					</table></center>
+				</div>
+			";
+			return $html;
+		}
 		else{
 			$html = "
 					<div id='content_user_favoris'>
 						<h1>Vos favoris</h1>
 						<center><table border=0>";
-			for($i=0; $i<count($listeFilms); $i++){
-				$film = getFilmById($listeFilms[$i]['film_id']);
+			foreach ($listeFilms as $film){
+				$f = getFilmById($film['film_id']);
 				$html .= "	<tr>
-								<td><img src='./images/".$film['film_image_id'].".jpg'></img></td>
-								<td><a href='fiche_film.php?filmId=".$film['film_id']."'>".$film['film_titre']."</a></td>
+								<td><img src='./images/".$f['film_image_id'].".jpg'></img></td>
+								<td><a href='fiche_film.php?filmId=".$f['film_id']."'>".$f['film_titre']."</a></td>
 								<td>
-									<form id='form_favoris' method='post' action='' >
-										<input type='hidden' name='' value='' />
+									<form id='form_favoris' method='post' action='./controller/filmFavoris_controller.php?action=enlever_film_favoris' >
+										<input type='hidden' name='film_favoris_id' value='".$film['film_favoris_id']."' />
 										<button type='submit'><img src='./images/delete.png'></img></button>
 									</form>
 								</td>
 							</tr>";
+				
 			}
 			$html .= "
 						</table></center>
