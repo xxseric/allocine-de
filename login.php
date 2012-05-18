@@ -50,7 +50,7 @@ HEREDOC;
 	}
 
 	$doc = new Document();
-	$doc->begin(0);
+	$doc->begin(0, "");
 	contenu_login();
 	$doc->end();
 	

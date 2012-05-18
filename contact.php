@@ -45,9 +45,9 @@ HEREDOC;
 	
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
-		$doc->begin(0);
+		$doc->begin(0, "");
 	}else{
-		$doc->begin($_SESSION['user_level']);
+		$doc->begin($_SESSION['user_level'], "");
 	}
 	contenu_contact();
 	$doc->end();
