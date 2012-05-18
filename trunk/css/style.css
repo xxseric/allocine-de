@@ -1104,16 +1104,21 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	width: 700px;	
 }
 
-#content_stats_film h1, #content_stats_film h3 
+#content_stats_film h1, #content_stats_film p
 {
 	font-family: ComfortaaBold;
 	text-align: center;
 	margin-top: -5px;
 }
 
-#content_stats_film h3
+#content_stats_film p
 {
 	font-size: 15px;
+}
+
+#content_stats_film p span
+{
+	font-size: 20px;
 }
  
  

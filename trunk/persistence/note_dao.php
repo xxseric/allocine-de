@@ -64,10 +64,13 @@
 		$listeNotesByFilmId = getNotesByFilmId($film_id);	
 		if(count($listeNotesByFilmId) == 0)
 			return null;
+		else if(count($listeNotesByFilmId) == 1){
+			return $listeNotesByFilmId[0];
+		}
 		else{
 			foreach ($listeNotesByFilmId as $noteByFilm){
 				if($noteByFilm['user_id'] == $user_id){
-					return $noteByFilm[0];
+					return $noteByFilm;
 				}
 			}
 		}
