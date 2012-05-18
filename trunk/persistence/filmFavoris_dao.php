@@ -32,14 +32,10 @@
 		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$film_favoris = Doctrine_Core :: getTable ( 'FilmFavoris' )->findBy('user_id', $user_id ,null);	
 		$film_favoris = $film_favoris->getData();
-		if(count($film_favoris) != 1)
+		if(count($film_favoris) == 0)
 			return null;
 		else if(count($film_favoris) > 1){
-			$liste = array();
-			foreach ($film_favoris as $film){
-				$liste[] = $film[0];
-			}
-			return $liste;
+			return $film_favoris;
 		}
 		return $film_favoris[0];
 	}
