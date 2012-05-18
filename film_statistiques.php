@@ -13,17 +13,41 @@
 	require_once 'persistence/note_dao.php';
 	require_once 'persistence/groupe_dao.php';
 		
-	function contenu_user_statistiques()
-	{
-		if(isset($_GET['user_id'])){
-			$html = "";
-			$html .= "<div id='container' style='width: 450px; height: 400px; margin: 0 auto'></div>";
-			return $html;
+function sksort(&$array, $subkey = "id", $subkey2 = null ,$sort_ascending=false)
+{
+	if (count($array))
+		$temp_array[key($array)] = array_shift($array);
+
+	foreach($array as $key => $val){
+		$offset = 0;
+		$found = false;
+		foreach($temp_array as $tmp_key => $tmp_val)
+		{
+			if(!$found and strtolower($val[$subkey]) > strtolower($tmp_val[$subkey]))
+			{
+				$temp_array = array_merge(
+					(array)array_slice($temp_array,0,$offset), array($key => $val),
+					array_slice($temp_array,$offset));
+				$found = true;
+			}
+			elseif(!$found
+				and $subkey2 and strtolower($val[$subkey]) == strtolower($tmp_val[$subkey])
+				and strtolower($val[$subkey2]) > strtolower($tmp_val[$subkey2]))
+			{
+				$temp_array = array_merge(
+					(array)array_slice($temp_array,0,$offset),
+					array($key => $val), array_slice($temp_array,$offset));
+				$found = true;
+			}
+			$offset++;
 		}
-		else{
-			return "<div id='erreur'>Erreur</div>";
-		}
+		if(!$found) $temp_array = array_merge($temp_array, array($key => $val));
 	}
+
+	if ($sort_ascending) $array = array_reverse($temp_array);
+
+	else $array = $temp_array;
+}
 	
 	$en_tete = "";
 	
@@ -87,19 +111,51 @@
 		</script>
 		";
 		
-		$html = "
-		<div id='content_stats_film'>
-			<h1>Statistiques</h1>
-			<div name='note_moyenne'>
-				<h3>Note moyenne : </h3> 
-				<h3>Meilleure note : </h3>
-				<h3>Pire note : </h3>
-				<h3>Nombre de notes : </h3>
-				<h3>Votes des groupes : </h3>
+		$notes = getNotesByFilmId($_GET['film_id']);
+		$user_note = null;
+		if(count($notes) == 0){
+			$aucune_notes = "Il n'y a pour le moment aucune note sur ce film";
+			$html = "
+			<div id='content_stats_film'>
+				<h1>Statistiques</h1>
+				<div id='contenu_erreur'>
+					<img src='./images/warning.png' style='margin: auto; width:80px; height: 66px; margin-bottom: 20px;'></img></br>
+					Il n'y a pour le moment aucune note sur ce film.
+				</div>
+			</div>
+			";
+		}
+		else{
+			$sum = 0;
+			if(count($notes) == 1){
+				$sum = $sum + $notes[0]['note_val'];
+				$moyenne = sprintf('%01.1f', $sum);
+			}
+			else if(count($notes) > 1){
+				foreach ($notes as $note)
+					$sum = $sum + $note['note_val'];
+				$moyenne = sprintf('%01.1f', $sum / count($notes));
+			}
+			$user_note = getNoteByFilmIdAndUserId($_GET['film_id'], $_SESSION['user_id']);
+			$film_notes = getNotesByFilmId($_GET['film_id']);
+			sksort($film_notes, "note_val");
+			$html = "
+			<div id='content_stats_film'>
+				<h1>Statistiques</h1>
+				<p>Note moyenne : <span class='value'>".$moyenne."</span></p>
+				<p>Votre note : <span class='value'>".$user_note['note_val']."</span></p>";
+				if(count($film_notes)> 1){
+					$meilleure = $film_notes[0]['note_val'];
+					$pire = $film_notes[count($film_notes)-1]['note_val'];
+					$html .= "<p>Meilleure note : <span class='value'>".$meilleure."</span></p>
+							<p>Pire note : <span class='value'>".$pire."</span></p>";
+				}
+				$html .= "<p>Les notes de groupes</p>
 				<div id='container' style='width: 450px; height: 400px; margin: 0 auto'></div>
 			</div>
-		</div>
-		";
+			";
+		}
+		
 	}
 	
 	
