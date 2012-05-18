@@ -16,7 +16,7 @@
 	$doc = new Document();
 	if(!isset($_SESSION['user_level'])){
 		
-		$doc->begin(0);
+		$doc->begin(0, "");
 		echo "<div id='gestion_user'>
 		<h1>Erreur d'authentification</h1>Erreur la page que vous demandez n'est pas accesible si vous n'êtes pas authentifier.
 			 </div>";
@@ -27,7 +27,7 @@
 		$ajout_film = '<li><div onclick="affichageGestion(1);" style="width:auto; cursor: pointer;"><img src="./images/icook.png"></img>Ajouter un Film</div></li>';
 	}
 	
-		$doc->begin($_SESSION['user_level']);
+		$doc->begin($_SESSION['user_level'], "");
 		$html = 
 <<<HEREDOC
 <div id="contenu_recherche_film" class="soria">

@@ -6,7 +6,7 @@
 	require_once 'view/document.php';
 		
 	$doc = new Document();
-	$doc->begin(0);
+	$doc->begin(0, "");
 	UserView::getInscription();
 	$doc->end();
 

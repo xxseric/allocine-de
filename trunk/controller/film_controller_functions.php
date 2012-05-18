@@ -180,5 +180,10 @@
 	{
 		return "rechercherFilm.php";
 	}
+	
+	function processFilmStatistiques()
+	{
+		return "film_statistiques.php?film_id=".$_POST['film_id'];
+	}
 
 ?>

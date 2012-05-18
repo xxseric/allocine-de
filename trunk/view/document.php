@@ -18,22 +18,22 @@
 			}
 		}
 		
-		public function begin($level = 0)
+		public function begin($level = 0, $en_tete)
 		{
 			$this->access_level = $level;
 			
-			$this->header_view();
+			$this->header_view($en_tete);
 			if(!$this->menu_view()){
 				$this->end();
 			}
 		}
 			
-		public function header_view()
+		public function header_view($en_tete)
 		{
 			if($this->user_level > 0){
-				$this->header_connected();
+				$this->header_connected($en_tete);
 			}else{
-				$this->header_deconnected();
+				$this->header_deconnected($en_tete);
 			}
 		}
 		
@@ -57,7 +57,7 @@
 		 *                                     *
 		 ***************************************
 		 */		
-		public function header_connected()
+		public function header_connected($en_tete)
 		{
 			$html=
 <<<HEREDOC
@@ -114,7 +114,14 @@
 	    	dojo.require('dijit.Editor');
 	    	dojo.require("dijit.form.Select");
 	    </script>
+	    
+	    <script type="text/javascript" src="./js/highcharts.js"></script>
+		<script type="text/javascript" src="./js/modules/exporting.js"></script>
+		<script src="./js/jquery-1.7.2.min.js" type="text/javascript"></script>
 		<title>Allocine</title>
+		
+		$en_tete
+		
 	</head>
 
 	<body>
@@ -195,7 +202,7 @@ HEREDOC;
 			echo $html."<br/>";
 		}		
 		
-		public function header_deconnected()
+		public function header_deconnected($en_tete)
 		{
 			$html=
 <<<HEREDOC
@@ -253,7 +260,13 @@ HEREDOC;
 	    	dojo.require('dijit.Editor');
 	    	dojo.require("dijit.form.Select");
 	    </script>
+	    
+	    <script type="text/javascript" src="./js/highcharts.js"></script>
+		<script type="text/javascript" src="./js/modules/exporting.js"></script>
+		
 		<title>Allocine</title>
+		
+		$en_tete
 	</head>
 
 	<body onload="document.forms['formulaire_connexion'].elements['email'].focus();">

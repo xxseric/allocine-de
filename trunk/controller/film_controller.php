@@ -33,6 +33,8 @@
 				$dest = processAjoutFilmById();
 			}else if($action == "ajout_film_via_titre"){
 				$dest = processAjoutFilmByTitre();
+			}else if($action == "film_statistiques"){
+				$dest = processFilmStatistiques();
 			}
 			
 			if(!empty($dest))
