@@ -465,7 +465,16 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
  *			CONTENU ABOUT & CONTENU CONTACT
  */
   
-#contenu_about, #contenu_contact, #formulaire_user_inscription, #formulaire_connexion, #contenu_recherche_film,  #contenu_film, #contenu_liste_users,#gestion_user,#response
+#contenu_about, 
+#contenu_contact, 
+#formulaire_user_inscription,
+#formulaire_connexion, 
+#contenu_recherche_film,  
+#contenu_film, 
+#contenu_liste_users,
+#gestion_user,
+#response,
+#content_user_favoris
 {
 	position: relative;
 	margin-top: 100px;
@@ -979,6 +988,46 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	margin-left: 5px;
 	margin-top: 5px;
 } 
+ 
+#content_user_favoris
+{
+	width: 700px;
+}
+ 
+#content_user_favoris h1
+{
+	font-family: ComfortaaBold;
+	text-align: center;
+	margin-top: -5px;
+}
+ 
+#content_user_favoris table tr:hover
+
+	background-color: #ffd65e;
+}
+ 
+#content_user_favoris table td
+{
+	width: 100px;
+}
+ 
+#content_user_favoris img
+{
+	width: 50px;
+	height: 67px;
+}
+ 
+#content_user_favoris #form_favoris button
+ { 	
+	background: none;
+	border: 0px;
+ }
+ 
+#content_user_favoris #form_favoris button img
+ { 	
+	width: 25px;
+	height: 25px;
+ }
  
  #contenu_erreur
  {
