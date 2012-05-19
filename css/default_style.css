@@ -81,7 +81,6 @@ body
 {
 	font-size: 60px;
 	font-family: FrederickaTheGreatRegular;
-	font-weight: bolder;
     margin-left: 20px;
 }
 
@@ -89,13 +88,14 @@ body
 {
 	text-decoration: none;
 	color: #000;
+	font-weight: normal;
 }
 
 #header h2
 {
 	font-size: 15px;
 	font-family: FrederickaTheGreatRegular;
-	font-weight: bold;
+	font-weight: normal;
 	font-style: italic;
     margin-left: 60px;
 }
@@ -915,6 +915,21 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
  #contenu_film #jaq_infos .informations ul .rating
  {
  	margin-top: 25px;
+ }
+ 
+ #contenu_film #jaq_infos .informations .film_note_val
+ {
+ 	margin-top: 20px;
+	font-family : Trebuchet MS;
+	font-style: italic;
+	font-size: 13px;
+ }
+ 
+ #contenu_film #jaq_infos .informations .film_note_val .bold
+ {
+	font-weight: bolder;
+	font-size: 14px;
+	text-decoration: underline;
  }
   
  #contenu_film #resume

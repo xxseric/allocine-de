@@ -10,6 +10,7 @@
 	require_once 'persistence/listeCategoriesFilm_dao.php';
 	require_once 'persistence/categorieFilm_dao.php';
 	require_once 'persistence/filmFavoris_dao.php';
+	require_once 'persistence/note_dao.php';
 		
 	function contenu_fiche_film()
 	{
@@ -64,17 +65,24 @@
 			$update_fiche_film = "";
 			
 			if(isset($_SESSION['user_level'])){
-				$options = get_options();
-				foreach($options as $id => $rb){
-					$inputs .= "<input type='radio' name='rate' value='".$id."' title='".$rb['title']."' /></br>";
+				if(getNoteByFilmIdAndUserId($film['film_id'], $_SESSION['user_id']) == null){
+					$options = get_options();
+					foreach($options as $id => $rb){
+						$inputs .= "<input type='radio' name='rate' value='".$id."' title='".$rb['title']."' /></br>";
+					}
+					$inputs .= "<input type='hidden' name='film_id' id='film_id' value='".$film['film_id']."' /></ br>
+								<input type='submit' value='Rate it' />";				
+					$rate = "<li class='rating'>
+								<form id='rat' action='' method='post'>".$inputs." 
+								</form>
+								<div id='loader'><div style='padding-top: 5px;'>please wait...</div></div>
+							</li>";	
+				}else{
+					$note = getNoteByFilmIdAndUserId($film['film_id'], $_SESSION['user_id']);
+					$rate = "
+						<div class='film_note_val'><span class='bold'>Votre note : </span>".$note['note_val']."</div>
+					";
 				}
-				$inputs .= "<input type='hidden' name='film_id' id='film_id' value='".$film['film_id']."' /></ br>
-						<input type='submit' value='Rate it' />";				
-				$rate = "<li class='rating'>
-							<form id='rat' action='' method='post'>".$inputs." 
-							</form>
-							<div id='loader'><div style='padding-top: 5px;'>please wait...</div></div>
-						</li>";	
 				if($_SESSION['user_level'] > 1){
 					$update_fiche_film = "
 						<form method='post' action='update_fiche_film.php'>
@@ -93,6 +101,7 @@
 				$filmFavoris = getFilmFavorisByFilmIdAndUserId($film['film_id'], $_SESSION['user_id']);
 				if( count($filmFavoris) > 0 ){
 					$favoris .=    "<form  id='ajout_favoris' method='post' action='./controller/filmFavoris_controller.php?action=enlever_film_favoris' >
+									<input type='hidden' name='film_id' value='".$film['film_id']."' />
 									<input type='hidden' name='film_favoris_id' value='".$filmFavoris['film_favoris_id']."' />
 									<button  type='submit'><img src='./images/delete.png'></img></button>
 									</form>";

@@ -71,7 +71,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/default_style.css" />
 		<style type="text/css">
 			@import "./js/dojo/dijit/themes/soria/soria.css";
 			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
@@ -216,7 +216,7 @@ HEREDOC;
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/default_style.css" />
 		<style type="text/css">
 			@import "./js/dojo/dijit/themes/soria/soria.css";
 			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
