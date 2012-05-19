@@ -317,6 +317,39 @@ HEREDOC;
 			</td>
 		</tr>	
 	</TABLE></center>
+	<center><p style="font-weight: bold; font-size:16px; ">Changer le style du site</p></center>
+	<ul class="site_style">
+		<li>
+			<form method="post" action="./controller/user_controller.php?action=user_site_style">
+				<input type="hidden" name="css_style" value="default" />
+				<button type="submit" ><img src="./images/goldenrod.png"></img></button>
+			</form>
+		</li>
+		<li>
+			<form method="post" action="./controller/user_controller.php?action=user_site_style">
+				<input type="hidden" name="css_style" value="red" />
+				<button type="submit" ><img src="./images/red.png"></img></button>
+			</form>
+		</li>
+		<li>
+			<form method="post" action="./controller/user_controller.php?action=user_site_style">
+				<input type="hidden" name="css_style" value="blue" />
+				<button type="submit" ><img src="./images/blue.png"></img></button>
+			</form>
+		</li>
+		<li>
+			<form method="post" action="./controller/user_controller.php?action=user_site_style">
+				<input type="hidden" name="css_style" value="green" />
+				<button type="submit" ><img src="./images/green.png"></img></button>
+			</form>
+		</li>
+		<li>
+			<form method="post" action="./controller/user_controller.php?action=user_site_style">
+				<input type="hidden" name="css_style" value="white" />
+				<button type="submit" ><img src="./images/white.png"></img></button>
+			</form>
+		</li>
+	</ul>
 </div>
 </div>';
 	

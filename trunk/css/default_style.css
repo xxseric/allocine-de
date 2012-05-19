@@ -494,6 +494,7 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	background: -ms-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* IE10+ */
 	background: linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+	width: 100%;
 }
 
 #contenu_about, #contenu_contact
@@ -554,7 +555,7 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 
 #formulaire_user_inscription
 {
-	width: 500px;
+	width: 800px;
 }
 
 #formulaire_user_inscription h1
@@ -799,6 +800,7 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	font-family: Trebuchet MS;
 	font-weight: bolder;
 	float: right;
+	width: 105px;
 }
 
 #contenu_recherche_film #listeFilm #content_info #button_film_fiche:hover
@@ -819,13 +821,15 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	font-size: 12px;
 }
 
-#contenu_recherche_film #listeFilm #content_info #button_film_fiche img
+#contenu_recherche_film #listeFilm #content_info #button_film_fiche .img
 {
+	float: right;
+	background-image: url("../images/fleche_goldenrod.png");
 	width: 12px;
 	height: 12px;
 	margin: 0;
-	margin-left: 5px;
-	margin-top: 5px;
+	margin-left: 75px;
+	margin-top: -17px;
 }
 
 
@@ -976,6 +980,7 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	font-weight: bolder;
 	float: right;
 	margin-top: -30px;
+	width: 80px;
 }
 
 #contenu_film #button_update_fiche_film:hover
@@ -996,13 +1001,15 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	font-size: 12px;
 }
 
-#contenu_film #button_update_fiche_film img
+#contenu_film #button_update_fiche_film .img
 {
+	float: right;
+	background-image: url("../images/fleche_goldenrod.png");
 	width: 12px;
 	height: 12px;
 	margin: 0;
-	margin-left: 5px;
-	margin-top: 5px;
+	margin-left: 75px;
+	margin-top: -17px;
 } 
  
 #content_user_favoris
@@ -1150,6 +1157,26 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 #content_stats_film p span
 {
 	font-size: 20px;
+}
+
+#gestion_compte .site_style
+{
+	height: 32px;
+	list-style-type: none;
+	padding-left: 260px;	
+}
+
+#gestion_compte .site_style li
+{
+	float: left;
+}
+
+#gestion_compte .site_style li button
+{
+	width: 35px;
+	height: 35px;
+	border: 0px;
+	background: none;
 }
  
  

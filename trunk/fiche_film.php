@@ -90,7 +90,7 @@
 							<input type='hidden' name='date_film' value='".$film['film_date']."' />
 							<input type='hidden' name='realisateur_nom_film' value='".$realisateur_nom."' />
 							<input type='hidden' name='realisateur_prenom_film' value='".$realisateur_prenom."' />
-							<button type='submit' id='button_update_fiche_film' ><span>Modifier</span><img src='./images/fleche.png'></img></button>
+							<button type='submit' id='button_update_fiche_film' ><span>Modifier</span><div class='img'></div></button>
 						</form>
 					";	
 				}		

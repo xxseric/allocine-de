@@ -7,13 +7,7 @@ Highcharts.theme = {
 	colors: ["#111	", "#7798BF", "#55BF3B", "#DF5353", "#aaeeee", "#ff0066", "#eeaaee",
 		"#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
 	chart: {
-		backgroundColor: {
-			linearGradient: [0, 0, 0, 400],
-			stops: [
-				[0, '#ffd65e'],
-				[1, '#febf04']
-			]
-		},
+		backgroundColor: 'transparent',
 		borderWidth: 0,
 		borderRadius: 10,
 		plotBackgroundColor: null,
@@ -96,7 +90,7 @@ Highcharts.theme = {
 		},
 		borderWidth: 0,
 		style: {
-			color: 'goldenrod'
+			color: 'white'
 		}
 	},
 
