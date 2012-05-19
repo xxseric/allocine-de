@@ -1104,6 +1104,22 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	width: 700px;	
 }
 
+#content_stats_film h2
+{
+	text-align: center;
+	margin-top: -20px;
+	margin-bottom: 40px;
+}
+
+#content_stats_film h2 a
+{
+	text-decoration: underline;
+	font-family: ComfortaaBold;
+	font-size: 15px;
+	font-style: italic;
+	color: goldenrod;
+}
+
 #content_stats_film h1, #content_stats_film p
 {
 	font-family: ComfortaaBold;
