@@ -18,10 +18,12 @@
 		if(isset($_POST['film_favoris_id'])){
 			$delete = deleteFilmFavorisById($_POST['film_favoris_id']);
 		}
-		if(isset($_POST['film_id']))
+		if(isset($_POST['film_id']) && !isset($_POST['retour']))
 			return "fiche_film.php?filmId=".$_POST['film_id'];
-		else 
-			return "rechercher_film.php";
+		else if(isset($_POST['retour']) && isset($_POST['film_id']))
+			return "user_films_favoris.php";
+		else
+			return "rechercherFilm.php";
 	}
 	
 	function processUserFavorisListe()
