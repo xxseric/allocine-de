@@ -12,6 +12,7 @@
 	require_once 'persistence/filmFavoris_dao.php';
 	require_once 'persistence/note_dao.php';
 	require_once 'persistence/groupe_dao.php';
+	require_once 'persistence/user_dao.php';
 		
 function sksort(&$array, $subkey = "id", $subkey2 = null ,$sort_ascending=false)
 {
@@ -52,67 +53,11 @@ function sksort(&$array, $subkey = "id", $subkey2 = null ,$sort_ascending=false)
 	$en_tete = "";
 	
 	if(isset($_GET['film_id']) && isset($_SESSION['user_id'])){
-		$en_tete = "
-		<script type='text/javascript' src='./js/themes/normal.js'></script>
-		<script type='text/javascript'>
-			function handleData(data){
-				console.log(data);
-				var chart = new Highcharts.Chart({
-		
-					'chart': {
-						'renderTo': 'container',
-						'type': 'column'
-					},
-					'title': {
-						'text': 'Vos 3 meilleures notations'
-					},
-					'xAxis': {
-						'categories': ['Men In Black I', 'Men In Black II', 'Men In Black III'],
-						'title': {
-							'text': 'Films'
-						}
-					},
-					'yAxis': {
-						'min': 0,
-						'max': 5,
-						'title': {
-							'text': 'Note (/5)',
-							'align': 'high'
-						}
-					},
-					'tooltip': {
-						'formatter': function() {
-							return ''+this.series.name +': '+ this.y +'/5';
-						}
-					},
-					'plotOptions': {
-						'bar': {
-							'dataLabels': {
-								'enabled': true
-							}
-						}
-					},
-					'credits': {
-						'enabled': false
-					},
-					'series': [{
-						'name': 'Note',
-						'data': [4.8, 4.9, 5]
-					}]
-				});
-		};
-		$(document).ready(function(){
-			$.ajax({
-				datatype: 'json',
-				success: function(data){ handleData(data); },
-				error: function(data){}
-			});
-		});
-		</script>
-		";
-		
+				
 		$notes = getNotesByFilmId($_GET['film_id']);
 		$user_note = null;
+		
+		/* S'il n'y a pas de notes sur ce film */
 		if(count($notes) == 0){
 			$aucune_notes = "Il n'y a pour le moment aucune note sur ce film";
 			$html = "
@@ -150,11 +95,74 @@ function sksort(&$array, $subkey = "id", $subkey2 = null ,$sort_ascending=false)
 					$html .= "<p>Meilleure note : <span class='value'>".$meilleure."</span></p>
 							<p>Pire note : <span class='value'>".$pire."</span></p>";
 				}
-				$html .= "<p>Les notes de groupes</p>
+				$html .= "<p>Graphique</p>
 				<div id='container' style='width: 450px; height: 400px; margin: 0 auto'></div>
 			</div>
 			";
+
+			$film = getFilmById($_GET['film_id']);
+			$user = getUserById($_SESSION['user_id']);
+			if($user['user_groupe_id'] != null)
+				$groupe = getGroupeById($user['user_groupe_id']);
+			else $groupe = "Aucun groupe";
+				
+			$en_tete = "
+			<script type='text/javascript' src='./js/themes/normal.js'></script>
+			<script type='text/javascript'>
+				function handleData(data){
+					console.log(data);
+					var chart = new Highcharts.Chart({
+				
+						'chart': {
+							'renderTo': 'container',
+							'type': 'column'
+						},
+						'title': {
+							'text': '".$film['film_titre']."'
+						},
+						'xAxis': {
+							'categories': ['".$user['user_prenom']." ".$user['user_nom']."', 'Moyenne', '".$groupe."']
+						},
+						'yAxis': {
+							'min': 0,
+							'max': 5,
+							'title': {
+								'text': 'Note (/5)',
+								'align': 'high'
+							}
+						},
+						'tooltip': {
+							'formatter': function() {
+								return ''+this.series.name +': '+ this.y +'/5';
+							}
+						},
+						'plotOptions': {
+							'bar': {
+								'dataLabels': {
+									'enabled': true
+								}
+							}
+						},
+						'credits': {
+							'enabled': false
+						},
+						'series': [{
+							'name': 'Note',
+							'data': [4.8, 4.9, 5]
+						}]
+					});
+				};
+				$(document).ready(function(){
+					$.ajax({
+						datatype: 'json',
+						success: function(data){ handleData(data); },
+						error: function(data){}
+					});
+				});
+			</script>";
 		}
+		
+		
 		
 	}
 	
