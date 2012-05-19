@@ -184,11 +184,8 @@
 		
 		if(count($listeUsers) < 1)
 			return null;
-	/*	if(count($listeUsers) == 1)
-			return $listeUsers[0];
-		$liste = array();
-		foreach ($listeUsers as $user)
-			$liste[] = $user[0];*/
+		if(count($listeUsers) == 1)
+			return $listeUsers;		
 		return $listeUsers;
 	}
 	

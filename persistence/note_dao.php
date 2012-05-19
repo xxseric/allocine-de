@@ -55,7 +55,7 @@
 		$listeNotes = $listeNotes->getData();
 		if(count($listeNotes) == 0)
 			return null;
-		return $listeNotes[0];
+		return $listeNotes;
 	}
 	
 	function getNoteByFilmIdAndUserId($film_id, $user_id)
@@ -64,7 +64,7 @@
 		$listeNotesByFilmId = getNotesByFilmId($film_id);	
 		if(count($listeNotesByFilmId) == 0)
 			return null;
-		else if(count($listeNotesByFilmId) == 1){
+		else if(count($listeNotesByFilmId) == 1 && $listeNotesByFilmId[0]['user_id'] == $user_id	){
 			return $listeNotesByFilmId[0];
 		}
 		else{

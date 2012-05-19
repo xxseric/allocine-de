@@ -57,8 +57,10 @@ function sksort(&$array, $subkey = "id", $subkey2 = null ,$sort_ascending=false)
 		$notes = getNotesByFilmId($_GET['film_id']);
 		$user_note = null;
 		
+		$test = getNoteByFilmIdAndUserId($_GET['film_id'], $_SESSION['user_id']);
+				
 		/* S'il n'y a pas de notes sur ce film */
-		if(count($notes) == 0){
+		if($test == null){
 			$aucune_notes = "Il n'y a pour le moment aucune note sur ce film";
 			$html = "
 			<div id='content_stats_film'>
@@ -71,6 +73,8 @@ function sksort(&$array, $subkey = "id", $subkey2 = null ,$sort_ascending=false)
 			";
 		}
 		else{
+			$film = getFilmById($_GET['film_id']);
+			$user = getUserById($_SESSION['user_id']);
 			$sum = 0;
 			if(count($notes) == 1){
 				$sum = $sum + $notes[0]['note_val'];
@@ -87,6 +91,7 @@ function sksort(&$array, $subkey = "id", $subkey2 = null ,$sort_ascending=false)
 			$html = "
 			<div id='content_stats_film'>
 				<h1>Statistiques</h1>
+				<h2><a href='fiche_film.php?filmId=".$_GET['film_id']."'>-- ".$film['film_titre']." --</a></h2>
 				<p>Note moyenne : <span class='value'>".$moyenne."</span></p>
 				<p>Votre note : <span class='value'>".$user_note['note_val']."</span></p>";
 				if(count($film_notes)> 1){
@@ -95,16 +100,33 @@ function sksort(&$array, $subkey = "id", $subkey2 = null ,$sort_ascending=false)
 					$html .= "<p>Meilleure note : <span class='value'>".$meilleure."</span></p>
 							<p>Pire note : <span class='value'>".$pire."</span></p>";
 				}
-				$html .= "<p>Graphique</p>
-				<div id='container' style='width: 450px; height: 400px; margin: 0 auto'></div>
+				$html .= "<div id='container' style='width: 450px; height: 400px; margin: 0 auto'></div>
 			</div>
 			";
-
-			$film = getFilmById($_GET['film_id']);
-			$user = getUserById($_SESSION['user_id']);
-			if($user['user_groupe_id'] != null)
+			if($user['user_groupe_id'] != null){
 				$groupe = getGroupeById($user['user_groupe_id']);
-			else $groupe = "Aucun groupe";
+				$liste_users_groupe = getUsersByGroupeId($user['user_groupe_id']);
+				$sum_g = 0;
+				$moyenne_g = 0;
+				if(count($liste_users_groupe) == 1){
+					$note_g = getNoteByFilmIdAndUserId($_GET['film_id'], $liste_users_groupe[0]['user_id']);
+					$moyenne_g = sprintf('%01.1f', $note_g[0]['note_val']);
+				}else if(count($liste_users_groupe) > 1){
+					$i = 0;
+					foreach ($liste_users_groupe as $user_g){
+						if(($note_g = getNoteByFilmIdAndUserId($_GET['film_id'], $user_g['user_id'])) != null){
+							$sum_g = $sum_g + $note_g['note_val'];
+							$i++;
+						}
+					}
+					$moyenne_g = sprintf('%01.1f', $sum_g / $i);
+				}
+			}
+			else{
+				$groupe = " ";
+				$moyenne_g = 0;
+			}
+			
 				
 			$en_tete = "
 			<script type='text/javascript' src='./js/themes/normal.js'></script>
@@ -121,7 +143,7 @@ function sksort(&$array, $subkey = "id", $subkey2 = null ,$sort_ascending=false)
 							'text': '".$film['film_titre']."'
 						},
 						'xAxis': {
-							'categories': ['".$user['user_prenom']." ".$user['user_nom']."', 'Moyenne', '".$groupe."']
+							'categories': ['".$user['user_prenom']." ".$user['user_nom']."', 'Moyenne', '".$groupe['groupe_lib']."']
 						},
 						'yAxis': {
 							'min': 0,
@@ -148,7 +170,7 @@ function sksort(&$array, $subkey = "id", $subkey2 = null ,$sort_ascending=false)
 						},
 						'series': [{
 							'name': 'Note',
-							'data': [4.8, 4.9, 5]
+							'data': [".$user_note['note_val'].", ".$moyenne.", ".$moyenne_g."]
 						}]
 					});
 				};

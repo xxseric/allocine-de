@@ -113,7 +113,7 @@ HEREDOC;
 									.$allGroupe['groupe_lib']."</th>
 										<th><button onclick='rejoindreGroupe(".$_SESSION['user_id'].",".$allGroupe['groupe_id'].")'>Rejoindre</button></th>
 									</tr>" ;
-								}else if(count($allGroupe) > 1){
+								}else if(count($allGroupe) > 1){ 
 									foreach($allGroupe as $groupe){
 										$html .= "<tr><th>"
 										.$groupe['groupe_lib']."</th>
