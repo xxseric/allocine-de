@@ -135,7 +135,7 @@ if($listeCategorie != null){
 						</ul>
 						<form method="post" action="fiche_film.php" >
 							<input type="hidden" name="filmId" value="'.$listeFilm[$i]['film_id'].'" />
-							<button type="submit" id="button_film_fiche" ><span>Voir la fiche</span><img src="./images/fleche.png"></img></button>
+							<button type="submit" id="button_film_fiche" ><span>Voir la fiche</span><div class="img"></div></button>
 						</form>
 					</div>
 					<div style="clear:both;"></div>

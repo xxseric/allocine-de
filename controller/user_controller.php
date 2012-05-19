@@ -83,6 +83,8 @@
 				$dest = processListeUsers();
 			}else if($action == "user_gestion"){
 				$dest = processUserGestion();
+			}else if($action == "user_site_style"){
+				$dest = processUserSiteStyle();
 			}
 			
 			if(!empty($dest))

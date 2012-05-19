@@ -8,6 +8,7 @@
 		protected $siteUrl = "http://localhost/Allocine";	
 		protected $user_level = 0;
 		protected $user_id;
+		protected $site_style = "default";
 		protected $access_level = 0;
 		
 		public function __construct()
@@ -15,6 +16,7 @@
 			if(isset($_SESSION['user_level'])){
 				$this->user_level = $_SESSION['user_level'];
 				$this->user_id = $_SESSION['user_id'];
+				$this->site_style = $_SESSION['site_style'];
 			}
 		}
 		
@@ -59,6 +61,7 @@
 		 */		
 		public function header_connected($en_tete)
 		{
+			$style = '<link rel="stylesheet" href="./css/'.$this->site_style.'_style.css" />';
 			$html=
 <<<HEREDOC
 <?xml version="1.0" encoding="ISO-8859-1" ?>
@@ -71,7 +74,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <link rel="stylesheet" href="./css/default_style.css" />
+        $style
 		<style type="text/css">
 			@import "./js/dojo/dijit/themes/soria/soria.css";
 			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
@@ -204,6 +207,7 @@ HEREDOC;
 		
 		public function header_deconnected($en_tete)
 		{
+			$style = '<link rel="stylesheet" href="./css/'.$this->site_style.'_style.css" />';
 			$html=
 <<<HEREDOC
 <?xml version="1.0" encoding="ISO-8859-1" ?>
@@ -216,7 +220,7 @@ HEREDOC;
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <link rel="stylesheet" href="./css/default_style.css" />
+        $style
 		<style type="text/css">
 			@import "./js/dojo/dijit/themes/soria/soria.css";
 			@import "./js/dojo/dijit/themes/tundra/tundra.css" />
