@@ -32,6 +32,8 @@
 							<td><a href='fiche_film.php?filmId=".$film['film_id']."'>".$film['film_titre']."</a></td>
 							<td>
 								<form id='form_favoris' method='post' action='./controller/filmFavoris_controller.php?action=enlever_film_favoris' >
+									<input type='hidden' name='retour' value='1' />
+									<input type='hidden' name='film_id' value='".$film['film_id']."' />
 									<input type='hidden' name='film_favoris_id' value='".$listeFilms[0]['film_favoris_id']."' />
 									<button type='submit'><img src='./images/delete.png'></img></button>
 								</form>
