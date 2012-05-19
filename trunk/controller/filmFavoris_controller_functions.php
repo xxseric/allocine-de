@@ -10,7 +10,7 @@
 		if(isset($_POST['film_id']) && isset($_POST['user_id'])){
 			$ajout = addFavoris($_POST['film_id'], $_POST['user_id']);
 		}
-		return "rechercherFilm.php";
+		return "fiche_film.php?filmId=".$_POST['film_id'];
 	}	
 	
 	function processEnleverFilmFavoris()
@@ -18,7 +18,10 @@
 		if(isset($_POST['film_favoris_id'])){
 			$delete = deleteFilmFavorisById($_POST['film_favoris_id']);
 		}
-		return "rechercherFilm.php";
+		if(isset($_POST['film_id']))
+			return "fiche_film.php?filmId=".$_POST['film_id'];
+		else 
+			return "rechercher_film.php";
 	}
 	
 	function processUserFavorisListe()
