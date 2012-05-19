@@ -23,7 +23,7 @@
 		$groupe = $groupe->getData();
 		if(count($groupe) != 1)
 			return null;
-		return $groupe;
+		return $groupe[0];
 	}
 	
 	function getGroupeByLib($lib)
