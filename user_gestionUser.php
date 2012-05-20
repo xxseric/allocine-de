@@ -63,8 +63,8 @@ HEREDOC;
 							$html .= '	<tr> 
 				             					<td>'.$user["user_nom"].'</td> 
 				             				    <td>'.$user["user_prenom"].'</td>' ;
-				             				    if(is_object(getFilmFavorisByUserId($user['user_id']))){
-				             				    $html.=	'<td><form action="./rechercherFilm.php" method="post">
+				             				    if(getFilmFavorisByUserId($user['user_id']) != null){
+				             				    $html.=	'<td><form action="./user_films_favoris.php" method="post">
 				             				    <input type=hidden value="'.$user['user_id'].'" name="favoris_user_id" />
 				             				    <input type=submit value="Voir ses favoris" />
 				             				    </form></td>' ;

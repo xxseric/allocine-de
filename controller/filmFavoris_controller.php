@@ -22,6 +22,8 @@
 				$dest = processEnleverFilmFavoris();
 			}else if($action == "user_favoris"){
 				$dest = processUserFavorisListe();
+			}else if($action == "filmFavorisListe"){
+				$dest = processListeFavoris();
 			}
 			
 			if(!empty($dest))
