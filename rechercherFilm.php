@@ -29,7 +29,7 @@
 	<h1>Liste des Films</h1>
 	<h2>Trier par :</h2> 
 	<ul class="criteres_recherche">
-		<li><div onclick="document.getElementById('categorie_recherche').style.display = 'block';" style="width:auto; cursor: pointer;">Categories</div></li>
+		<li><div onclick="afficheCategorie();" style="width:auto; cursor: pointer;">Categories</div></li>
 	</ul>
 HEREDOC;
 
@@ -49,7 +49,7 @@ if($listeCategorie != null){
 }
 	
 
-	$html."<br/>";
+	$html .="</div><br/>";
 
 	$listeFilm = null;
 	if(!isset($_POST['categorie']) && !isset($_POST['recherche'])){
@@ -74,8 +74,14 @@ if($listeCategorie != null){
 	
 	if($listeFilm != null){
 		for($i = 0 ; $i < count($listeFilm) ; $i++){
-			$idres =	getFilmRealisateurIdById($listeFilm[$i]['film_id']);
-			$res = getRealisateurById($idres);		
+			
+		           $idres =        getFilmRealisateurIdById($listeFilm[$i]['film_id']);
+                                if($idres != null){
+                                        $res = getRealisateurById($idres);      
+                                }else {
+                                        $res = null ;
+                                }
+			
 			$image = getFilmImageIdById($listeFilm[$i]['film_id']); 
 			$listeNotesFilm = getNotesByFilmId($listeFilm[$i]['film_id']);
 			$sum = 0;
@@ -92,19 +98,27 @@ if($listeCategorie != null){
 				$moyenne = sprintf('%01.1f', $sum / count($listeNotesFilm));
 			}
 			
-			$listeActeursFilm = getListeActeurByFilmId($listeFilm[$i]['film_id']);
-			$liste = "";
-			if(count($listeActeursFilm) > 3){
-				for($i=0; $i<3; $i++)
-					$liste .= getActeurPrenomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' - ';
-					$liste .="...";
-			}else if(count($listeActeursFilm) > 1){
-			foreach ($listeActeursFilm as $acteurFilm)
-				$liste .= getActeurPrenomById($acteurFilm["listeActeur_acteur_id"]).' '.getActeurNomById($acteurFilm["listeActeur_acteur_id"]).' - ';
-				$liste .="...";
-			}else if((int)$listeActeursFilm != null){
-				$liste .= getActeurPrenomById($listeActeursFilm[0]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[0]["listeActeur_acteur_id"]);
-			}
+			
+			//////methode permettand de lister les acteurs , fonctionne même si l'id d'un acteur est egal a null
+			
+		             $listeActeursFilm = getListeActeurByFilmId($listeFilm[$i]['film_id']);
+                        
+                        $liste = "";
+                        for($k = 0 ; $k < count($listeActeursFilm) ; $k ++){
+                                
+                                if($listeActeursFilm[$k]['listeActeur_acteur_id'] != null){
+                        
+                                        $liste .= getActeurPrenomById($listeActeursFilm[$k]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$k]["listeActeur_acteur_id"]).' - ';
+                                
+                                }else {
+                                        $liste .= "..." ;
+                                        break ;
+                                }       
+                                //stop la boucle si 3 acteurs sont listés
+                                if( $k > 3 ){
+                                        break ;
+                                }               
+                        }
 			
 			$html .= 
 				'<div id="listeFilm">
@@ -112,14 +126,27 @@ if($listeCategorie != null){
 						<img  src="./images/'.$image.'.jpg"></img>
 					</div> 
 					<div id="content_info"> ';
-						$html .=
-						"<h3>".$listeFilm[$i]['film_titre']."</h3>" ;
-						$html.= '
-						<ul>
-							<li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
-							<li><span class="bold">Realisateur : </span>'.$res['realisateur_prenom'].' '.$res['realisateur_nom'].'</li>
-							<li><span class="bold">Acteurs : </span>'.$liste.'</li>
-							<li><span class="bold">Note : </span>'.$moyenne.'</li>';
+			////permet de lister les informations du films , prend en compte si le film ne possède pas de réalisateur ou si realisateur id = null
+		  						 $html .="<h3>".$listeFilm[$i]['film_titre']."</h3>" ;
+                                                if($res == null){                                                       
+                                                        $html.= '
+                                                <ul>
+                                                        <li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
+                                                        <li><span class="bold">Realisateur : </span>Pas de realisateur</li>
+                                                        <li><span class="bold">Acteurs : </span>'.$liste.'</li>
+                                                        <li><span class="bold">Note : </span>'.$moyenne.'</li>
+                                                ' ;
+                                                }else{
+                                                
+                                                $html.= '
+                                                <ul>
+                                                        <li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
+                                                        <li><span class="bold">Realisateur : </span>'.$res['realisateur_prenom'].' '.$res['realisateur_nom'].'</li>
+                                                        <li><span class="bold">Acteurs : </span>'.$liste.'</li>
+                                                        <li><span class="bold">Note : </span>'.$moyenne.'</li>
+                                                ' ;
+                                                }
+                                                
 							if(isset($_SESSION['user_id'])){
 								$html .= '
 							<li>
