@@ -31,4 +31,11 @@
 		return "user_films_favoris.php";
 	}
 	
+	function processListeFavoris(){
+	
+			//if(isset($_POST['favoris_user_id'])){
+		return "user_films_favoris.php";
+						
+		//}
+	}
 ?>

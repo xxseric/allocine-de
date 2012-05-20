@@ -6,9 +6,9 @@
 	require_once 'persistence/film_dao.php';
 	require_once 'persistence/filmFavoris_dao.php';
 
-	function content_user_favoris()
+	function content_user_favoris($userId)
 	{
-		$listeFilms = getFilmFavorisByUserId($_SESSION['user_id']);	
+		$listeFilms = getFilmFavorisByUserId($userId);	
 		if($listeFilms == null){
 			$html = "
 					<div id='content_user_favoris'>
@@ -35,8 +35,11 @@
 									<input type='hidden' name='retour' value='1' />
 									<input type='hidden' name='film_id' value='".$film['film_id']."' />
 									<input type='hidden' name='film_favoris_id' value='".$listeFilms[0]['film_favoris_id']."' />
-									<button type='submit'><img src='./images/delete.png'></img></button>
-								</form>
+									";
+										if($_SESSION['user_id'] == $userId){
+						$html	.=	"<button type='submit'><img src='./images/delete.png'></img></button>";
+						}
+						$html	.="	</form>
 							</td>
 						</tr>";
 			$html .= "
@@ -58,8 +61,11 @@
 								<td>
 									<form id='form_favoris' method='post' action='./controller/filmFavoris_controller.php?action=enlever_film_favoris' >
 										<input type='hidden' name='film_favoris_id' value='".$film['film_favoris_id']."' />
-										<button type='submit'><img src='./images/delete.png'></img></button>
-									</form>
+										";
+						if($_SESSION['user_id'] == $userId){
+						$html	.=	"<button type='submit'><img src='./images/delete.png'></img></button>";
+						}
+						$html	.="	</form>
 								</td>
 							</tr>";
 				
@@ -78,7 +84,13 @@
 	}else{
 		$doc->begin($_SESSION['user_level'], "");
 	}
-	echo content_user_favoris();
+	
+	if(isset($_POST['favoris_user_id'])){
+	echo content_user_favoris($_POST['favoris_user_id']);
+	}else{
+	echo content_user_favoris($_SESSION['user_id']);
+	}
+
 	$doc->end();
 	
 ?>

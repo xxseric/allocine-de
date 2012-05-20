@@ -99,7 +99,7 @@ if($listeCategorie != null){
 			}
 			
 			
-			//////methode permettand de lister les acteurs , fonctionne même si l'id d'un acteur est egal a null
+			//////methode permettant de lister les acteurs , fonctionne même si l'id d'un acteur est egal a null
 			
 		             $listeActeursFilm = getListeActeurByFilmId($listeFilm[$i]['film_id']);
                         
@@ -115,7 +115,7 @@ if($listeCategorie != null){
                                         break ;
                                 }       
                                 //stop la boucle si 3 acteurs sont listés
-                                if( $k > 3 ){
+                                if( $k > 2 ){
                                         break ;
                                 }               
                         }
