@@ -58,7 +58,8 @@ HEREDOC;
 				             			<tbody>" ; 
 						
 				    	$groupe = getUsersByGroupeId($groupeId);
-				    	$html .= "<div style='float:right;'><button  onclick='quitterGroupe(".$_SESSION['user_id'].");'>quitter le groupe</button></div>" ;
+				    	$groupe_lib = getGroupeById($groupeId);
+				    	$html .= "<div style='float:right;'><span style='font-family: Trebuchet MS; font-weight:bolder; color: #111; font-size: 13px; text-decoration:underline;'>".$groupe_lib['groupe_lib']."</span> : <button  onclick='quitterGroupe(".$_SESSION['user_id'].");'>quitter le groupe</button></div>" ;
 						foreach($groupe as $user){
 							$html .= '	<tr> 
 				             					<td>'.$user["user_nom"].'</td> 
