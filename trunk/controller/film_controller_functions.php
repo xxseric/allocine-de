@@ -129,9 +129,9 @@
 			//verifie si le realisateur à déja été ajouter
 			try{
 					$resVal = explode( " " ,$realisateur[0]['name']);
-					if(!(getRealisateurIdByPrenom($resVal[0]) == -1 && getRealisateurIdByNom($resVal[1]) == null)){
+					if(!(getRealisateurIdByPrenom($resVal[0]) == null && getRealisateurIdByNom($resVal[1]) == null)){
 						$resId = getRealisateurIdByPrenom($resVal[0]) ;
-					}else if (!(getRealisateurIdByNom($resVal[0]) == -1 && getRealisateurIdByPrenom($resVal[1]) == null)){
+					}else if (!(getRealisateurIdByNom($resVal[0]) == null && getRealisateurIdByPrenom($resVal[1]) == null)){
 						$resId = getRealisateurIdByPrenom($resVal[0]) ;
 					}else{
 						addRealisateur($resVal[1],$resVal[0]); //ajout du réalisateur si il est pas dans la bdd
