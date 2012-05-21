@@ -80,7 +80,7 @@
 				}else{
 					$note = getNoteByFilmIdAndUserId($film['film_id'], $_SESSION['user_id']);
 					$rate = "
-						<div class='film_note_val'><span class='bold'>Votre note : </span>".$note['note_val']."</div>
+						<div class='film_note_val'><span class='bold'>Votre note :</span> ".$note['note_val']."</div>
 					";
 				}
 				if($_SESSION['user_level'] > 1){
