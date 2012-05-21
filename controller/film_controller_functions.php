@@ -100,7 +100,7 @@
 		$ajoutRea = true ; 
 		$ajoutActeur = true ; 
 		
-		if(isset($_POST['site_lib']) && isset($_POST['film_id'])){
+		if(isset($_POST['site_lib']) && $_POST['site_lib'] == 'imdb'  && isset($_POST['film_id'])){
 		
 			require_once( dirname(__FILE__) . "/../php4-imdbonly/trunk/imdb.class.php");
 			require_once( dirname(__FILE__) . "/../php4-imdbonly/trunk/imdbsearch.class.php");
@@ -172,6 +172,90 @@
 				addListeCategorieFilm($id_film, $id_cat);
 			}
 		
+		}
+		else if(isset($_POST['site_lib']) && $_POST['site_lib'] == 'allo'  && isset($_POST['film_id'])){
+			
+			require_once( dirname(__FILE__) . "/../api_allocine/api-allocine-helper-2.2.php") ;
+
+			$helper = new AlloHelper;
+			$code = $_POST['film_id'];
+			$profile = 'large';
+			
+			try
+			{
+				// Envoi de la requête
+				$movie = $helper->movie( $code, $profile );
+				
+				$title = $movie->originalTitle;
+				$year = $movie->release['releaseDate'];
+				$rating = $movie->statistics['userRating'];
+				$genre = $movie->genre;
+				$realisateur = $movie->castingShort['directors'];
+				$resumer = $movie->synopsis;
+				$acteurs = explode(", ", $movie->castingShort['actors']);
+				$image = $movie->poster['href'];
+				
+				
+				$url = $image;
+				// Le chemin de sauvegarde
+				$path = dirname(__FILE__) .'/../images';
+				// On recup le nom du fichier
+				$name = array_pop(explode('/',$url));
+				// On copie le fichier
+				copy($url,$path.'/'.$_POST['film_id'].'.jpg');
+				
+				///////////////////////ajout du film /////////////////////////////////
+				//verifie si le realisateur à déja été ajouter
+				try{
+					$resVal = explode( " " ,$realisateur);
+					if(!(getRealisateurIdByPrenom($resVal[0]) == null && getRealisateurIdByNom($resVal[1]) == null)){
+						$resId = getRealisateurIdByPrenom($resVal[0]) ;
+					}else if (!(getRealisateurIdByNom($resVal[0]) == null && getRealisateurIdByPrenom($resVal[1]) == null)){
+						$resId = getRealisateurIdByPrenom($resVal[0]) ;
+					}else{
+						addRealisateur($resVal[1],$resVal[0]); //ajout du réalisateur si il est pas dans la bdd
+						$resId = getRealisateurIdByPrenom($resVal[0]) ;
+					}
+				}catch(Exception $e) {
+					echo "probleme détecter lors de l'ajout du realisateur " ;
+					$resId = null ;
+				}
+				//ajout du film
+				//date = 2012-05-09 Y-M-D
+				
+				addFilm($title,$year,$_POST['film_id'],$resId, null ,$resumer,null,null,null,null);
+				
+				$id_film=getFilmIdByTitre($title);
+				
+				//ajout acteur
+				
+				for($i = 0 ; $i < count($acteurs) ; $i++){
+					try{
+						$actVal = explode(" ", $acteurs[$i]);
+				
+						if(acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]) == null ){
+							addActeur($actVal[1],$actVal[0]);
+						}
+				
+						$actId	= acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]);
+						addListeActeur($id_film,$actId);
+					}catch (Exception $e){
+						echo "probleme détecter lors de l'ajout d'un acteur " ;
+					}
+				}
+				
+				for($i = 0 ; $i < count($genre) ; $i++){
+					addCategorieFilm($genre[$i]['$']);
+					$id_cat = getCategorieFilmIdByLib($genre[$i]['$']);
+					addListeCategorieFilm($id_film, $id_cat);
+				}
+			
+			}
+			catch( ErrorException $error )
+			{
+				// En cas d'erreur
+				echo "Erreur n°", $error->getCode(), ": ", $error->getMessage(), PHP_EOL;
+			}
 		}
 		return "rechercherFilm.php";
 	}
