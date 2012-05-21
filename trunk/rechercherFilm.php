@@ -45,11 +45,11 @@ if($listeCategorie != null){
 				  </form>';
 		
 	}
+	$html .="</div><br/>";
 	
 }
 	
 
-	$html .="</div><br/>";
 
 	$listeFilm = null;
 	if(!isset($_POST['categorie']) && !isset($_POST['recherche'])){

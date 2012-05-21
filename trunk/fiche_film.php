@@ -99,7 +99,7 @@
 			$favoris = "";
 			if(isset($_SESSION['user_level'])){
 				$filmFavoris = getFilmFavorisByFilmIdAndUserId($film['film_id'], $_SESSION['user_id']);
-				if( count($filmFavoris) > 0 ){
+				if( $filmFavoris != null ){
 					$favoris .=    "<form  id='ajout_favoris' method='post' action='./controller/filmFavoris_controller.php?action=enlever_film_favoris' >
 									<input type='hidden' name='film_id' value='".$film['film_id']."' />
 									<input type='hidden' name='film_favoris_id' value='".$filmFavoris['film_favoris_id']."' />

@@ -64,15 +64,15 @@
 		$film_favoris = $film_favoris->getData();
 		if(count($film_favoris) == 0)
 			return null;
-		else if(count($film_favoris) == 1 && $film_favoris[0]['user_id'] == $user_id)
+		else if(count($film_favoris) == 1 && $film_favoris[0]['user_id'] == $user_id){
 			return $film_favoris[0];
+		}
 		else if(count($film_favoris) > 1){
-			$liste = array();
 			foreach($film_favoris as $film){
-				if($film[0]['user_id'] == $user_id)
-					$liste = $film[0];
+				if($film['user_id'] == $user_id)
+					return $film;
 			}
-			return $liste;
+			return null;
 		}
 	}
 	
