@@ -44,6 +44,7 @@
 			addRealisateur($resVal[1],$resVal[0]); //ajout du réalisateur si il est pas dans la bdd
 			$resId = getRealisateurIdByPrenom($resVal[0]) ;
 		}		
+		
 		//ajout du film
 		//date = 2012-05-09 Y-M-D			
 		$date =  $year[1]['year']."-".$year[1]['mon']."-".$year[1]['day'] ;

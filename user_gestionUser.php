@@ -65,12 +65,13 @@ HEREDOC;
 				             					<td>'.$user["user_nom"].'</td> 
 				             				    <td>'.$user["user_prenom"].'</td>' ;
 				             				    if(getFilmFavorisByUserId($user['user_id']) != null){
-				             				    $html.=	'<td><form action="./user_films_favoris.php" method="post">
-				             				    <input type=hidden value="'.$user['user_id'].'" name="favoris_user_id" />
-				             				    <input type=submit value="Voir ses favoris" />
-				             				    </form></td>' ;
+					             				    $html.=	'<td><form action="./user_films_favoris.php" method="post">
+					             				    <input type=hidden value="'.$user['user_id'].'" name="favoris_user_id" />
+					             				    <input type=submit value="Voir ses favoris" />
+					             				    </form></td>' ;
+					             				    
 				             				    }else{
-				             				    $html .= '<td>Pas encore de favoris</td>'	;
+				             				    	$html .= '<td>Pas encore de favoris</td>'	;
 				             				    }
 				             				   $html .= '
 				             			</tr>';
@@ -78,7 +79,9 @@ HEREDOC;
 					$html .= ' 				</tbody>
 									</table>
 								</div>';	
-					}else{
+					
+						
+						}else{
 						//recuperer les groupe
 						$allGroupe = getAllGroupe();
 						$html .= "	<table border=0>
