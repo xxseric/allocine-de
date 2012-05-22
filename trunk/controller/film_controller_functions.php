@@ -188,7 +188,8 @@
 				
 				$title = $movie->originalTitle;
 				$year = $movie->release['releaseDate'];
-				$rating = $movie->statistics['userRating'];
+				//$rating = $movie->statistics['userRating'];
+				
 				$genre = $movie->genre;
 				$realisateur = $movie->castingShort['directors'];
 				$resumer = $movie->synopsis;
