@@ -72,6 +72,26 @@
 		}
 	}
 	
+	function getFilmByActeurId($acteur_id)
+	{
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
+		$liste_acteurs = Doctrine_Core :: getTable ( 'ListeActeur' )->findBy('listeActeur_acteur_id', $acteur_id ,null);	
+		$liste_acteurs = $liste_acteurs->getData();
+		if(count($liste_acteurs) == 0){
+			return null;
+		}else if(count($liste_acteurs) == 1){
+			$film = array();
+			$film[] = getFilmById($liste_acteurs[0]['listeActeur_film_id']);
+			return $film;
+		}else{
+			$liste_films = array();
+			foreach ($liste_acteurs as $l_acteurs) {
+				$liste_films[] = getFilmById($l_acteurs['listeActeur_film_id']);
+			}
+			return $liste_films;
+		}
+	}
+	
 
 	function getFilmIdByTitre($titre)
 	{
