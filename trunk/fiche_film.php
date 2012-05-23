@@ -149,7 +149,10 @@
 					<span class='bold'>Annn&eacute;e : </span>".$film['film_date']."
 				</li>
 				<li>
-					<span class='bold'>R&eacute;alis&eacute; par : </span>".$realisateur_prenom.' '.$realisateur_nom."
+					<span class='bold'>R&eacute;alis&eacute; par : </span>
+					<a href='rechercherFilm.php?films_by_realisateur_id=".$film['film_realisateur_id']."' style='text-decoration:none; color:black;'>
+						".$realisateur_prenom.' '.$realisateur_nom."
+					</a>
 				</li>
 				<li>
 					<span class='bold'>Acteurs : </span>".$liste."

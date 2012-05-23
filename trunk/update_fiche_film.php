@@ -93,7 +93,7 @@
 	<h1>Erreur</h1>
 	<div id='contenu_erreur'>
 		<img src='./images/warning.png' style='margin: auto; width:80px; height: 66px; margin-bottom: 20px;'></img></br>
-		Il n'y a pas de film correspondant à votre requete.
+		Il n'y a pas de film correspondant ï¿½ votre requete.
 	</div>
 </div>";
 	}	
