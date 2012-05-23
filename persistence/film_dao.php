@@ -60,6 +60,18 @@
 		return $film[0];
 	}
 	
+	function getFilmByRealisateurId($realisateur_id)
+	{
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
+		$liste_films = Doctrine_Core :: getTable ( 'Film' )->findBy('film_realisateur_id', $realisateur_id ,null);	
+		$liste_films = $liste_films->getData();
+		if(count($liste_films) == 0){
+			return null;
+		}else{
+			return $liste_films;
+		}
+	}
+	
 
 	function getFilmIdByTitre($titre)
 	{

@@ -48,28 +48,25 @@ if($listeCategorie != null){
 	$html .="</div><br/>";
 	
 }
-	
-
 
 	$listeFilm = null;
-	if(!isset($_POST['categorie']) && !isset($_POST['recherche'])){
-	$listeFilm = getAllFilms();
-	
+	if(!isset($_POST['categorie']) && !isset($_POST['recherche']) && !isset($_GET['films_by_realisateur_id'])){
+		$listeFilm = getAllFilms();
 	}else if(isset($_POST['categorie'])){
-	$listeFilm = 	getFilmByCategorie($_POST['categorie']);
+		$listeFilm = 	getFilmByCategorie($_POST['categorie']);
 	}else if(isset($_POST['recherche'])){
-	$listeFilmAll = getAllFilms();
-	$j = 0 ;
-	$listeFilm = array();
+		$listeFilmAll = getAllFilms();
+		$j = 0 ;
+		$listeFilm = array();
 		for($i=0;$i<count($listeFilmAll) ;$i++){
-	
 			if (preg_match("/\b".$_POST['recherche']."\b/i", $listeFilmAll[$i]['film_titre'])){
 				$listeFilm[$j] = $listeFilmAll[$i];
 				$j++ ; 
 			}
 		}		
+	}else if(isset($_GET['films_by_realisateur_id'])){
+		$listeFilm = getFilmByRealisateurId($_GET['films_by_realisateur_id']);
 	}
-	
 	
 	
 	if($listeFilm != null){
@@ -99,7 +96,7 @@ if($listeCategorie != null){
 			}
 			
 			
-			//////methode permettant de lister les acteurs , fonctionne même si l'id d'un acteur est egal a null
+			//////methode permettant de lister les acteurs , fonctionne mï¿½me si l'id d'un acteur est egal a null
 			
 		             $listeActeursFilm = getListeActeurByFilmId($listeFilm[$i]['film_id']);
                         
@@ -114,7 +111,7 @@ if($listeCategorie != null){
                                         $liste .= "..." ;
                                         break ;
                                 }       
-                                //stop la boucle si 3 acteurs sont listés
+                                //stop la boucle si 3 acteurs sont listï¿½s
                                 if( $k > 2 ){
                                         break ;
                                 }               
@@ -126,7 +123,7 @@ if($listeCategorie != null){
 						<img  src="./images/'.$image.'.jpg"></img>
 					</div> 
 					<div id="content_info"> ';
-			////permet de lister les informations du films , prend en compte si le film ne possède pas de réalisateur ou si realisateur id = null
+			////permet de lister les informations du films , prend en compte si le film ne possï¿½de pas de rï¿½alisateur ou si realisateur id = null
 		  						 $html .="<h3>".$listeFilm[$i]['film_titre']."</h3>" ;
                                                 if($res == null){                                                       
                                                         $html.= '

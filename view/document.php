@@ -104,7 +104,8 @@
 	   		dojo.require("dijit.form.ValidationTextBox");
 	    	dojo.require("dijit.form.NumberTextBox");
 	    	dojo.require("dijit.form.DateTextBox");
-	    	dojo.require("dijit.form.TextBox")
+	    	dojo.require("dijit.form.TextBox");
+	    	dojo.require("dijit.form.Textarea");
 	    	dojo.require("dijit.form.SimpleTextarea");
 	    	dojo.require("dijit.form.FilteringSelect");
 	    	dojo.require("dijit.form.Button");
@@ -251,7 +252,8 @@ HEREDOC;
 	   		dojo.require("dijit.form.ValidationTextBox");
 	    	dojo.require("dijit.form.NumberTextBox");
 	    	dojo.require("dijit.form.DateTextBox");
-	    	dojo.require("dijit.form.TextBox")
+	    	dojo.require("dijit.form.TextBox");
+	    	dojo.require("dijit.form.Textarea");
 	    	dojo.require("dijit.form.SimpleTextarea");
 	    	dojo.require("dijit.form.FilteringSelect");
 	    	dojo.require("dijit.form.Button");
