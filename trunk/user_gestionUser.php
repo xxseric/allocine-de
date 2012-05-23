@@ -174,14 +174,14 @@ HEREDOC;
 
 		<tr>
 			<td>				
-				<label>RÃ©alisateur</label>
+				<label>Réalisateur</label>
 			</td>
 			<td>
 				<input placeholder="Nom Prenom" type="text"" name="realisateur_film" id="realisateur_film" data-dojo-type="dijit.form.TextBox"
 								data-dojo-props="trim:true, propercase:true" />
 			</td>
 			<td>
-			<label>CatÃ©gorie</label>
+			<label>Catégorie</label>
 			</td>
 			<td> ';
 
@@ -214,7 +214,7 @@ HEREDOC;
 					<label>Image : </label>  <input type="hidden" name="MAX_FILE_SIZE" value="2097152">    
           	 		 <input type="file" name="nom_du_fichier">  </br>
           	  	</br></br>
-				<label>ResumÃ©</label>
+				<label>Resumé</label>
 			
 				<input type="text" name="resumer_film" id="resumer_film" data-dojo-type="dijit.form.SimpleTextarea" style="max-width: 690px;" />
 			
