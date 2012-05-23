@@ -50,7 +50,7 @@ if($listeCategorie != null){
 }
 
 	$listeFilm = null;
-	if(!isset($_POST['categorie']) && !isset($_POST['recherche']) && !isset($_GET['films_by_realisateur_id'])){
+	if(!isset($_POST['categorie']) && !isset($_POST['recherche']) && !isset($_GET['films_by_realisateur_id']) && !isset($_GET['films_by_acteur_id']) && !isset($_GET['films_by_categorie_id'])){
 		$listeFilm = getAllFilms();
 	}else if(isset($_POST['categorie'])){
 		$listeFilm = 	getFilmByCategorie($_POST['categorie']);
@@ -66,106 +66,103 @@ if($listeCategorie != null){
 		}		
 	}else if(isset($_GET['films_by_realisateur_id'])){
 		$listeFilm = getFilmByRealisateurId($_GET['films_by_realisateur_id']);
+	}else if(isset($_GET['films_by_acteur_id'])){
+		$listeFilm = getFilmByActeurId($_GET['films_by_acteur_id']);
+	}else if(isset($_GET['films_by_categorie_id'])){
+		$listeFilm = getFilmByCategorie($_GET['films_by_categorie_id']);
 	}
 	
 	
 	if($listeFilm != null){
-		for($i = 0 ; $i < count($listeFilm) ; $i++){
+		if(count($listeFilm) > 0){
+			for($i = 0 ; $i < count($listeFilm) ; $i++){
+		    	$idres = getFilmRealisateurIdById($listeFilm[$i]['film_id']);
+                if($idres != null){
+                	$res = getRealisateurById($idres);      
+				}else {
+					$res = null ;
+				}
+				$image = getFilmImageIdById($listeFilm[$i]['film_id']); 
+				$listeNotesFilm = getNotesByFilmId($listeFilm[$i]['film_id']);
+				$sum = 0;
+				$moyenne = 0;
+				if($listeNotesFilm == null){
+					$moyenne = "Il n'y a pour le moment aucune note d'attribu&eacute;e";
+				}else if(count($listeNotesFilm) == 1){
+					$sum = $sum + $listeNotesFilm[0]['note_val'];
+					$moyenne = sprintf('%01.1f', $sum);
+				}
+				else if(count($listeNotesFilm) > 1){
+					foreach ($listeNotesFilm as $note)
+						$sum = $sum + $note['note_val'];
+					$moyenne = sprintf('%01.1f', $sum / count($listeNotesFilm));
+				}			
 			
-		           $idres =        getFilmRealisateurIdById($listeFilm[$i]['film_id']);
-                                if($idres != null){
-                                        $res = getRealisateurById($idres);      
-                                }else {
-                                        $res = null ;
-                                }
-			
-			$image = getFilmImageIdById($listeFilm[$i]['film_id']); 
-			$listeNotesFilm = getNotesByFilmId($listeFilm[$i]['film_id']);
-			$sum = 0;
-			$moyenne = 0;
-			if($listeNotesFilm == null){
-				$moyenne = "Il n'y a pour le moment aucune note d'attribu&eacute;e";
-			}else if(count($listeNotesFilm) == 1){
-				$sum = $sum + $listeNotesFilm[0]['note_val'];
-				$moyenne = sprintf('%01.1f', $sum);
+				//////methode permettant de lister les acteurs , fonctionne m�me si l'id d'un acteur est egal a null
+				$listeActeursFilm = getListeActeurByFilmId($listeFilm[$i]['film_id']);
+				$liste = "";
+				for($k = 0 ; $k < count($listeActeursFilm) ; $k ++){
+					if($listeActeursFilm[$k]['listeActeur_acteur_id'] != null){
+						$liste .= getActeurPrenomById($listeActeursFilm[$k]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$k]["listeActeur_acteur_id"]).' - ';
+					}else {
+						$liste .= "..." ;
+						break ;
+					}       
+					//stop la boucle si 3 acteurs sont list�s
+					if( $k > 2 ){
+						break ;
+					}               
+				}
+				
+				$html .= 
+					'<div id="listeFilm">
+						<div id="picture">
+							<img  src="./images/'.$image.'.jpg"></img>
+						</div> 
+						<div id="content_info"> ';
+						////permet de lister les informations du films , prend en compte si le film ne poss�de pas de r�alisateur ou si realisateur id = null
+		  		$html .=	"<h3>".$listeFilm[$i]['film_titre']."</h3>" ;
+				if($res == null){                                                       
+					$html.= '
+							<ul>
+								<li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
+                               	<li><span class="bold">Realisateur : </span>Pas de realisateur</li>
+                            	<li><span class="bold">Acteurs : </span>'.$liste.'</li>
+                             	<li><span class="bold">Note : </span>'.$moyenne.'</li>
+                         	' ;
+				}else{
+					$html.= '
+                     		<ul>
+                              	<li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
+                             	<li><span class="bold">Realisateur : </span>'.$res['realisateur_prenom'].' '.$res['realisateur_nom'].'</li>
+                             	<li><span class="bold">Acteurs : </span>'.$liste.'</li>
+                             	<li><span class="bold">Note : </span>'.$moyenne.'</li>
+                          	' ;
+            	}
+				if(isset($_SESSION['user_id'])){
+					$html .= '
+								<li>
+									<form method="post" action="./controller/film_controller.php?action=film_statistiques" name="form_stats">
+										<input type="hidden" name="film_id" value="'.$listeFilm[$i]['film_id'].'" />
+										<button type="submit" style="background:none; border:0; font-size: 10px; font-style:italic; padding:0; text-decoration: underline;" 
+										onMouseOut="style.fontWeight=\'normal\';"  
+										onMouseOver="style.fontWeight=\'bolder\';">Statistiques</button>
+									</form>
+								</li>';
+				}
+					$html .='
+							</ul>
+							<form method="post" action="fiche_film.php" >
+								<input type="hidden" name="filmId" value="'.$listeFilm[$i]['film_id'].'" />
+								<button type="submit" id="button_film_fiche" ><span>Voir la fiche</span><div class="img"></div></button>
+							</form>
+						</div>
+						<div style="clear:both;"></div>
+					</div>';
 			}
-			else if(count($listeNotesFilm) > 1){
-				foreach ($listeNotesFilm as $note)
-					$sum = $sum + $note['note_val'];
-				$moyenne = sprintf('%01.1f', $sum / count($listeNotesFilm));
-			}
-			
-			
-			//////methode permettant de lister les acteurs , fonctionne m�me si l'id d'un acteur est egal a null
-			
-		             $listeActeursFilm = getListeActeurByFilmId($listeFilm[$i]['film_id']);
-                        
-                        $liste = "";
-                        for($k = 0 ; $k < count($listeActeursFilm) ; $k ++){
-                                
-                                if($listeActeursFilm[$k]['listeActeur_acteur_id'] != null){
-                        
-                                        $liste .= getActeurPrenomById($listeActeursFilm[$k]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$k]["listeActeur_acteur_id"]).' - ';
-                                
-                                }else {
-                                        $liste .= "..." ;
-                                        break ;
-                                }       
-                                //stop la boucle si 3 acteurs sont list�s
-                                if( $k > 2 ){
-                                        break ;
-                                }               
-                        }
-			
-			$html .= 
-				'<div id="listeFilm">
-					<div id="picture">
-						<img  src="./images/'.$image.'.jpg"></img>
-					</div> 
-					<div id="content_info"> ';
-			////permet de lister les informations du films , prend en compte si le film ne poss�de pas de r�alisateur ou si realisateur id = null
-		  						 $html .="<h3>".$listeFilm[$i]['film_titre']."</h3>" ;
-                                                if($res == null){                                                       
-                                                        $html.= '
-                                                <ul>
-                                                        <li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
-                                                        <li><span class="bold">Realisateur : </span>Pas de realisateur</li>
-                                                        <li><span class="bold">Acteurs : </span>'.$liste.'</li>
-                                                        <li><span class="bold">Note : </span>'.$moyenne.'</li>
-                                                ' ;
-                                                }else{
-                                                
-                                                $html.= '
-                                                <ul>
-                                                        <li><span class="bold">Date : </span>'.$listeFilm[$i]['film_date'].'</li>
-                                                        <li><span class="bold">Realisateur : </span>'.$res['realisateur_prenom'].' '.$res['realisateur_nom'].'</li>
-                                                        <li><span class="bold">Acteurs : </span>'.$liste.'</li>
-                                                        <li><span class="bold">Note : </span>'.$moyenne.'</li>
-                                                ' ;
-                                                }
-                                                
-							if(isset($_SESSION['user_id'])){
-								$html .= '
-							<li>
-								<form method="post" action="./controller/film_controller.php?action=film_statistiques" name="form_stats">
-									<input type="hidden" name="film_id" value="'.$listeFilm[$i]['film_id'].'" />
-									<button type="submit" style="background:none; border:0; font-size: 10px; font-style:italic; padding:0; text-decoration: underline;" 
-									onMouseOut="style.fontWeight=\'normal\';"  
-									onMouseOver="style.fontWeight=\'bolder\';">Statistiques</button>
-								</form>
-							</li>';
-							}
-							$html .='
-						</ul>
-						<form method="post" action="fiche_film.php" >
-							<input type="hidden" name="filmId" value="'.$listeFilm[$i]['film_id'].'" />
-							<button type="submit" id="button_film_fiche" ><span>Voir la fiche</span><div class="img"></div></button>
-						</form>
-					</div>
-					<div style="clear:both;"></div>
-				</div>';
+			echo $html.'</div>' ;	
 		}
-		echo $html.'</div>' ;		
+
 	}else{
 		echo $html."</br>"."<span class='erreur'>Il n'y a pour le moment aucun film dans notre base de donnees, veuillez nous en excuser.</span>"."</br>"."</div>";
 	}
