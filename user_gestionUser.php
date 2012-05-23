@@ -141,6 +141,15 @@ HEREDOC;
 	$html .= 
 	'
 	<div id="ajout_film" class="soria" style="display:none;border-top: solid black 2px ;">
+	
+	<center>
+	<ul class="criteres_recherche" style="decoration:none; padding:0 ;">
+		<li><div onclick="document.getElementById(\'ajout_film_manu\').style.display=\'block\';document.getElementById(\'ajout_film_auto\').style.display=\'none\'" style="width:auto; cursor: pointer; ">Ajouter un film </div></li>
+		<li><div onclick="document.getElementById(\'ajout_film_manu\').style.display=\'none\';document.getElementById(\'ajout_film_auto\').style.display=\'block\'" style="width:auto; cursor: pointer;">Importer film par un identifiant</div></li>
+	</ul>
+	</center>
+	
+	<div id="ajout_film_manu">
 	<form method="post" action="./controller/film_controller.php?action=ajout_film_brut" name="formulaire_ajout_film" id="formulaire_ajout_film" enctype="multipart/form-data" dojoType="dijit.form.Form">
 	<h3>Ajouter un film</h3>
 	<center><TABLE BORDER="0">
@@ -210,8 +219,11 @@ HEREDOC;
 				<input type="text" name="resumer_film" id="resumer_film" data-dojo-type="dijit.form.SimpleTextarea" style="max-width: 690px;" />
 			
 	<center><button type="submit" data-dojo-type="dijit.form.Button" id="submitButton" >Ajouter</button></center>
-</form> 
-<center><p>------------------------------ OU ------------------------------</p></center>
+	
+</form>
+</div>
+ 
+<div id="ajout_film_auto" style="display:none">
 <h3>Importer un film via l\'id</h3>
 <form method="post" action="./controller/film_controller.php?action=ajout_film_via_id" name="formulaire_import_film_via_id" id="formulaire_import_film_via_id"  enctype="multipart/form-data" dojoType="dijit.form.Form">
 	<center><table border=0>
@@ -233,28 +245,7 @@ HEREDOC;
 		</tr>
 	</table></center>	
 </form>
-<center><p>------------------------------ OU ------------------------------</p></center>
-<h3>Importer un film via le titre</h3>
-<form method="post" action="" name="formulaire_import_film_via_titre" id="formulaire_import_film_via_titre"  enctype="multipart/form-data" dojoType="dijit.form.Form">
-	<center><table border=0>
-		<tr>
-			<td><label>Site d\'import : </label></td>
-			<td>
-				<select name="site_lib" data-dojo-type="dijit.form.Select">
-					<option value="allo">Allocine</option>
-					<option value="imdb">Imdb</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td><label>Titre du film : </label></td>
-			<td><input type="text" name="film_id" placeholder="Rentrez un titre valide" data-dojo-type="dijit.form.TextBox" required="true"  /></td>
-		</tr>
-		<tr> 
-			<td align="center" colspan="2"><button type="submit" data-dojo-type="dijit.form.Button" id="submitButton3" >Ajouter</button></td>
-		</tr>
-	</table></center>	
-</form>';
+</div>';
 	
 ///////////Gestion du compte ///////////	
 	$html .= "</div>" ;
