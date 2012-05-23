@@ -260,7 +260,7 @@ HEREDOC;
 				'.$user['user_nom'].'
 			</td>
 			<td>				
-				<label><b>Prenom :</b></label>
+				<label><b>Prénom :</b></label>
 			</td>
 			<td>
 			'.$user['user_prenom'].'
@@ -275,7 +275,7 @@ HEREDOC;
 			'.$user['user_email'].'	
 			</td>
 			<td>				
-				<label><b>NumÃ©ro de rue : </b></label>
+				<label><b>Numéro de rue : </b></label>
 			</td>
 			<td>
 				'.$user['user_num_rue'].'
@@ -305,7 +305,7 @@ HEREDOC;
 				'.$user['user_ville'].'
 			</td>
 			<td>				
-				<label><b>TÃ©lÃ©phone :</b></label>
+				<label><b>Téléphone :</b></label>
 			</td>
 			<td>
 				'.$user['user_telephone'].'
