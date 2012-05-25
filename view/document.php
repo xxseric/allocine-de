@@ -16,7 +16,10 @@
 			if(isset($_SESSION['user_level'])){
 				$this->user_level = $_SESSION['user_level'];
 				$this->user_id = $_SESSION['user_id'];
-				$this->site_style = $_SESSION['site_style'];
+				if(isset($_SESSION['site_style']))
+					$this->site_style = $_SESSION['site_style'];
+				else
+					$this->site_style = "default";
 			}
 		}
 		

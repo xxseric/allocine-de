@@ -43,6 +43,17 @@
 			}else if(count($listeCategories) == 1){
 				$liste_cat .= getCategorieFilmLibById($listeCategories[0]["listeCategoriesFilms_categorie_film"]).' ';
 			}		
+			
+			$delete_film = "";
+			if($_SESSION['user_level'] == 3){
+				$delete_film = 
+				"
+					<form id='form_delete_film' method='post' action='./controller/film_controller.php?action=delete_film'>
+						<input type='hidden' name='film_id' value='".$film['film_id']."' />
+						<button type='submit'>Supprimer le film</button>
+					</form>
+				";
+			}
 		
 			$resume = $film['film_resume'];
 			
@@ -79,12 +90,13 @@
 		</div>
 		<div id='resume'>
 			<h2>Synopsis</h2>
-			<input type='text' name='resumer_film' id='resumer_film' data-dojo-type='dijit.form.SimpleTextarea' style='max-width: 650px;' value='".$resume."'/>
+			<textarea name='resumer_film' id='resumer_film' data-dojo-type='dijit.form.SimpleTextarea' style='max-width: 650px; min-height: 300px;'>".$resume."</textarea>
 		</div>	
 		<input type='hidden' name='filmId' value='".$film['film_id']."' />
 		<input type='hidden' name='validUpdate' value='1' />
 		<center><button type='submit' data-dojo-type='dijit.form.Button' id='submitButton' >Confirmer</button></center>
 	</form>	
+	$delete_film
 </div>";
 			return $html;
 		}

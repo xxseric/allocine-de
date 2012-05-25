@@ -45,7 +45,7 @@
 		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$film_favoris = Doctrine_Core :: getTable ( 'FilmFavoris' )->findBy('film_id', $film_id ,null);	
 		$film_favoris = $film_favoris->getData();
-		if(count($film_favoris) != 1)
+		if(count($film_favoris) == 0)
 			return null;
 		else if(count($film_favoris) > 1){
 			$liste = array();
@@ -85,6 +85,19 @@
 		}
 		else 
 			return null;
+	}
+	
+	function deleteFilmFavorisByFilmId($film_id)
+	{
+		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
+		$liste = Doctrine_Core :: getTable ( 'FilmFavoris' )->findBy('film_id', $film_id ,null);	
+		if(count($liste) == 1){
+			$liste->delete();
+		}
+		else if(count($liste) > 1){
+			foreach ($liste as $film)
+				$film->delete();
+		}
 	}
 	
 	function deleteFilmFavorisByFilmIdAndUserId($film_id, $user_id)

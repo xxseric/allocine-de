@@ -4,6 +4,8 @@
 	require_once 'listeActeur_dao.php';
 	require_once 'listeCategoriesFilm_dao.php';
 	require_once 'listeRecompenses_dao.php';
+	require_once 'note_dao.php';
+	require_once 'filmFavoris_dao.php';
 	
 	function addFilm($titre, $date,  $image_id, $realisateur_id, $listeActeurs,$resume=null, $listeCategorie=0, $listeRecompenses=0 , $site_id=null, $site_note=null )
 	{
@@ -322,6 +324,23 @@
 	{
 		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
 		$film = getFilmById($id);
+		
+		$notes_film = getNotesByFilmId($id);
+		for($i=0; $i<count($notes_film); $i++)
+			$notes_film[$i]->delete();
+		
+		deleteFilmFavorisByFilmId($id);
+		
+		$recomp_film = getListeRecompensesByFilmId($id);
+		for($i=0; $i<count($recomp_film); $i++)
+			$recomp_film[$i]->delete();
+		
+		deleteListeCategorieFilmByFilmId($id);
+		
+		$acteurs_film = getListeActeurByFilmId($id);
+		for($i=0; $i<count($acteurs_film); $i++)
+			$acteurs_film[$i]->delete();
+		
 		if(count($film) > 0){
 			$film->delete();
 			return 1;

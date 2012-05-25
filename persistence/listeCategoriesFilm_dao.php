@@ -1,6 +1,7 @@
 <?php
 
 	include_once (dirname(__FILE__) . '/../orm/bootstrap.php');
+	
 
 	function addListeCategorieFilm($film_id, $categorie_film_id)
 	{
@@ -91,13 +92,20 @@
 	function deleteListeCategorieFilmByFilmId($film_id)
 	{
 		Doctrine_Core::loadModels(dirname(__FILE__) . '/../models');
-		$listeCategories = getListeCategorieFilmByFilmId($film_id);
-		if(count($listeCategories) > 0){
+		$listeCategories = Doctrine_Core :: getTable ( 'ListeCategoriesFilm' )->findBy('listeCategoriesFilms_film_id', $film_id ,null);	
+		$listeCategories = $listeCategories->getData();
+		if(count($listeCategories) > 1){
 			foreach ($listeCategories as $categorieFilm){
+				echo "2";
 				$categorieFilm->delete();	
 			}
 			return 1;
-		}
+		}else if(count($listeCategories) == 1){
+			$film = $listeCategories[0];
+			echo $film['listeCategoriesFilms_id'];
+			$film->delete();
+			return 1;
+		}			
 		else
 			return null;
 	}
