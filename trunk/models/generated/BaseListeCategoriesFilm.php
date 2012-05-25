@@ -37,7 +37,7 @@ abstract class BaseListecategoriesfilm extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => false,
+             'notnull' => true,
              'autoincrement' => false,
              ));
         $this->hasColumn('listeCategoriesFilms_categorie_film', 'integer', 4, array(
@@ -46,7 +46,7 @@ abstract class BaseListecategoriesfilm extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => false,
+             'notnull' => true,
              'autoincrement' => false,
              ));
     }
