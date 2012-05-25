@@ -35,6 +35,8 @@
 				$dest = processAjoutFilmByTitre();
 			}else if($action == "film_statistiques"){
 				$dest = processFilmStatistiques();
+			}else if($action == "delete_film"){
+				$dest = processDeleteFilm();
 			}
 			
 			if(!empty($dest))

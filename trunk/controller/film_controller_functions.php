@@ -126,7 +126,7 @@
 			copy($url,$path.'/'.$_POST['film_id'].'.jpg');
 		
 			///////////////////////ajout du film /////////////////////////////////
-			//verifie si le realisateur à déja été ajouter
+			//verifie si le realisateur ï¿½ dï¿½ja ï¿½tï¿½ ajouter
 			try{
 					$resVal = explode( " " ,$realisateur[0]['name']);
 					if(!(getRealisateurIdByPrenom($resVal[0]) == null && getRealisateurIdByNom($resVal[1]) == null)){
@@ -134,11 +134,11 @@
 					}else if (!(getRealisateurIdByNom($resVal[0]) == null && getRealisateurIdByPrenom($resVal[1]) == null)){
 						$resId = getRealisateurIdByPrenom($resVal[0]) ;
 					}else{
-						addRealisateur($resVal[1],$resVal[0]); //ajout du réalisateur si il est pas dans la bdd
+						addRealisateur($resVal[1],$resVal[0]); //ajout du rï¿½alisateur si il est pas dans la bdd
 						$resId = getRealisateurIdByPrenom($resVal[0]) ;
 					}
 			}catch(Exception $e) {
-				echo "probleme détecter lors de l'ajout du realisateur " ;
+				echo "probleme dï¿½tecter lors de l'ajout du realisateur " ;
 				$resId = null ;
 			}
 			//ajout du film
@@ -162,7 +162,7 @@
 						$actId	= acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]);
 						addListeActeur($id_film,$actId);
 								}catch (Exception $e){
-									echo "probleme détecter lors de l'ajout d'un acteur " ;
+									echo "probleme dï¿½tecter lors de l'ajout d'un acteur " ;
 								}
 					}
 		
@@ -183,7 +183,7 @@
 			
 			try
 			{
-				// Envoi de la requête
+				// Envoi de la requï¿½te
 				$movie = $helper->movie( $code, $profile );
 				
 				$title = $movie->originalTitle;
@@ -206,7 +206,7 @@
 				copy($url,$path.'/'.$_POST['film_id'].'.jpg');
 				
 				///////////////////////ajout du film /////////////////////////////////
-				//verifie si le realisateur à déja été ajouter
+				//verifie si le realisateur ï¿½ dï¿½ja ï¿½tï¿½ ajouter
 				try{
 					$resVal = explode( " " ,$realisateur);
 					if(!(getRealisateurIdByPrenom($resVal[0]) == null && getRealisateurIdByNom($resVal[1]) == null)){
@@ -214,11 +214,11 @@
 					}else if (!(getRealisateurIdByNom($resVal[0]) == null && getRealisateurIdByPrenom($resVal[1]) == null)){
 						$resId = getRealisateurIdByPrenom($resVal[0]) ;
 					}else{
-						addRealisateur($resVal[1],$resVal[0]); //ajout du réalisateur si il est pas dans la bdd
+						addRealisateur($resVal[1],$resVal[0]); //ajout du rï¿½alisateur si il est pas dans la bdd
 						$resId = getRealisateurIdByPrenom($resVal[0]) ;
 					}
 				}catch(Exception $e) {
-					echo "probleme détecter lors de l'ajout du realisateur " ;
+					echo "probleme dï¿½tecter lors de l'ajout du realisateur " ;
 					$resId = null ;
 				}
 				//ajout du film
@@ -241,7 +241,7 @@
 						$actId	= acteur_getIdbyNomEtPrenom($actVal[1],$actVal[0]);
 						addListeActeur($id_film,$actId);
 					}catch (Exception $e){
-						echo "probleme détecter lors de l'ajout d'un acteur " ;
+						echo "probleme dï¿½tecter lors de l'ajout d'un acteur " ;
 					}
 				}
 				
@@ -255,7 +255,7 @@
 			catch( ErrorException $error )
 			{
 				// En cas d'erreur
-				echo "Erreur n°", $error->getCode(), ": ", $error->getMessage(), PHP_EOL;
+				echo "Erreur nï¿½", $error->getCode(), ": ", $error->getMessage(), PHP_EOL;
 			}
 		}
 		return "rechercherFilm.php";
@@ -269,6 +269,14 @@
 	function processFilmStatistiques()
 	{
 		return "film_statistiques.php?film_id=".$_POST['film_id'];
+	}
+	
+	function processDeleteFilm()
+	{
+		if(isset($_POST['film_id'])){
+			deleteFilmById($_POST['film_id']);
+		}
+		return "rechercherFilm.php";
 	}
 
 ?>
