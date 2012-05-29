@@ -31,7 +31,7 @@
 							<td><img src='./images/".$film['film_image_id'].".jpg'></img></td>
 							<td><a href='fiche_film.php?filmId=".$film['film_id']."'>".$film['film_titre']."</a></td>
 							<td>
-								<form id='form_favoris' method='post' action='./controller/filmFavoris_controller.php?action=enlever_film_favoris' >
+								<form id='form_favoris' method='post' action='./controller/filmFavoris_controller.php?action=enlever_film_favoris' onsubmit=\" return confirm('Etes-vous s&ucirc;r de supprimer ce film de vos favoris ?'); \" >
 									<input type='hidden' name='retour' value='1' />
 									<input type='hidden' name='film_id' value='".$film['film_id']."' />
 									<input type='hidden' name='film_favoris_id' value='".$listeFilms[0]['film_favoris_id']."' />
