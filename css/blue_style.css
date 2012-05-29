@@ -357,25 +357,30 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	margin-left: auto;
 	margin-right: auto;
 	font-family: Trebuchet MS;
-	color: #0080FF;
 }
 
-#contenu_deconnected article p
+#contenu_deconnected article .intro 
 {
 	margin: 5px 0 0 10px;
 	font-size: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	padding: 0;
+	width: 60%;
+	color: #0080FF;
 }
 
-#contenu_deconnected article ul
+#contenu_deconnected article .intro p
 {
-	margin: 0 0 0 10px;
+	text-align: center;
+}
+
+#contenu_deconnected article .intro ul
+{
+	margin-left: 150px;
 	font-size: 15px;
 	font-style: italic;
-}
-
-#contenu_deconnected article li
-{
-	
 }
 
 /*
