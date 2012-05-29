@@ -34,9 +34,6 @@
 		$film_favoris = $film_favoris->getData();
 		if(count($film_favoris) == 0)
 			return null;
-		else if(count($film_favoris) > 1){
-			return $film_favoris;
-		}
 		return $film_favoris;
 	}
 	
@@ -47,14 +44,8 @@
 		$film_favoris = $film_favoris->getData();
 		if(count($film_favoris) == 0)
 			return null;
-		else if(count($film_favoris) > 1){
-			$liste = array();
-			foreach ($film_favoris as $film){
-				$liste[] = $film[0];
-			}
-			return $liste;
-		}
-		return $film_favoris[0];
+		
+		return $film_favoris;
 	}
 	
 	function getFilmFavorisByFilmIdAndUserId($film_id, $user_id)
