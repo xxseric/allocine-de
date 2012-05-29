@@ -1101,7 +1101,7 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
 	padding: 0;
 }
  
- #contenu_liste_users table thead
+ #contenu_liste_users table thead .en_tete
 {
 	font-size: 13px;
 	color: goldenrod;
@@ -1129,6 +1129,20 @@ box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.5) inset, 0 2px 2px 0 rgba(255, 255, 25
  #contenu_liste_users table tbody tr:hover
 {
 	background-color: #ffd65e;
+}
+ 
+ #contenu_liste_users table tbody .delete button
+{
+	border: 0;
+	width: 35px;
+	height: 35px;
+	background: none;
+}
+ 
+ #contenu_liste_users table tbody .delete img
+{
+	width: 30px;
+	height: 30px;
 }
 
 #content_stats_film 

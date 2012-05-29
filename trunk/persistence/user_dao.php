@@ -339,7 +339,7 @@
 	function deleteUserById($id)
 	{
 		$user = getUserById($id);
-		if($user != -1){
+		if($user != null){
 			$user->delete();
 			return 1;
 		}else{
