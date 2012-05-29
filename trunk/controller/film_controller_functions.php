@@ -4,9 +4,12 @@
 	require_once (dirname(__FILE__) . '/../persistence/realisateur_dao.php');
 	require_once (dirname(__FILE__) . '/../persistence/acteur_dao.php');
 	require_once (dirname(__FILE__) . '/../persistence/film_dao.php');
-	require_once (dirname(__FILE__) . '/../persistence/listeActeur_dao.php');
 	require_once (dirname(__FILE__) . '/../persistence/categorieFilm_dao.php');
 	require_once (dirname(__FILE__) . '/../persistence/groupe_dao.php');
+	require_once (dirname(__FILE__) . '/../persistence/listeActeur_dao.php');
+	require_once (dirname(__FILE__) . '/../persistence/listeCategoriesFilm_dao.php');
+	require_once (dirname(__FILE__) . '/../persistence/listeRecompenses_dao.php');
+	require_once (dirname(__FILE__) . '/../persistence/filmFavoris_dao.php');
 	
 	function processFicheFilm()
 	{
@@ -273,7 +276,31 @@
 	
 	function processDeleteFilm()
 	{
-		if(isset($_POST['film_id'])){
+		if(isset($_POST['film_id'])){	
+			$listeCats = getListeCategorieFilmByFilmId($_POST['film_id']);
+			if($listeCats != null){
+				for($i=0; $i<count($listeCats); $i++){
+					$listeCats[$i]->delete();
+				}
+			}	
+			$listeActeurs = getListeActeurByFilmId($_POST['film_id']);
+			if($listeActeurs != null){
+				for($i=0; $i<count($listeActeurs); $i++){
+					$listeActeurs[$i]->delete();
+				}
+			}
+			$listeRecompenses = getListeRecompensesByFilmId($_POST['film_id']);
+			if($listeRecompenses != null){
+				for($i=0; $i<count($listeRecompenses); $i++){
+					$listeRecompenses[$i]->delete();
+				}
+			}
+			$listeFavoris = getFilmFavorisByFilmId($_POST['film_id']);
+			if($listeFavoris != null){
+				for($i=0; $i<count($listeFavoris); $i++){
+					$listeFavoris[$i]->delete();
+				}
+			}
 			deleteFilmById($_POST['film_id']);
 		}
 		return "rechercherFilm.php";

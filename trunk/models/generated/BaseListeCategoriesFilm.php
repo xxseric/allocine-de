@@ -58,7 +58,7 @@ abstract class BaseListecategoriesfilm extends Doctrine_Record
              'local' => 'listeCategoriesFilms_film_id',
              'foreign' => 'film_id'));
 
-        $this->hasOne('Categoriefilm', array(
+        $this->hasOne('CategorieFilm', array(
              'local' => 'listeCategoriesFilms_categorie_film',
              'foreign' => 'catFilm_id'));
     }

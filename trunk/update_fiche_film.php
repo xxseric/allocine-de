@@ -19,38 +19,45 @@
 		
 			$listeActeursFilm = getListeActeurByFilmId($film['film_id']);
 			$liste = "";
-			if(count($listeActeursFilm) > 3){
-				for($i=0; $i<3; $i++)
-					$liste .= getActeurPrenomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' - ';
-				$liste .="...";
-			}else if(count($listeActeursFilm) > 1){
-				foreach ($listeActeursFilm as $acteurFilm)
-					$liste .= getActeurPrenomById($acteurFilm["listeActeur_acteur_id"]).' '.getActeurNomById($acteurFilm["listeActeur_acteur_id"]).' - ';
-				$liste .="...";
-			}else if((int)$listeActeursFilm != -1){
-				$liste .= getActeurPrenomById($listeActeursFilm[0]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[0]["listeActeur_acteur_id"]);
-			}
+			if($listeActeursFilm != null){
+				if(count($listeActeursFilm) > 3){
+					for($i=0; $i<3; $i++)
+						$liste .= getActeurPrenomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' - ';
+					$liste .="...";
+				}else if(count($listeActeursFilm) > 1){
+					foreach ($listeActeursFilm as $acteurFilm)
+						$liste .= getActeurPrenomById($acteurFilm["listeActeur_acteur_id"]).' '.getActeurNomById($acteurFilm["listeActeur_acteur_id"]).' - ';
+					$liste .="...";
+				}else if((int)$listeActeursFilm != -1){
+					$liste .= getActeurPrenomById($listeActeursFilm[0]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[0]["listeActeur_acteur_id"]);
+				}
+			}else 
+				$liste = "Pas d'acteurs pour ce film";
 		
 			$listeCategories = getListeCategorieFilmByFilmId($film['film_id']);
 			$liste_cat = "";		
-			if(count($listeCategories) > 3){
-				for($i=0; $i<3; $i++)
-					$liste_cat .= getCategorieFilmLibById($listeCategories[$i]['listeCategoriesFilms_categorie_film']).'  ';
-				$liste_cat .= "...";
-			}else if(count($listeCategories) > 1){
-				foreach ($listeCategories as $categorie)
-					$liste_cat .= getCategorieFilmLibById($categorie['listeCategoriesFilms_categorie_film']).'  ';
-			}else if(count($listeCategories) == 1){
-				$liste_cat .= getCategorieFilmLibById($listeCategories[0]["listeCategoriesFilms_categorie_film"]).' ';
-			}		
+			if($listeCategories != null)
+			{
+				if(count($listeCategories) > 3){
+					for($i=0; $i<3; $i++)
+						$liste_cat .= getCategorieFilmLibById($listeCategories[$i]['listeCategoriesFilms_categorie_film']).'  ';
+					$liste_cat .= "...";
+				}else if(count($listeCategories) > 1){
+					foreach ($listeCategories as $categorie)
+						$liste_cat .= getCategorieFilmLibById($categorie['listeCategoriesFilms_categorie_film']).'  ';
+				}else if(count($listeCategories) == 1){
+					$liste_cat .= getCategorieFilmLibById($listeCategories[0]["listeCategoriesFilms_categorie_film"]).' ';
+				}	
+			}else
+				$liste_cat = "Pas de cat&eacute;gories pour ce film";	
 			
 			$delete_film = "";
 			if($_SESSION['user_level'] == 3){
 				$delete_film = 
 				"
-					<form id='form_delete_film' method='post' action='./controller/film_controller.php?action=delete_film'>
+					<form id='form_delete_film' method='post' action='./controller/film_controller.php?action=delete_film'  onsubmit=\" return confirm('Etes-vous s&ucirc;r de supprimer ce film ?');\" >
 						<input type='hidden' name='film_id' value='".$film['film_id']."' />
-						<button type='submit'>Supprimer le film</button>
+						<center><button type='submit' data-dojo-type='dijit.form.Button'>Supprimer le film</button></center>
 					</form>
 				";
 			}

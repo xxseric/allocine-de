@@ -27,43 +27,48 @@
 		
 			$listeActeursFilm = getListeActeurByFilmId($film['film_id']);
 			$liste = "";
-			if(count($listeActeursFilm) > 3){
-				for($i=0; $i<3; $i++)
-					$liste .= 	'<a href="rechercherFilm.php?films_by_acteur_id='.$listeActeursFilm[$i]["listeActeur_acteur_id"].'"  style="text-decoration:none; color:black;">
-									'.getActeurPrenomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).
-								'</a> - ';
-				$liste .="...";
-			}else if(count($listeActeursFilm) > 1){
-				foreach ($listeActeursFilm as $acteurFilm)
-					$liste .= 	'<a href="rechercherFilm.php?films_by_acteur_id='.$acteurFilm["listeActeur_acteur_id"].'"  style="text-decoration:none; color:black;">
-									'.getActeurPrenomById($acteurFilm["listeActeur_acteur_id"]).' '.getActeurNomById($acteurFilm["listeActeur_acteur_id"]).
-								'</a> - ';
-				$liste .="...";
-			}else if((int)$listeActeursFilm != null){
-				$liste .= 		'<a href="rechercherFilm.php?films_by_acteur_id='.$listeActeursFilm[0]["listeActeur_acteur_id"].'"  style="text-decoration:none; color:black;">
-									'.getActeurPrenomById($listeActeursFilm[0]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[0]["listeActeur_acteur_id"]).
-								'</a>';
-			}
+			if($listeActeursFilm != null){
+				if(count($listeActeursFilm) > 3){
+					for($i=0; $i<3; $i++)
+						$liste .= 	'<a href="rechercherFilm.php?films_by_acteur_id='.$listeActeursFilm[$i]["listeActeur_acteur_id"].'"  style="text-decoration:none; color:black;">
+										'.getActeurPrenomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[$i]["listeActeur_acteur_id"]).
+									'</a> - ';
+					$liste .="...";
+				}else if(count($listeActeursFilm) > 1){
+					foreach ($listeActeursFilm as $acteurFilm)
+						$liste .= 	'<a href="rechercherFilm.php?films_by_acteur_id='.$acteurFilm["listeActeur_acteur_id"].'"  style="text-decoration:none; color:black;">
+										'.getActeurPrenomById($acteurFilm["listeActeur_acteur_id"]).' '.getActeurNomById($acteurFilm["listeActeur_acteur_id"]).
+									'</a> - ';
+					$liste .="...";
+				}else if((int)$listeActeursFilm != null){
+					$liste .= 		'<a href="rechercherFilm.php?films_by_acteur_id='.$listeActeursFilm[0]["listeActeur_acteur_id"].'"  style="text-decoration:none; color:black;">
+										'.getActeurPrenomById($listeActeursFilm[0]["listeActeur_acteur_id"]).' '.getActeurNomById($listeActeursFilm[0]["listeActeur_acteur_id"]).
+									'</a>';
+				}
+			}else
+				$liste = "Pas d'acteurs pour ce film";
 		
 			$listeCategories = getListeCategorieFilmByFilmId($film['film_id']);
 			$liste_cat = "";		
 			if($listeCategories != null){
-			if(count($listeCategories) > 3){
-				for($i=0; $i<3; $i++)
-					$liste_cat .=	'<a href="rechercherFilm.php?films_by_categorie_id='.$listeCategories[$i]['listeCategoriesFilms_categorie_film'].'"  style="text-decoration:none; color:black;">
-										'.getCategorieFilmLibById($listeCategories[$i]['listeCategoriesFilms_categorie_film']).
-									'</a>  ';
-				$liste_cat .= "...";
-			}else if(count($listeCategories) > 1){
-				foreach ($listeCategories as $categorie)
-					$liste_cat .= 	'<a href="rechercherFilm.php?films_by_categorie_id='.$categorie['listeCategoriesFilms_categorie_film'].'"  style="text-decoration:none; color:black;">
-										'.getCategorieFilmLibById($categorie['listeCategoriesFilms_categorie_film']).
-									'</a>  ';
-			}else if(count($listeCategories) == 1){
-				$liste_cat .= 	'<a href="rechercherFilm.php?films_by_categorie_id='.$listeCategories[0]["listeCategoriesFilms_categorie_film"].'"  style="text-decoration:none; color:black;">
-									'.getCategorieFilmLibById($listeCategories[0]["listeCategoriesFilms_categorie_film"]).
-								'</a> ';
-			}	}	
+				if(count($listeCategories) > 3){
+					for($i=0; $i<3; $i++)
+						$liste_cat .=	'<a href="rechercherFilm.php?films_by_categorie_id='.$listeCategories[$i]['listeCategoriesFilms_categorie_film'].'"  style="text-decoration:none; color:black;">
+											'.getCategorieFilmLibById($listeCategories[$i]['listeCategoriesFilms_categorie_film']).
+										'</a>  ';
+					$liste_cat .= "...";
+				}else if(count($listeCategories) > 1){
+					foreach ($listeCategories as $categorie)
+						$liste_cat .= 	'<a href="rechercherFilm.php?films_by_categorie_id='.$categorie['listeCategoriesFilms_categorie_film'].'"  style="text-decoration:none; color:black;">
+											'.getCategorieFilmLibById($categorie['listeCategoriesFilms_categorie_film']).
+										'</a>  ';
+				}else if(count($listeCategories) == 1){
+					$liste_cat .= 	'<a href="rechercherFilm.php?films_by_categorie_id='.$listeCategories[0]["listeCategoriesFilms_categorie_film"].'"  style="text-decoration:none; color:black;">
+										'.getCategorieFilmLibById($listeCategories[0]["listeCategoriesFilms_categorie_film"]).
+									'</a> ';
+				}	
+			}else
+				$liste_cat = "Pas de cat&eacute;gories pour ce film";	
 		
 			$resume = "Il n'y a pour le moment aucun resume de ce film.";
 			if($film['film_resume'] != null)
