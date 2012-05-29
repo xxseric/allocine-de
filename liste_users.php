@@ -22,10 +22,11 @@
 		<table border=0>
 	       	<thead>
 	          	<tr>
-		        	<th style='width:100px; text-align:center;'>Nom</th>
-		          	<th style='width:100px; text-align:center;'>Prenom</th> 
-		      		<th style='width:150px; text-align:center;'>Email</th> 
-		       		<th style='width:50px; text-align:center;'>Level</th>
+		        	<th class='en_tete' style='width:100px; text-align:center;'>Nom</th>
+		          	<th class='en_tete' style='width:100px; text-align:center;'>Prenom</th> 
+		      		<th class='en_tete' style='width:150px; text-align:center;'>Email</th> 
+		       		<th class='en_tete' style='width:50px; text-align:center;'>Level</th>
+		       		<th></th>
 		     	</tr> 
 			</thead>
 			<tbody>";
@@ -52,6 +53,13 @@
 						   	<input type='hidden' name='user_id' value='".$user['user_id']."'></input>
 						</form>
 					</td>
+					<td class='delete'>
+						<form name='user_delete_".$i."' method='post' action='liste_users.php'  onsubmit=\" return confirm('Etes-vous s&ucirc;r de supprimer cet utilisateur ?'); \">
+							<input type='hidden' name='user_id' value='".$user['user_id']."' />
+							<input type='hidden' name='delete' value='1' />
+							<button type='submit'><img src='./images/delete.png'></img></button>
+						</form>
+					</td>
 				</tr>";
 				$i++;
 			}
@@ -69,6 +77,14 @@
 		$doc->begin(0, "");
 	}else{
 		$doc->begin($_SESSION['user_level'], "");
+	}
+	
+	if(isset($_POST['delete']) && isset($_POST['user_id'])){
+		try{
+			deleteUserById($_POST['user_id']);
+		}catch(Exception $e){
+			
+		}
 	}
 	echo contenu_liste_users();
 	$doc->end();
