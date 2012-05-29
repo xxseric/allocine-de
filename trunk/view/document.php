@@ -123,7 +123,7 @@
 	    <script type="text/javascript" src="./js/highcharts.js"></script>
 		<script type="text/javascript" src="./js/modules/exporting.js"></script>
 		<script src="./js/jquery-1.7.2.min.js" type="text/javascript"></script>
-		<title>Allocine</title>
+		<title>MoviesList</title>
 		
 		$en_tete
 		
@@ -134,7 +134,7 @@
 		<div id="page">
 		
 			<div id="header">
-				<h1><a href="./controller/user_controller.php?action=index">ALLOCINE</a></h1>
+				<h1><a href="./controller/user_controller.php?action=index">MoviesList</a></h1>
 				<h2>A chacun son film...</h2>
 				<div id="connexion" class="soria">
 				</div>
@@ -269,7 +269,7 @@ HEREDOC;
 	    <script type="text/javascript" src="./js/highcharts.js"></script>
 		<script type="text/javascript" src="./js/modules/exporting.js"></script>
 		
-		<title>Allocine</title>
+		<title>MoviesList</title>
 		
 		$en_tete
 	</head>
@@ -279,7 +279,7 @@ HEREDOC;
 		<div id="page">
 		
 			<div id="header">
-				<h1><a href="./controller/user_controller.php?action=index">ALLOCINE</a></h1>
+				<h1><a href="./controller/user_controller.php?action=index">MoviesList</a></h1>
 				<h2>A chacun son film...</h2>
 				<div id="connexion" class="soria">
 				</div>

@@ -29,13 +29,16 @@
 								<li><img src="./images/10.jpg"></img></li>
 							</ul>
 						</section>
-						<p>Allocine, un site regroupant une immense base donnees de films</p>
-						<p>Sur ce site vous pouvez :</p>
-						<ul>
-							<li>Consulter le contexte d'un film</li>
-							<li>Donner votre avis sur un film</li>
-							<li>Modifier les informations d'un film</li>
-						</ul>
+						<div class="intro">
+							<p>Bienvenu sur le site de MoviesList. Nous vous souhaitons une bonne visite.</p>
+							<p>MoviesList, c'est :</p>
+							<ul>
+								<li>Consulter la fiche d'un film</li>
+								<li>Noter ce film</li>
+								<li>Ajouter, modifier des films</li>
+								<li>Personnaliser le site &agrave; votre convenance</li>
+							</ul>
+						</div>
 					</article>				
 				</div>
 HEREDOC;
