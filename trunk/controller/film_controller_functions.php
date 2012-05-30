@@ -10,6 +10,7 @@
 	require_once (dirname(__FILE__) . '/../persistence/listeCategoriesFilm_dao.php');
 	require_once (dirname(__FILE__) . '/../persistence/listeRecompenses_dao.php');
 	require_once (dirname(__FILE__) . '/../persistence/filmFavoris_dao.php');
+	require_once (dirname(__FILE__) . '/../persistence/note_dao.php');
 	
 	function processFicheFilm()
 	{
@@ -283,6 +284,12 @@
 					$listeCats[$i]->delete();
 				}
 			}	
+			$listeNotes = getNotesByFilmId($_POST['film_id']);
+			if($listeNotes != null){
+				for($i=0; $i<count($listeNotes); $i++){
+					$listeNotes[$i]->delete();
+				}
+			}
 			$listeActeurs = getListeActeurByFilmId($_POST['film_id']);
 			if($listeActeurs != null){
 				for($i=0; $i<count($listeActeurs); $i++){
